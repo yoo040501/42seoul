@@ -19,6 +19,21 @@ int	info_init(int ac, char **av, t_info *info)
 	}
 	else
 		info->eat_num = 0;
+	if (pthread_mutex_init(&(game->write), NULL))
+		return (-1);
+	if (pthread_mutex_init(&(game->eating), NULL))
+		return (-1);
+	game->forks = malloc(sizeof(pthread_mutex_t) * game->philo_num);
+	if (!(game->forks))
+		return (-1);
+	idx = 0;
+	while (idx < game->philo_num)
+	{
+		if (pthread_mutex_init(&(game->forks[idx]), NULL))
+			return (-1);
+		idx++;
+	}
+	return (0);
 	return (SUCCESS);
 }
 
