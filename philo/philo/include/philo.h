@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 # define SUCCESS	0
 # define FAIL		1
@@ -30,6 +31,9 @@ typedef struct s_info
 	int				to_sleep;
 	int				eat_num;
 	int				*fork;
+	int				die;
+	int				eat_check;
+	long long			start_time;
 	//int				monitor;// 종료 flag
 	//pthread_mutex_t	*fork;
 	pthread_mutex_t	print;
@@ -46,7 +50,7 @@ typedef struct s_philo
 	int			l_fork;
 	int			r_fork;
 	int			eat_count;
-	//long		last_time;// 쓰레드의 시작시간
+	//long		check_time;// 쓰레드의 시작시간
 	t_info		*info;
 }	t_philo;
 
