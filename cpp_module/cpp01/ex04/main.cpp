@@ -27,5 +27,38 @@ int	main(int ac, char **av)
 			std::string	filename = strcat(av[1], ".replace");
 			std::ofstream out(filename , std::ios::trunc);
 		}
+
+			outfile = av[1];
+	outfile.append(".replace"); 
+	ofs.open(outfile);
+	if (ofs.fail())
+	{
+		std::cout << "sorry, can't open " << outfile << std::endl;
+		return (1); 
+	}
+
+	while (true)
+	{
+		std::getline(ifs, contents);
+		
+		size_t pos = 0;
+		while (true)
+		{
+			pos = contents.find(s1, pos);
+			if (pos == std::string::npos)
+			{
+				break ;
+			}
+			contents.erase(pos, s1_len);
+			contents.insert(pos, s2);
+			pos += s2_len;
+		}
+		ofs << contents;
+		if (ifs.eof())
+			break ;
+		ofs << std::endl;	
+	}
+	
+	return (0);
 	}
 }
