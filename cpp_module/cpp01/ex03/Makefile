@@ -1,9 +1,9 @@
 CPP = c++
 CFLAGS = -Wall -Wextra -Werror -pedantic -std=c++98
 SRCS = Weapon.cpp	\
-		main.cpp	\
 		HumanA.cpp	\
-		HumanB.cpp
+		HumanB.cpp	\
+		main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 NAME = ex03

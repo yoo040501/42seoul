@@ -4,13 +4,15 @@
 # include <iostream>
 
 class Weapon{
-	std::string type;
+	private:
+		std::string type;
 
 	public:
 		Weapon();
 		Weapon(std::string type);
 		~Weapon();
 		void		setType(std::string type);
-		std::string	getType(void);
+		std::string	getType(void) const;
 };
+
 #endif

@@ -1,12 +1,9 @@
 CPP = c++
-CFLAGS = -Wall -Wextra -Werror -pedantic -std=c++98 
-#CFLAGS = -g -fsanitize=address
-SRCS = Zombie.cpp	\
-		main.cpp	\
-		zombieHorde.cpp
+CFLAGS = -Wall -Wextra -Werror -pedantic -std=c++98
+SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
-NAME = ex01
+NAME = ex04
 
 RM = rm -rf
 TOUCH = touch

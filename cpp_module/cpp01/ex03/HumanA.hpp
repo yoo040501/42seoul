@@ -4,12 +4,12 @@
 # include "Weapon.hpp"
 
 class HumanA{
-	Weapon		weapon;
 	std::string	name;
+	Weapon		weapon;
 	public:
-		HumanA();
-		~HumanA();
-		void setWeapon(Weapon weapon);
+		HumanA(std::string name, Weapon weapon);
+		~HumanA(void);
 		void attack(void);
 };
+
 #endif
