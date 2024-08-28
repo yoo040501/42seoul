@@ -1,7 +1,6 @@
 #include "Zombie.hpp"
 
 Zombie::Zombie(){
-	name = "";	
 }
 
 Zombie::~Zombie(){

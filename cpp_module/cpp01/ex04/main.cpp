@@ -5,8 +5,8 @@
 
 int	main(int ac, char **av)
 {
-	std::ifstream ifs;
-	std::ofstream ofs;
+	std::ifstream inf(av[1]);
+	std::ofstream outf;
 	std::string outfile;
 	std::string contents;
 	std::string s1;
@@ -16,7 +16,7 @@ int	main(int ac, char **av)
 
 	if (ac != 4)
 	{
-		std::cout << "argc is not 4" << std::endl; 
+		std::cout << "Error: argc must be 4" << std::endl; 
 		return (1);
 	}
 	s1 = av[2];
@@ -25,50 +25,43 @@ int	main(int ac, char **av)
 	s2_len = s2.length();
 	if (std::strlen(av[1]) == 0 || s1_len == 0 || s2_len == 0)
 	{
-		std::cout << "argv length is 0" << std::endl; 
+		std::cout << "Error: argv length is 0" << std::endl; 
 		return (1);
 	}
 
-	ifs.open(av[1]);
-	if (ifs.fail())
+	if (inf.is_open())
 	{
-		std::cout << "sorry, can't open " << av[1] << std::endl;
+		std::cout << "Error: can't open " << av[1] << std::endl;
 		return (1); 
 	}
 
 	outfile = av[1];
 	outfile.append(".replace"); 
-	ofs.open(outfile);
-	if (ofs.fail())
+	outf.open(outfile);
+	if (outf.fail())
 	{
-		std::cout << "sorry, can't open " << outfile << std::endl;
+		std::cout << "Error: can't open " << outfile << std::endl;
 		return (1); 
 	}
 
-	while (true)
+	while (1)
 	{
-		std::getline(ifs, contents);
+		std::getline(inf, contents);
 		
-		size_t pos = 0;
-		while (true)
+		std::string::size_type pos = 0;
+		while (1)
 		{
 			pos = contents.find(s1, pos);
 			if (pos == std::string::npos)
-			{
 				break ;
-			}
 			contents.erase(pos, s1_len);
 			contents.insert(pos, s2);
 			pos += s2_len;
 		}
-		ofs << contents;
-		if (ifs.eof())
+		outf << contents;
+		if (inf.eof())
 			break ;
-		ofs << std::endl;	
+		outf << std::endl;	
 	}
-	
 	return (0);
-	
-	return (0);
-	}
 }
