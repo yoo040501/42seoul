@@ -58,27 +58,46 @@ std::ostream& operator<<(std::ostream& o, const Fixed& F)
 	return o;
 }
 
+// 비교 연산자
+bool	Fixed::operator<(const Fixed& F) const{
+	return this->value < F.value;
+}
+bool	Fixed::operator>(const Fixed& F) const{
+	return this->value > F.value;
+}
+bool	Fixed::operator<=(const Fixed& F) const{
+	return this->value <= F.value;
+}
+bool	Fixed::operator>=(const Fixed& F) const{
+	return this->value >= F.value;
+}
+bool	Fixed::operator==(const Fixed& F) const{
+	return this->value == F.value;
+}
+
+// 산술 연산자
 Fixed	Fixed::operator+(const Fixed& F) const{
-	Fixed	temp(value + F.value);
+	Fixed	temp(toFloat() + F.toFloat());
 	return	temp;
 }
 
 Fixed	Fixed::operator-(const Fixed& F) const{
-	Fixed	temp(value - F.value);
+	Fixed	temp(toFloat() - F.toFloat());
 	return	temp;
 }
 
 Fixed	Fixed::operator*(const Fixed& F) const{
-	Fixed	temp(value * F.value);
-//	temp.toFloat();
+	Fixed	temp(toFloat() * F.toFloat());
 	return	temp;
 }
 
 Fixed	Fixed::operator/(const Fixed& F) const{
-	Fixed	temp(value / F.value);
+	Fixed	temp(toFloat() / F.toFloat());
 	return	temp;
 }
 
+
+// 증감 연산자
 Fixed	Fixed::operator++(int){
 	Fixed	temp(*this);
 	value++;
@@ -101,6 +120,19 @@ Fixed&	Fixed::operator--(){
 	return *this;
 }
 
-// Fixed	Fixed::max(const Fixed &a, const Fixed &b) const{
-// 	Fixed	temp;
-// }
+// Add these four public overloaded member functions to your class
+Fixed&	Fixed::max( Fixed &a, Fixed &b) {
+	return (a > b ? a: b);
+}
+
+const Fixed&	Fixed::max(const Fixed& a, const Fixed& b){
+	return (a > b ? a : b);
+}
+
+Fixed&	Fixed::min( Fixed &a, Fixed &b) {
+	return (a < b ? a: b);
+}
+
+const Fixed&	Fixed::min(const Fixed &a,const Fixed &b) {
+	return (a < b ? a: b);
+}
