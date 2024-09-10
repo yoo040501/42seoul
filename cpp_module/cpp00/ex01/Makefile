@@ -1,7 +1,7 @@
 CPP = c++
 CFLAGS = -Wall -Wextra -Werror -pedantic -std=c++98
 SRCS = PhoneBook.cpp	\
-		Contect.cpp		\
+		Contact.cpp		\
 		main.cpp
 OBJS = $(SRCS:.cpp=.o)
 

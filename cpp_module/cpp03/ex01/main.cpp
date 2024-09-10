@@ -1,15 +1,18 @@
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int	main(void)
 {
-	ClapTrap	one("one");
-	ClapTrap	two("two");
+	ScavTrap A("A");
+	ScavTrap B("B");
+	ScavTrap C = B;
 
-	for (int i=0;i<11;i++)
+	//C = B;
+	std::cout << A.getAttackDamage() << std::endl;
+	for (int i=0;i<6;i++)
 	{
-		one.attack("two");
-		if (one.getEnergyPoints() > 0)
-			two.takeDamage(one.getAttackDamage());
+		A.attack("B");
+		B.takeDamage(A.getAttackDamage());
 	}
-	return 0;
+	C.attack("A");
+	B.attack("A");
 }

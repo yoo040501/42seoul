@@ -6,7 +6,7 @@ SRCS =	main.cpp		\
 		ScavTrap.cpp
 OBJS = $(SRCS:.cpp=.o)
 
-NAME = ex00
+NAME = ex01
 
 RM = rm -rf
 TOUCH = touch

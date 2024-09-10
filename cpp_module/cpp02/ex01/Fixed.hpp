@@ -1,9 +1,8 @@
-#ifndef FIXED_HPP
-# define FIXED_HPP
+#pragma once
 
-# include <iostream>
-# include <cmath>
-# include <fstream>
+#include <iostream>
+#include <cmath>
+#include <fstream>
 
 class Fixed
 {
@@ -24,6 +23,3 @@ class Fixed
 };
 
 std::ostream& operator<<(std::ostream& o, const Fixed& F);
-
-
-#endif

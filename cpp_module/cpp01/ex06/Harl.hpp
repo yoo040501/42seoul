@@ -1,7 +1,6 @@
-#ifndef HARL_HPP
-# define HARL_HPP
+#pragma once
 
-# include <iostream>
+#include <iostream>
 
 class Harl{
 
@@ -20,7 +19,7 @@ class Harl{
 	levels	getlevel( std::string const level);
 
 	public:
+		Harl();
+		~Harl();
 		void	complain(std::string level);
 };
-
-#endif

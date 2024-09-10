@@ -1,7 +1,6 @@
 {
-	"C_Cpp.errorSquiggles": "disabled",
 	"files.associations": {
-		"iosfwd": "cpp",
+		"iostream": "cpp",
 		"__bit_reference": "cpp",
 		"__config": "cpp",
 		"__debug": "cpp",
@@ -37,8 +36,9 @@
 		"exception": "cpp",
 		"functional": "cpp",
 		"initializer_list": "cpp",
+		"iomanip": "cpp",
 		"ios": "cpp",
-		"iostream": "cpp",
+		"iosfwd": "cpp",
 		"istream": "cpp",
 		"iterator": "cpp",
 		"limits": "cpp",

@@ -1,7 +1,5 @@
-#ifndef HUMANA_HPP
-# define HUMANA_HPP
-
-# include "Weapon.hpp"
+#pragma once
+#include "Weapon.hpp"
 
 class HumanA{
 	std::string	name;
@@ -11,5 +9,3 @@ class HumanA{
 		~HumanA(void);
 		void attack(void);
 };
-
-#endif

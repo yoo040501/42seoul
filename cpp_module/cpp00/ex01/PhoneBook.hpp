@@ -1,7 +1,7 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
-# include "Contect.hpp"
+# include "Contact.hpp"
 
 class PhoneBook {
 	Contact contacts[8];

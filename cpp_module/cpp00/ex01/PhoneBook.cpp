@@ -35,63 +35,112 @@ bool check_print(std::string str){
 	return (true);
 }
 
-void    PhoneBook::AddContact(){
-    Contact     contact;
-    std::string FN;
+bool	input_firstname(Contact *contact){
+	std::string FN;
+
+	while (true){
+		std::cout << "Enter first name: ";
+		std::getline(std::cin, FN);
+
+		if (std::cin.eof()){
+			std::cout << "\nError: Input Cancelled" << std::endl;
+			delete contact;
+			return (false);
+		}
+		if (check_name(FN) == false)
+			std::cout << "Please Put English letters" << std::endl;
+		else
+		{
+			contact->set_FirstName(FN);
+			break ;
+		}
+	}
+	return (true);
+}
+
+bool	input_lastname(Contact *contact){
 	std::string LN;
-	std::string NN;
+
+	while (true){
+		std::cout << "Enter last name: ";
+		std::getline(std::cin, LN);
+
+		if (std::cin.eof()){
+			std::cout << "\nError: Input Cancelled" << std::endl;
+			delete contact;
+			return false;
+		}
+		if (check_name(LN) == false)
+			std::cout << "Please Put English letters" << std::endl;
+		else{
+			contact->set_LastName(LN);
+			break ;
+		}
+	}
+	return true;
+}
+
+bool	input_phone(Contact *contact){
 	std::string PN;
+
+	while(true){
+		std::cout << "Enter phone number: ";
+		std::getline(std::cin, PN);
+
+		if (std::cin.eof()){
+			std::cout << "\nError: Input Cancelled\n" << std::endl;
+			delete contact;
+			return false;
+		}
+		if(check_phone(PN) == false)
+			std::cout << "Please Put Number or '-'" << std::endl;
+		else{
+			contact->set_PhoneNumber(PN);
+			break ;
+		}
+	}
+	return (true);
+}
+
+void    PhoneBook::AddContact(){
+    Contact     *contact = new Contact;
+	std::string NN;
 	std::string DS;
 
     if (index == 8)
         index = 0;
-
-    std::cout << "Enter first name: ";
-    std::getline(std::cin, FN);
-
-	if (std::cin.eof() || check_name(FN) == false){
-        std::cout << "Error: Input Cancelled\n";
-        return ;
-    }
-
-    std::cout << "Enter last name: ";
-    std::getline(std::cin, LN);
-
-	if (std::cin.eof() || check_name(LN) == false){
-        std::cout << "Error: Input Cancelled\n";
-        return ;
-    }
-
+	
+	if (input_firstname(contact) == false)
+		return ;
+	
+	if (input_lastname(contact) == false)
+		return ;
+    
     std::cout << "Enter nickname: ";
     std::getline(std::cin, NN);
 
 	if (std::cin.eof() || check_print(NN) == false){
-        std::cout << "Error: Input Cancelled\n";
+        std::cout << "\nError: Input Cancelled\n" << std::endl;
+		delete contact;
         return ;
     }
 
-    std::cout << "Enter phone number: ";
-    std::getline(std::cin, PN);
-
-	if (std::cin.eof() || check_phone(PN) == false){
-        std::cout << "Error: Input Cancelled\n";
-        return ;
-    }
+	if (input_phone(contact) == false)
+		return ;
 
     std::cout << "Enter darkest secret: ";
     std::getline(std::cin, DS);
 
     if (std::cin.eof() || check_print(DS) == false){
-        std::cout << "Error: Input cancelled\n";
+        std::cout << "\nError: Input cancelled" << std::endl;
+		delete contact;
         return ;
     }
 
-    contact.set_FirstName(FN);
-    contact.set_LastName(LN);
-    contact.set_NickName(NN);
-    contact.set_PhoneNumber(PN);
-    contact.set_DarkestSecret(DS);
-    contacts[index] = contact;
+    contact->set_NickName(NN);
+    contact->set_DarkestSecret(DS);
+    contacts[index] = *contact;
+	delete contact;
     index++;
     if (contact_i < 8)
         contact_i++;
@@ -120,18 +169,19 @@ void	PhoneBook::SearchContact(){
 		std::cout << std::endl;
 	}
 
-	std::cout << "Input index:";
+	std::cout << "Input index: ";
 	std::cin >> idx;
 	std::cin.ignore();
-	if (idx > contact_i){
-		std::cout << "Error: retry again\n";
+	if (std::cin.fail() || idx > contact_i || idx == 0){
+		std::cout << "\nError: retry again" << std::endl;
+		std::cin.clear();
 		return ;
 	}
 
-	std::cout << "FirstName: " << contacts[idx - 1].get_FirstName() << '\n';
-	std::cout << "LastName: " << contacts[idx - 1].get_LastName() << '\n';
-	std::cout << "NickName: " << contacts[idx - 1].get_NickName() << '\n';
-	std::cout << "PhoneNumber: " << contacts[idx - 1].get_PhoneNumber() << '\n';
-	std::cout << "DarkestSecert: " << contacts[idx - 1].get_DarkestSecret() << '\n';
+	std::cout << "FirstName: " << contacts[idx - 1].get_FirstName() << std::endl;
+	std::cout << "LastName: " << contacts[idx - 1].get_LastName() << std::endl;
+	std::cout << "NickName: " << contacts[idx - 1].get_NickName() << std::endl;
+	std::cout << "PhoneNumber: " << contacts[idx - 1].get_PhoneNumber() << std::endl;
+	std::cout << "DarkestSecert: " << contacts[idx - 1].get_DarkestSecret() << std::endl;
 
 }

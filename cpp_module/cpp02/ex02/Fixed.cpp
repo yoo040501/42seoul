@@ -2,12 +2,12 @@
 
 Fixed::Fixed(void) : value(0)
 {
-	std::cout << "Default constructor called\n";
+	std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(const int num)
 {
-	std::cout << "Int constructor called\n";
+	std::cout << "Int constructor called" << std::endl;
 	this->value = (num * (1 << this->bits));
 }
 
@@ -19,18 +19,18 @@ Fixed::Fixed(const float num)
 
 Fixed::Fixed(const Fixed &F){
 	this->value = F.getRawBits();
-	std::cout << "Copy constructor called\n";
+	std::cout << "Copy constructor called" << std::endl;
 }
 
 Fixed& Fixed::operator=(const Fixed &F){
-	std::cout << "Copy assignment operator called\n";
+	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &F)
 		this->value = F.getRawBits();
 	return (*this);
 }
 
 Fixed::~Fixed(void){
-	std::cout << "Destructor called\n";
+	std::cout << "Destructor called" << std::endl;
 }
 
 int	Fixed::getRawBits(void) const

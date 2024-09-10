@@ -29,7 +29,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 
-	if (inf.is_open())
+	if (!inf.is_open())
 	{
 		std::cout << "Error: can't open " << av[1] << std::endl;
 		return (1); 

@@ -2,11 +2,13 @@
 
 HumanB::HumanB(std::string name) : name(name)
 {
-
+	std::cout << "HunmanB Constructor called" << std::endl;
 }
 
 HumanB::~HumanB(void)
-{}
+{
+	std::cout << "HumanB Destructor called" << std::endl;
+}
 
 void	HumanB::setWeapon(Weapon &weapon)
 {

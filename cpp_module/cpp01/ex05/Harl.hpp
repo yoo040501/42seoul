@@ -1,7 +1,6 @@
-#ifndef HARL_HPP
-# define HARL_HPP
+#pragma once
 
-# include <iostream>
+#include <iostream>
 
 class Harl{
 	void debug(void);
@@ -14,5 +13,3 @@ class Harl{
 		~Harl(void);
 		void complain(std::string level);
 };
-
-#endif

@@ -1,7 +1,6 @@
-#ifndef HUMANB_HPP
-# define HUMANB_HPP
+#pragma once
 
-# include "Weapon.hpp"
+#include "Weapon.hpp"
 
 class HumanB{
 	private:
@@ -13,5 +12,3 @@ class HumanB{
 		void	setWeapon(Weapon &weapon);
 		void	attack(void);
 };
-
-#endif

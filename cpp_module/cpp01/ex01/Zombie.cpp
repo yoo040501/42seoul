@@ -1,10 +1,12 @@
 #include "Zombie.hpp"
 
 Zombie::Zombie(){
-	name = "";	
+	std::cout << "Zombie Constructor called" << std::endl;
+	name = "Zombie";	
 }
 
 Zombie::~Zombie(){
+	std::cout << "Zombie Destructor called" << std::endl;
 }
 
 void Zombie::annouce(void){
