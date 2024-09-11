@@ -2,20 +2,21 @@
 
 Dog::Dog(void)
 {
-	std::cout << "	Dog Default Constructor called" << std::endl;
+	std::cout << COLOR_PURPLE << "Dog Default Constructor called" << COLOR_NONE << std::endl;
 	this->type = "Dog";
 	brain = new Brain;
 }
 
 Dog::Dog(const Dog &Dog){
-	std::cout << "	Dog Copy constructor called" << std::endl;
+	std::cout << COLOR_PURPLE << "Dog Copy constructor called" << COLOR_NONE << std::endl;
 	this->type = Dog.getType();
 	this->brain = new Brain;
 }
 
 Dog& Dog::operator=(const Dog &D){
-	std::cout << "	Dog Copy assignment operator called" << std::endl;
+	std::cout << COLOR_PURPLE << "Dog Copy assignment operator called" << COLOR_NONE << std::endl;
 	if (this != &D){
+		delete brain;
 		this->type = D.getType();
 		this->brain = new Brain;
 		}
@@ -23,7 +24,7 @@ Dog& Dog::operator=(const Dog &D){
 }
 
 Dog::~Dog(void){
-	std::cout << "	Dog Destructor called" << std::endl;
+	std::cout << COLOR_PURPLE << "Dog Destructor called" << COLOR_NONE << std::endl;
 	delete	brain;
 }
 

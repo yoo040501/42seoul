@@ -5,9 +5,9 @@
 class ClapTrap{
 	protected:
 		std::string		name;
-		int				HitPoints;
-		int				EnergyPoints;
-		int				AttackDamage;
+		unsigned int	HitPoints;
+		unsigned int	EnergyPoints;
+		unsigned int	AttackDamage;
 	
 	public:
 		ClapTrap(void);
@@ -17,8 +17,8 @@ class ClapTrap{
 		virtual ~ClapTrap(void);
 
 		virtual void	attack(const std::string& target);
-		virtual void	takeDamage(unsigned int amount);
-		virtual void	beRepaired(unsigned int amount);
+		void			takeDamage(unsigned int amount);
+		void			beRepaired(unsigned int amount);
 
 		std::string		getname(void) const;
 		unsigned int	getHitPoints(void) const;

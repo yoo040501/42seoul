@@ -8,6 +8,7 @@ ScavTrap::ScavTrap(void) : ClapTrap(){
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name){
+	this->name = name;
 	HitPoints = 100;
 	EnergyPoints = 50;
 	AttackDamage = 20;
@@ -16,13 +17,21 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name){
 
 ScavTrap::ScavTrap(const ScavTrap& ScavTrap) : ClapTrap(ScavTrap){
 	std::cout << "ScavTrap Copy constructor called" << std::endl;
+	this->name = ScavTrap.name;
+	this->HitPoints = ScavTrap.HitPoints;
+	this->EnergyPoints = ScavTrap.EnergyPoints;
+	this->AttackDamage = ScavTrap.AttackDamage;
 }
 
 ScavTrap& ScavTrap::operator=(const ScavTrap &S){
+	std::cout << "ScavTrap Copy assignment operator called" << std::endl;
 	if (this != &S) {
 		ClapTrap::operator=(S);
+		this->name = S.name;
+		this->HitPoints = S.HitPoints;
+		this->EnergyPoints = S.EnergyPoints;
+		this->AttackDamage = S.AttackDamage;
 	}
-	std::cout << "ScavTrap Copy assignment operator called" << std::endl;
 	return *this;
 }
 
@@ -39,8 +48,8 @@ void	ScavTrap::attack(const std::string& target)
 
 	if (EnergyPoints > 0 && this->HitPoints > 0)
 	{
-		std::cout << "ScavTrap " << this->name << " attacks " << target << ", causing " << this->AttackDamage << " points of damage!" << std::endl;
-		this->setEnergyPoints(this->getEnergyPoints() - 1);
+		std::cout << "\033[0;31mScavTrap " << this->name << " attacks " << target << ", causing " << this->AttackDamage << " points of damage!\033[0;0m" << std::endl;
+		this->EnergyPoints--;
 	}
 	else{
 		if (this->EnergyPoints == 0)
@@ -55,10 +64,10 @@ void	ScavTrap::takeDamage(unsigned int amount)
 	if (this->HitPoints > 0)
 	{
 		std::cout << "ScavTrap " << this->name << " takeDamage " << amount << std::endl;
-		if (this->HitPoints <= static_cast<int>(amount))
+		if (this->HitPoints <= amount)
 			this->HitPoints = 0;
 		else
-			this->HitPoints -= static_cast<int>(amount);
+			this->HitPoints -= amount;
 	}
 	if (this->HitPoints == 0)
 		std::cout << "ScavTrap " << this->name << " is died" << std::endl;
@@ -67,11 +76,11 @@ void	ScavTrap::takeDamage(unsigned int amount)
 void	ScavTrap::beRepaired(unsigned int amount){
 	if (this->EnergyPoints > 0 && this->HitPoints > 0){
 		std::cout << "ScavTrap " << this->name << " berepaired" << std::endl;
-		this->setEnergyPoints(this->EnergyPoints - 1);
-		if (this->HitPoints + static_cast<int>(amount) > 10)
+		this->EnergyPoints--;
+		if (this->HitPoints + amount > 10)
 			this->HitPoints = 10;
 		else
-			this->HitPoints += static_cast<int>(amount);
+			this->HitPoints += amount;
 	}
 	else{
 	if (this->EnergyPoints == 0)

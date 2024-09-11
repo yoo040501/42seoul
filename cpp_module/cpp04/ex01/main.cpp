@@ -1,9 +1,9 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 
-void	aaa(void){
-	system("leaks ex01");
-}
+// void	aaa(void){
+// 	system("leaks ex01");
+// }
 
 int main()
 {
@@ -17,7 +17,7 @@ int main()
 	a->makeSound();
 	delete j;
 	delete i;
-	delete a;
-	atexit(aaa);
+	//delete a;
+	//atexit(aaa);
 	return 0;
 }

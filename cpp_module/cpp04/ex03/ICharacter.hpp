@@ -7,8 +7,6 @@ class	AMateria;
 
 class ICharacter
 {
-	private:
-		int	idx;
 	public:
 		ICharacter();
 		virtual ~ICharacter() {}

@@ -7,6 +7,7 @@ class Cure: public AMateria
 	private:
 	
 	public:
+		Cure();
 		Cure(std::string const& type);
 		Cure(const Cure& Cure);
 		Cure& operator=(const Cure &C);
@@ -14,12 +15,3 @@ class Cure: public AMateria
 		AMateria*	clone() const;
 		void		use(ICharacter& target);
 };
-
-Cure::Cure(std::string const& type)
-{
-
-}
-
-Cure::~Cure()
-{
-}

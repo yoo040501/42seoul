@@ -3,6 +3,7 @@ CFLAGS = -Wall -Wextra -Werror -pedantic -std=c++98
 #CFLAGS = -g -fsanitize=address
 SRCS =	main.cpp		\
 		ClapTrap.cpp	\
+		ScavTrap.cpp	\
 		FragTrap.cpp	\
 		DiamondTrap.cpp
 OBJS = $(SRCS:.cpp=.o)

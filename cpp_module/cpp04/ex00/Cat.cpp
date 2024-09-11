@@ -3,23 +3,23 @@
 Cat::Cat(void)
 {
 	this->type = "Cat";
-	std::cout << "Cat Default Constructor called" << std::endl;
+	std::cout << COLOR_BLUE << "Cat Default Constructor called" << COLOR_NONE << std::endl;
 }
 
 Cat::Cat(const Cat &Cat){
-	this->type = Cat.getType();
-	std::cout << "Cat Copy constructor called\n";
+	this->type = Cat.type;
+	std::cout << COLOR_BLUE << "Cat Copy constructor called" << COLOR_NONE << std::endl;
 }
 
 Cat& Cat::operator=(const Cat &C){
-	std::cout << "Cat Copy assignment operator called\n";
+	std::cout << COLOR_BLUE << "Cat Copy assignment operator called" << COLOR_NONE << std::endl;
 	if (this != &C)
-		this->type = C.getType();
+		this->type = C.type;
 	return (*this);
 }
 
 Cat::~Cat(void){
-	std::cout << "Cat Destructor called\n";
+	std::cout << COLOR_BLUE << "Cat Destructor called" << COLOR_NONE << std::endl;
 }
 
 std::string	Cat::getType(void) const{

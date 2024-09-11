@@ -7,15 +7,14 @@ class	ICharacter;
 
 class AMateria
 {
-	private:
-		AMateria(const AMateria& AMateria);
-		AMateria& operator=(const AMateria &A);
 	protected:
-		std::string	const type;
+		std::string	type;
 
 	public:
 		AMateria(void);
 		AMateria(std::string const& type);
+		AMateria(const AMateria& AMateria);
+		AMateria& operator=(const AMateria &A);
 		virtual	~AMateria();
 
 		std::string const& getType() const;
