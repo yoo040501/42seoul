@@ -16,4 +16,18 @@ int	main(void)
 	}
 	C.attack("A");
 	B.attack("A");
+
+	std::cout << "\n\n-=-----------------TESTING DIAMONDTRAP------------------\n" << std::endl;
+	{
+		DiamondTrap a;
+		DiamondTrap b("G");
+		DiamondTrap c(a);
+
+		std::cout << "\033[34mTesting\033[0m" << std::endl;
+		a.whoAmI();
+		a.attack("some super random dude");
+		b.whoAmI();
+		b.attack("Chadd-clone");
+		c.whoAmI();
+	}
 }
