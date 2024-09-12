@@ -1,16 +1,20 @@
 #include "AMateria.hpp"
 
-AMateria::AMateria(std::string const& type): type(type){
+AMateria::AMateria(std::string const& type): _type(type){
 	std::cout << "AMateria Constructor called" << std::endl;
 }
 
 
 AMateria::AMateria(const AMateria& other){
+	this->_type = other._type;
 	std::cout << "AMateria Copy Constructor called" << std::endl;
-	this->type = other.type;
 }
 
 AMateria& AMateria::operator=(const AMateria &A){
+	if (this != &A)
+	{
+		this->_type = A._type;
+	}
 	std::cout << "AMateria Copy assignment Constructor called" << std::endl;
 }
 
@@ -19,9 +23,9 @@ AMateria::~AMateria() {
 }
 
 std::string const& AMateria::getType() const{
-	return this->type;
+	return this->_type;
 }
 
-void AMateria::use(ICharacter& target){
+void AMateria::use(ICharacter& target) const{
 	std::cout << "none" << std::endl;
 }

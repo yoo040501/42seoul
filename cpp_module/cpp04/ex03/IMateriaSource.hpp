@@ -17,11 +17,3 @@ class IMateriaSource
 		virtual void learnMateria(AMateria*) = 0;
 		virtual AMateria* createMateria(std::string const & type) = 0;
 };
-
-IMateriaSource::IMateriaSource(/* args */)
-{
-}
-
-IMateriaSource::~IMateriaSource()
-{
-}

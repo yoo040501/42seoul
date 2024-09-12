@@ -2,26 +2,26 @@
 
 Cure::Cure() : AMateria("Cure")
 {
-    // std::cout << "* Cure: materia is created *" << std::endl;
+    std::cout << "* Cure: materia is created *" << std::endl;
 }
 
 Cure::Cure( Cure const & src ) : AMateria("Cure")
 {
     *this = src;
-    // std::cout << "* Cure: materia is copied *" << std::endl;
+    std::cout << "* Cure: materia is copied *" << std::endl;
 }
 
 Cure&   Cure::operator=( const Cure& C) {
     if (this != &C)
     {
-        this->type = C.type;
+        this->_type = C._type;
     }
     return *this;
 }
 
 Cure::~Cure()
 {
-    // std::cout << "* Cure: Cure is destroyed *" << std::endl;
+    std::cout << "* Cure: Cure is destroyed *" << std::endl;
 }
 
 AMateria* Cure::clone() const

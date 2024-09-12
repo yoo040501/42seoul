@@ -8,7 +8,7 @@ class	ICharacter;
 class AMateria
 {
 	protected:
-		std::string	type;
+		std::string	_type;
 
 	public:
 		AMateria(void);
@@ -19,6 +19,6 @@ class AMateria
 
 		std::string const& getType() const;
 		virtual AMateria* clone() const = 0;
-		virtual void use(ICharacter& target);
+		virtual void use(ICharacter& target) const ;
 };
 

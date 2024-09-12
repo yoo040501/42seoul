@@ -10,9 +10,8 @@ Character::Character( std::string const & name ) : _name(name)
 
 Character::Character( Character const & src ) : _name(src._name)
 {
-    // for (int i = 0; i < 4; i++)
-    //     this->_inventory[i] = src._inventory[i];
-    *this = src;
+    for (int i = 0; i < 4; i++)
+        this->_inventory[i] = src._inventory[i];
     std::cout << "Character " << this->_name << " created" << std::endl;
 }
 

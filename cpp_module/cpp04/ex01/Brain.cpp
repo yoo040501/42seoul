@@ -12,7 +12,6 @@ Brain::Brain(void){
 }
 
 Brain::Brain(const Brain& Brain){
-//	*this = Brain;
 	for (int i=0;i<100;i++)
 		this->ideas[i] = Brain.getIdea(i);
 	std::cout << "Brain Copy Constructor Called" << std::endl;
