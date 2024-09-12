@@ -1,6 +1,7 @@
 #include "DiamondTrap.hpp"
 
 DiamondTrap::DiamondTrap() : ClapTrap(), FragTrap(), ScavTrap(){
+	this->name = "UNKNOWN";
 	std::cout << "DiamondTrap Default constructor called" << std::endl;
 }
 

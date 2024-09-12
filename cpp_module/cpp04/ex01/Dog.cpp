@@ -28,10 +28,9 @@ Dog::~Dog(void){
 	delete	brain;
 }
 
-std::string	Dog::getType(void) const{
-	return this->type;
+Brain*	Dog::getBrain(void) const{
+	return this->brain;
 }
-
 void	Dog::makeSound(void) const{
 	std::cout << "Bowwow! Bowwow!" << std::endl;
 }

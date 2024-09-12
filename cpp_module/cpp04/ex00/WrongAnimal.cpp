@@ -22,7 +22,7 @@ WrongAnimal::~WrongAnimal(void){
 	std::cout << COLOR_RED << "WrongAnimal Destructor called" << COLOR_NONE << std::endl;
 }
 
-std::string	WrongAnimal::getType(void) const{
+const std::string&	WrongAnimal::getType(void) const{
 	return this->type;
 }
 

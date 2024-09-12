@@ -22,7 +22,7 @@ WrongCat::~WrongCat(void){
 	std::cout << COLOR_BLUE << "WrongCat Destructor called" << COLOR_NONE << std::endl;
 }
 
-std::string	WrongCat::getType(void) const{
+const std::string&	WrongCat::getType(void) const{
 	return this->type;
 }
 

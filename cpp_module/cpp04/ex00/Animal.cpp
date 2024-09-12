@@ -22,8 +22,10 @@ Animal::~Animal(void){
 	std::cout << COLOR_RED << "Animal Destructor called" << COLOR_NONE << std::endl;
 }
 
-std::string	Animal::getType(void) const{
+const std::string&	Animal::getType(void) const{
 	return this->type;
 }
 
-void	Animal::makeSound(void) const{}
+void	Animal::makeSound(void) const{
+	std::cout << COLOR_RED << "Animal makeSound" << COLOR_NONE << std::endl;
+}

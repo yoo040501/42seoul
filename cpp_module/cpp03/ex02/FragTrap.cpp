@@ -39,37 +39,6 @@ FragTrap::~FragTrap(void){
 	std::cout << "FragTrap Destructor called" << std::endl;
 }
 
-void	FragTrap::takeDamage(unsigned int amount)
-{
-	if (this->HitPoints > 0)
-	{
-		std::cout << "FragTrap " << this->name << " takeDamage " << amount << std::endl;
-		if (this->HitPoints <= amount)
-			this->HitPoints = 0;
-		else
-			this->HitPoints -= amount;
-	}
-	if (this->HitPoints == 0)
-		std::cout << "FragTrap " << this->name << " is died" << std::endl;
-}
-
-void	FragTrap::beRepaired(unsigned int amount){
-	if (this->EnergyPoints > 0 && this->HitPoints > 0){
-		std::cout << "FragTrap " << this->name << " berepaired" << std::endl;
-		this->EnergyPoints--;
-		if (this->HitPoints + amount > 10)
-			this->HitPoints = 10;
-		else
-			this->HitPoints += amount;
-	}
-	else{
-	if (this->EnergyPoints == 0)
-		std::cout << "FragTrap " << this->name << " Not Enough Energy" << std::endl;
-	else
-		std::cout << "FragTrap " << this->name << " already die" << std::endl;
-	}
-}
-
 void	FragTrap::highFivesGuys(void){
 	std::cout << "FragTrap " << this->name << " wants a highfive!"<< std::endl;
 }

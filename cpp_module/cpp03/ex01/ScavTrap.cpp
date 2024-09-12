@@ -58,34 +58,3 @@ void	ScavTrap::attack(const std::string& target)
 			std::cout << "This ScavTrap "<< this->name << " already die" << std::endl;
 	}
 }
-
-void	ScavTrap::takeDamage(unsigned int amount)
-{
-	if (this->HitPoints > 0)
-	{
-		std::cout << "ScavTrap " << this->name << " takeDamage " << amount << std::endl;
-		if (this->HitPoints <= amount)
-			this->HitPoints = 0;
-		else
-			this->HitPoints -= amount;
-	}
-	if (this->HitPoints == 0)
-		std::cout << "ScavTrap " << this->name << " is died" << std::endl;
-}
-
-void	ScavTrap::beRepaired(unsigned int amount){
-	if (this->EnergyPoints > 0 && this->HitPoints > 0){
-		std::cout << "ScavTrap " << this->name << " berepaired" << std::endl;
-		this->EnergyPoints--;
-		if (this->HitPoints + amount > 10)
-			this->HitPoints = 10;
-		else
-			this->HitPoints += amount;
-	}
-	else{
-	if (this->EnergyPoints == 0)
-		std::cout << "ScavTrap " << this->name << " Not Enough Energy" << std::endl;
-	else
-		std::cout << "ScavTrap " << this->name << " already die" << std::endl;
-	}
-}

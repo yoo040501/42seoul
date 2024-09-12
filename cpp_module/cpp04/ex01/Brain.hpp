@@ -12,7 +12,6 @@ class Brain{
 		Brain& operator=(const Brain &B);
 		~Brain();
 
-		std::string			get_idea(int n) const;
-		const std::string	*get_all(void) const;
-		void				set_idea(int n, std::string word);
+		std::string			getIdea(int n) const;
+		void				setIdea(int n, std::string word);
 };

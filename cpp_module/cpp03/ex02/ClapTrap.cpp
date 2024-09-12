@@ -1,11 +1,11 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(void): HitPoints(10), EnergyPoints(10), AttackDamage(0){
+ClapTrap::ClapTrap(void): HitPoints(100), EnergyPoints(10), AttackDamage(0){
 	std::cout << "\033[0;30mClapTrap Default constructor called\033[0;0m" << std::endl;
-	name = "";
+	name = "UNKNOWN";
 }
 
-ClapTrap::ClapTrap(std::string name): name(name), HitPoints(10), EnergyPoints(10), AttackDamage(0){
+ClapTrap::ClapTrap(std::string name): name(name), HitPoints(100), EnergyPoints(10), AttackDamage(0){
 	std::cout << "\033[0;30mClapTrap " << this->name << " constructor called\033[0;0m" << std::endl;
 }
 
@@ -38,14 +38,14 @@ void	ClapTrap::attack(const std::string& target)
 {
 	if (this->EnergyPoints > 0 && this->HitPoints > 0)
 	{
-		std::cout << "\033[0;31mClapTrap " << this->name << " attacks " << target << ", causing " << this->AttackDamage << " points of damage!\033[0;0m" << std::endl;
+		std::cout << "\033[0;31m" << this->name << " attacks " << target << ", causing " << this->AttackDamage << " points of damage!\033[0;0m" << std::endl;
 		this->EnergyPoints--;
 	}
 	else{
 		if (this->EnergyPoints == 0)
-			std::cout << "Not Enough Energy" << std::endl;
+			std::cout << "Not Enough Energy\033[0;0m" << std::endl;
 		else
-			std::cout << "This ClapTrap already die" << std::endl;
+			std::cout << this->name <<" Trap already die\033[0;0m" << std::endl;
 	}
 }
 
@@ -53,34 +53,34 @@ void	ClapTrap::takeDamage(unsigned int amount)
 {
 	if (this->HitPoints > 0)
 	{
-		std::cout << "ClapTrap " << this->name << " takeDamage " << amount << std::endl;
+		std::cout << "\033[0;30m" << this->name << " takeDamage " << amount << "\033[0;0m" << std::endl;
 		if (this->HitPoints <= amount)
 			this->HitPoints = 0;
 		else
 			this->HitPoints -= amount;
 	}
 	if (this->HitPoints == 0)
-		std::cout << "ClapTrap " << this->name << " is died" << std::endl;
+		std::cout << "\033[0;30m" << this->name << " is died\033[0;0m" << std::endl;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount){
 	if (this->EnergyPoints > 0 && this->HitPoints > 0){
-		std::cout << "ClapTrap " << this->name << " berepaired" << std::endl;
+		std::cout << "\033[0;30m" << this->name << " berepaired\033[0;0m" << std::endl;
 		this->EnergyPoints--;
-		if (this->HitPoints + amount > 10)
-			this->HitPoints = 10;
+		if (this->HitPoints + amount > 100)
+			this->HitPoints = 100;
 		else
 			this->HitPoints += amount;
 	}
 	else{
 	if (this->EnergyPoints == 0)
-		std::cout << "ClapTrap " << this->name << " Not Enough Energy" << std::endl;
+		std::cout << "\033[0;30m" << this->name << " Not Enough Energy\033[0;0m" << std::endl;
 	else
-		std::cout << "ClapTrap " << this->name << " already die" << std::endl;
+		std::cout << "\033[0;30m" << this->name << " already die\033[0;0m" << std::endl;
 	}
 }
 
-std::string	ClapTrap::getname(void) const{
+const std::string&	ClapTrap::getname(void) const{
 	return (this->name);
 }
 

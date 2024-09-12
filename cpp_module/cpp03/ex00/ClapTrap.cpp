@@ -2,7 +2,7 @@
 
 ClapTrap::ClapTrap(void): HitPoints(10), EnergyPoints(10), AttackDamage(0){
 	std::cout << "\033[0;30mDefault constructor called\033[0;0m" << std::endl;
-	name = "";
+	name = "UNKNOWN";
 }
 
 ClapTrap::ClapTrap(std::string name): name(name), HitPoints(10), EnergyPoints(10), AttackDamage(0){
@@ -80,7 +80,7 @@ void	ClapTrap::beRepaired(unsigned int amount){
 	}
 }
 
-std::string	ClapTrap::getname(void) const{
+const std::string&	ClapTrap::getname(void) const{
 	return (this->name);
 }
 

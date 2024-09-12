@@ -2,45 +2,37 @@
 
 int	main(void)
 {
-	ScavTrap A("A");
-	ScavTrap B("B");
-	ScavTrap C = B;
-
-	//C = B;
-	std::cout << A.getAttackDamage() << std::endl;
-	for (int i=0;i<6;i++)
+	std::cout << "-----------TESTING CLAPTRAP-------------\n" << std::endl;
 	{
-		A.attack("B");
-		B.takeDamage(A.getAttackDamage());
-	}
-	C.attack("A");
-	B.attack("A");
+		ClapTrap	one;
+		ClapTrap	two("two");
 
-	std::cout << "-----------TESTING CLAPTRAP-----------------\n" << std::endl;
-	{
-		ClapTrap a;
-		ClapTrap b("b");
-
-		for (int i = 0; i < 12; i++)
-			b.attack("Cody-clone");
-		b.beRepaired(3);
+		one.beRepaired(10);
+		for (int i=0;i<10;i++)
+		{
+			one.attack("two");
+			if (one.getEnergyPoints() >= 0)
+				two.takeDamage(one.getAttackDamage());
+		}
+		two.takeDamage(100);
+		one.beRepaired(5);
 	}
 	std::cout << "\n-------------------TESTING SCAVTRAP------------------\n" << std::endl;
 	{
-		ScavTrap c;
-		ScavTrap d("d");
+		ScavTrap a;
+		ScavTrap b("b");
 
-		c.attack("CloneTrap");
-		// for (int i = 0; i < 50; i++)
-		// 	c.attack("CloneTrap");
-		c.beRepaired(22);
-		c.takeDamage(21);
-		c.beRepaired(22);
-		c.guardGate();
-		c.guardGate();
-		d.attack("Savage-clone");
-		d.takeDamage(101);
-		d.takeDamage(15);
-		d.attack("ScavTrap-clone");
+		b.attack("Trap");
+		for (int i = 0; i < 50; i++)
+			a.attack("Trap");
+		a.beRepaired(22);
+		a.takeDamage(21);
+		a.beRepaired(22);
+		a.guardGate();
+		a.guardGate();
+		b.attack("a");
+		b.takeDamage(100);
+		b.takeDamage(15);
+		b.attack("a");
 	}
 }

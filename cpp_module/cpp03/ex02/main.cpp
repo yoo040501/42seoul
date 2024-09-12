@@ -2,33 +2,34 @@
 
 int	main(void)
 {
-	FragTrap A("A");
-	FragTrap B("B");
-	FragTrap C = B;
-
-	//C = B;
-	std::cout << A.getAttackDamage() << std::endl;
-	for (int i=0;i<6;i++)
+	std::cout << "-----------TESTING CLAPTRAP-------------\n" << std::endl;
 	{
-		A.attack("B");
-		B.takeDamage(A.getAttackDamage());
+		ClapTrap	one;
+		ClapTrap	two("two");
+
+		one.beRepaired(10);
+		for (int i=0;i<10;i++)
+		{
+			one.attack("two");
+			if (one.getEnergyPoints() >= 0)
+				two.takeDamage(one.getAttackDamage());
+		}
+		two.takeDamage(10);
+		one.beRepaired(5);
 	}
-	C.attack("A");
-	B.attack("A");
 
 	std::cout << "\n\n-------------TESTING FRAGTRAP---------------------\n" << std::endl;
 	{
-		FragTrap e;
-		FragTrap f("Chadd");
+		FragTrap a;
+		FragTrap b("bbbb");
 
-		std::cout << "\033[34mTesting\033[0m" << std::endl;
-		e.highFiveGuys();
-		e.attack("some random dude");
-		e.takeDamage(101);
-		e.takeDamage(1);
-		e.attack("some random dude");
-		f.highFiveGuys();
+		a.highFivesGuys();
+		a.attack("Trap");
+		a.takeDamage(101);
+		a.beRepaired(12);
+		a.attack("Trap");
+		b.highFivesGuys();
 		// for(int i = 0; i < 101; i++)
-		// 	f.attack("FragTrap-clone");
+		// 	b.attack("Someone");
 	}
 }

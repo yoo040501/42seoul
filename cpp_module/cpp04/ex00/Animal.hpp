@@ -13,6 +13,6 @@ class Animal {
 		Animal& operator=(const Animal &A);
 		virtual	~Animal();
 
-		virtual void	makeSound(void) const;
-		virtual std::string	getType(void) const;
+		virtual void		makeSound(void) const;
+		const std::string&	getType(void) const;
 };

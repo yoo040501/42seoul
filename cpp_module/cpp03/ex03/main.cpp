@@ -3,31 +3,29 @@
 
 int	main(void)
 {
-	DiamondTrap A("A");
-	DiamondTrap B("B");
-	DiamondTrap C;
-
-	C = B;
-	std::cout << A.getAttackDamage() << std::endl;
-	for (int i=0;i<6;i++)
+	std::cout << "\n\n-------------TESTING FRAGTRAP---------------------\n" << std::endl;
 	{
-		A.attack("B");
-		B.takeDamage(A.getAttackDamage());
-	}
-	C.attack("A");
-	B.attack("A");
+		FragTrap a;
+		FragTrap b("bbbb");
 
-	std::cout << "\n\n-=-----------------TESTING DIAMONDTRAP------------------\n" << std::endl;
+		a.highFivesGuys();
+		a.attack("Trap");
+		a.takeDamage(101);
+		a.beRepaired(12);
+		a.attack("Trap");
+		b.highFivesGuys();
+	}
+
+	std::cout << "\n\n-----------------TESTING DIAMONDTRAP------------------\n" << std::endl;
 	{
 		DiamondTrap a;
-		DiamondTrap b("G");
+		DiamondTrap b("b");
 		DiamondTrap c(a);
 
-		std::cout << "\033[34mTesting\033[0m" << std::endl;
 		a.whoAmI();
-		a.attack("some super random dude");
+		a.attack("Someone");
 		b.whoAmI();
-		b.attack("Chadd-clone");
+		b.attack("Someone");
 		c.whoAmI();
 	}
 }

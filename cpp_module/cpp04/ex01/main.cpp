@@ -7,67 +7,60 @@
 
 int main()
 {{
-		const Animal *lotsOfAnimals[N_ANIMALS];
+		const Animal *Animals[10];
 
-		for (int i = 0; i < N_ANIMALS; i++)
+		for (int i = 0; i < 10; i++)
 		{
-			if (i < N_ANIMALS / 2)
-				lotsOfAnimals[i] = new Dog();
+			if (i < 10 / 2)
+				Animals[i] = new Dog();
 			else
-				lotsOfAnimals[i] = new Cat();
+				Animals[i] = new Cat();
 		}
 		std::cout << "-------------------------------------\n";
-		std::cout << lotsOfAnimals[0]->getType() << std::endl;
-		std::cout << lotsOfAnimals[5]->getType() << std::endl;
-		Brain *brain;
-		brain = &lotsOfAnimals[0]->getBrain();
-		brain->setIdea("I want sarshisitas!", 0);
-		brain->setIdea("Let's play ball!!", 1);
-		brain->setIdea("Feed me human!", 2);
-		std::cout << lotsOfAnimals[0]->getBrain().getIdea(0) << std::endl;
-		std::cout << lotsOfAnimals[0]->getBrain().getIdea(1) << std::endl;
-		std::cout << "-------------------------------------\n";
-		for (int i = 0; i < N_ANIMALS; i++)
-			delete lotsOfAnimals[i];
+		std::cout << Animals[0]->getType() << std::endl;
+		std::cout << Animals[5]->getType() << std::endl;
+
+		Brain *brain = Animals[0]->getBrain();
+		brain->setIdea(0, "Hello");
+		brain->setIdea(1, "World");
+		std::cout << Animals[0]->getBrain()->getIdea(0) << std::endl;
+		std::cout << Animals[0]->getBrain()->getIdea(1) << std::endl;
+		for (int i = 0; i < 10; i++)
+			delete Animals[i];
+	//	delete brain;
 	}
-	std::cout << "-------------------------------------\n";
+	std::cout << "-------------------------------------" << std::endl;
 	{
-		std::cout << "Check deep copy of Dog class using copy constructor:\n" << std::endl;
+		std::cout << "Deep copy Dog class\n" << std::endl;
 		Dog *dogA = new Dog;
 		Dog *dogB = new Dog(*dogA);
 
-		delete dogA;
-		delete dogB;
-	}
-	std::cout << "-------------------------------------\n";
-	{
-		std::cout << "Check deep copy of Dog class using assignment operator overload:\n" << std::endl;
-		Dog *dogA = new Dog;
-		Dog *dogB = new Dog;
+		Dog *dogC = new Dog;
+		Dog *dogD = new Dog;
 
-		*dogA = *dogB;
+		*dogC = *dogD;
+
 		delete dogA;
 		delete dogB;
+		delete dogC;
+		delete dogD;
 	}
-	std::cout << "-------------------------------------\n";
+
+	std::cout << "-------------------------------------" << std::endl;
 	{
-		std::cout << "Check deep copy of Cat class using copy constructor:\n" << std::endl;
+		std::cout << "Deep copy Cat class\n" << std::endl;
 		Cat *catA = new Cat;
 		Cat *catB = new Cat(*catA);
 
-		delete catA;
-		delete catB;
-	}
-	std::cout << "-------------------------------------\n";
-	{
-		std::cout << "Check deep copy of Cat class using assignment operator overload:\n" << std::endl;
-		Cat *catA = new Cat;
-		Cat *catB = new Cat;
+		Cat *catC = new Cat;
+		Cat *catD = new Cat;
 
-		*catA = *catB;
+		*catC = *catD;
 		delete catA;
 		delete catB;
+		delete catC;
+		delete catD;
 	}
-	return (0);
 	return 0;
 }
+
