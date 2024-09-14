@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include "Color.hpp"
 #include "AMateria.hpp"
 
 class	AMateria;
@@ -8,10 +9,12 @@ class	AMateria;
 class ICharacter
 {
 	protected:
-		ICharacter(const ICharacter& other);
+	
 	public:
 		ICharacter();
-		virtual ~ICharacter() {}
+		ICharacter(const ICharacter& other);
+		ICharacter	operator=(const ICharacter& oth);
+		virtual ~ICharacter();
 		
 		virtual std::string const&	getName() const = 0;
 		virtual void				equip(AMateria* m) = 0;
