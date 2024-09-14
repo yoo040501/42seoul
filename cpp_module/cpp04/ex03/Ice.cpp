@@ -2,34 +2,37 @@
 
 Ice::Ice() : AMateria("ice")
 {
-    std::cout << "* Ice: Default constructor called *" << std::endl;
+	std::cout << "* Ice Default constructor called *" << std::endl;
 }
 
 Ice::Ice( Ice const & other) : AMateria("ice")
 {
-    *this = other;
-    std::cout << "* Ice: Copy constructor called *" << std::endl;
+	this->_type = other._type;
+	std::cout << "* Ice Copy constructor called *" << std::endl;
 }
 
-Ice&   Ice::operator=( const Ice& I) {
-    if (this != &I)
-    {
-        this->_type = I._type;
-    }
-    return *this;
+Ice&	Ice::operator=( const Ice& I) {
+	if (this != &I)
+	{
+		AMateria::operator=(I);
+		this->_type = I._type;
+	}
+	std::cout << "* Ice Copy assignment constructor called *" << std::endl;
+
+	return *this;
 }
 
 Ice::~Ice()
 {
-    std::cout << "* Ice: Destructor called *" << std::endl;
+	std::cout << "* Ice Destructor called *" << std::endl;
 }
 
-AMateria* Ice::clone() const
+AMateria*	Ice::clone() const
 {
-    return (new Ice(*this));
+	return (new Ice(*this));
 }
 
-void    Ice::use( ICharacter& target )
+void	Ice::use( ICharacter& target )
 {
-    std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }

@@ -8,7 +8,6 @@ ScavTrap::ScavTrap(void) : ClapTrap(){
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name){
-	this->name = name;
 	HitPoints = 100;
 	EnergyPoints = 50;
 	AttackDamage = 20;

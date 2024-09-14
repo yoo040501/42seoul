@@ -12,33 +12,34 @@ Brain::Brain(void){
 }
 
 Brain::Brain(const Brain& Brain){
-	std::cout << "		Brain Copy Constructor Called" << std::endl;
-	*this = Brain;
 	for (int i=0;i<100;i++)
-		this->ideas[i] = Brain::get_idea(i);
+		this->ideas[i] = Brain.getIdea(i);
+	std::cout << "Brain Copy Constructor Called" << std::endl;
 }
 
 Brain&	Brain::operator=(const Brain& B){
-	std::cout << "		Brain Copy assignment operator called" << std::endl;
 	if (this != &B)
 	{
 		for (int i=0;i<100;i++)
-			this->ideas[i] = B.get_idea(i);
+			this->ideas[i] = B.getIdea(i);
 	}
+	std::cout << "Brain Copy assignment operator called" << std::endl;
 	return (*this);
 }
 
 Brain::~Brain(void){
-	std::cout << "		Brain Destructor called" << std::endl;
+	std::cout << "Brain Destructor called" << std::endl;
 }
 
-std::string	Brain::get_idea(int n) const{
-	return (this->ideas[n]);
+std::string	Brain::getIdea(int n) const{
+	if (n >= 0 && n < 100)
+		return (this->ideas[n]);
+	return (this->ideas[0]);
 }
 
-const std::string*	Brain::get_all(void) const{
-	return this->ideas;
-}
-void	Brain::set_idea(int n, std::string word){
-	this->ideas[n] = word;
+void	Brain::setIdea(int n, std::string word){
+	if (n >= 0 && n < 100)
+		this->ideas[n] = word;
+	else
+		this->ideas[0] = word;
 }

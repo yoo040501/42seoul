@@ -3,18 +3,18 @@
 
 int	main(void)
 {
-	std::cout << "\n\n-------------TESTING FRAGTRAP---------------------\n" << std::endl;
-	{
-		FragTrap a;
-		FragTrap b("bbbb");
+	// std::cout << "\n\n-------------TESTING FRAGTRAP---------------------\n" << std::endl;
+	// {
+	// 	FragTrap a;
+	// 	FragTrap b("bbbb");
 
-		a.highFivesGuys();
-		a.attack("Trap");
-		a.takeDamage(101);
-		a.beRepaired(12);
-		a.attack("Trap");
-		b.highFivesGuys();
-	}
+	// 	a.highFivesGuys();
+	// 	a.attack("Trap");
+	// 	a.takeDamage(101);
+	// 	a.beRepaired(12);
+	// 	a.attack("Trap");
+	// 	b.highFivesGuys();
+	// }
 
 	std::cout << "\n\n-----------------TESTING DIAMONDTRAP------------------\n" << std::endl;
 	{
@@ -27,5 +27,8 @@ int	main(void)
 		b.whoAmI();
 		b.attack("Someone");
 		c.whoAmI();
+
+		for(int i = 0; i < 53; i++)
+			b.attack("Someone");
 	}
 }

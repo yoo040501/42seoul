@@ -8,10 +8,10 @@ class Cure: public AMateria
 	
 	public:
 		Cure();
-		Cure(std::string const& type);
-		Cure(const Cure& Cure);
+		Cure(const Cure& other);
 		Cure& operator=(const Cure &C);
 		~Cure();
+
 		AMateria*	clone() const;
 		void		use(ICharacter& target);
 };

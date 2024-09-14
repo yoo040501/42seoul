@@ -8,18 +8,19 @@ Dog::Dog(void)
 }
 
 Dog::Dog(const Dog &Dog){
-	std::cout << COLOR_PURPLE << "Dog Copy constructor called" << COLOR_NONE << std::endl;
 	this->type = Dog.getType();
-	this->brain = new Brain;
+	this->brain = new Brain(*Dog.brain);
+	std::cout << COLOR_PURPLE << "Dog Copy constructor called" << COLOR_NONE << std::endl;
 }
 
 Dog& Dog::operator=(const Dog &D){
-	std::cout << COLOR_PURPLE << "Dog Copy assignment operator called" << COLOR_NONE << std::endl;
 	if (this != &D){
 		delete brain;
+		Animal::operator=(D);
 		this->type = D.getType();
-		this->brain = new Brain;
+		this->brain = new Brain(*D.brain);
 		}
+	std::cout << COLOR_PURPLE << "Dog Copy assignment operator called" << COLOR_NONE << std::endl;
 	return (*this);
 }
 

@@ -9,7 +9,7 @@ Cat::Cat(void) : Animal()
 
 Cat::Cat(const Cat &Cat) : Animal(Cat){
 	this->type = Cat.type;
-	this->brain = new Brain;
+	this->brain = new Brain(*Cat.brain);
 	std::cout << COLOR_BLUE << "Cat Copy constructor called" << COLOR_NONE << std::endl;
 }
 
@@ -18,7 +18,7 @@ Cat& Cat::operator=(const Cat &C){
 		Animal::operator=(C);
 		delete brain;
 		this->type = C.type;
-		this->brain = new Brain;
+		this->brain = new Brain(*C.brain);
 	}
 	std::cout << COLOR_BLUE << "Cat Copy assignment operator called" << COLOR_NONE << std::endl;
 	return (*this);

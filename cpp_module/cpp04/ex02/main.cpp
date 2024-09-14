@@ -6,7 +6,8 @@
 // }
 
 int main()
-{{
+{
+	{
 		const Animal *Animals[10];
 
 		for (int i = 0; i < 10; i++)
@@ -27,11 +28,10 @@ int main()
 		std::cout << Animals[0]->getBrain()->getIdea(1) << std::endl;
 		for (int i = 0; i < 10; i++)
 			delete Animals[i];
-	//	delete brain;
+		//delete brain;
 	}
-	std::cout << "-------------------------------------" << std::endl;
+	std::cout << "------------Deep copy Dog class------------" << std::endl;
 	{
-		std::cout << "Deep copy Dog class\n" << std::endl;
 		Dog *dogA = new Dog;
 		Dog *dogB = new Dog(*dogA);
 
@@ -46,9 +46,8 @@ int main()
 		delete dogD;
 	}
 
-	std::cout << "-------------------------------------" << std::endl;
+	std::cout << "----------Deep copy Cat class-------------" << std::endl;
 	{
-		std::cout << "Deep copy Cat class\n" << std::endl;
 		Cat *catA = new Cat;
 		Cat *catB = new Cat(*catA);
 

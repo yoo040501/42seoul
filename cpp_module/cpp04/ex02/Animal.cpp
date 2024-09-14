@@ -3,27 +3,31 @@
 Animal::Animal(void)
 {
 	this->type = "Animal";
-	std::cout << "Animal Default Constructor called" << std::endl;
+	std::cout << COLOR_RED << "Animal Default Constructor called" << COLOR_NONE << std::endl;
 }
 
 Animal::Animal(const Animal &Animal){
 	this->type = Animal.getType();
-	std::cout << "Animal Copy constructor called" << std::endl;
+	std::cout << COLOR_RED << "Animal Copy constructor called" << COLOR_NONE << std::endl;
 }
 
 Animal& Animal::operator=(const Animal &A){
-	std::cout << "Animal Copy assignment operator called" << std::endl;
 	if (this != &A)
 		this->type = A.getType();
+	std::cout << COLOR_RED << "Animal Copy assignment operator called" << COLOR_NONE << std::endl;
 	return (*this);
 }
 
 Animal::~Animal(void){
-	std::cout << "Animal Destructor called" << std::endl;
+	std::cout << COLOR_RED << "Animal Destructor called" << COLOR_NONE << std::endl;
 }
 
-std::string	Animal::getType(void) const{
+const std::string&	Animal::getType(void) const{
 	return this->type;
+}
+
+Brain*	Animal::getBrain(void) const{
+	return NULL;
 }
 
 void	Animal::makeSound(void) const{}

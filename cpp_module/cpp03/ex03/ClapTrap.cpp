@@ -5,7 +5,7 @@ ClapTrap::ClapTrap(void): HitPoints(100), EnergyPoints(10), AttackDamage(0){
 	name = "UNKNOWN_clap_name";
 }
 
-ClapTrap::ClapTrap(std::string name): name(name), HitPoints(100), EnergyPoints(10), AttackDamage(0){
+ClapTrap::ClapTrap(std::string name): name(name + "_clap_name"), HitPoints(100), EnergyPoints(10), AttackDamage(0){
 	std::cout << "\033[0;30mClapTrap " << this->name << " constructor called\033[0;0m" << std::endl;
 }
 
