@@ -5,14 +5,14 @@ Character::Character(std::string const& name) : _name(name)
 	for (int i = 0; i < 4; i++) {
 		this->_inventory[i] = NULL;
 	}
-	std::cout << "Character " << this->_name << " 생성" << std::endl;
+	std::cout << COLOR_BROWN << "Character " << this->_name << " 생성" << COLOR_NONE << std::endl;
 }
 
 Character::Character(Character const& src) : _name(src._name)
 {
 	for (int i = 0; i < 4; i++)
 		this->_inventory[i] = src._inventory[i];
-	std::cout << "Character " << this->_name << " 복사 완료" << std::endl;
+	std::cout << COLOR_BROWN << "Character " << this->_name << " 복사 완료" << COLOR_NONE << std::endl;
 }
 
 Character& Character::operator=(Character const& C)
@@ -23,13 +23,13 @@ Character& Character::operator=(Character const& C)
 		for (int i = 0; i < 4; i++)
 			this->_inventory[i] = C._inventory[i];
 	}
-	std::cout << "Character " << this->_name << " 복사 대입 연산 완료" << std::endl;
+	std::cout << COLOR_BROWN << "Character " << this->_name << " 복사 대입 연산 완료" << COLOR_NONE << std::endl;
     return *this;
 }
 
 Character::~Character()
 {
-	std::cout << "Character " << this->_name << " 삭제" << std::endl;
+	std::cout << COLOR_BROWN << "Character " << this->_name << " 삭제" << COLOR_NONE << std::endl;
 	for (int i = 0; i < 4; i++){
 		if (this->_inventory[i])
 			delete this->_inventory[i];
@@ -39,11 +39,11 @@ Character::~Character()
 void	Character::unequip(int idx){
 	if (this->_inventory[idx] == NULL)
 	{
-		std::cout << "Character" << this->_name << "don't have Materia" << std::endl;
+		std::cout << COLOR_BROWN << "Character" << this->_name << "don't have Materia" << COLOR_NONE << std::endl;
 		return ;
 	}
 	this->_inventory[idx] = NULL;
-	std::cout << "Character " << this->_name << " unequipped with " << std::endl;
+	std::cout << COLOR_BROWN << "Character " << this->_name << " unequipped with " << COLOR_NONE << std::endl;
 }
 
 void	Character::use(int idx, ICharacter& target){
@@ -51,7 +51,7 @@ void	Character::use(int idx, ICharacter& target){
 		this->_inventory[idx]->use(target);
 		return ;
 	}
-	std::cout << "nononononononono" << std::endl;
+	std::cout << COLOR_BROWN << "nononononononono" << COLOR_NONE << std::endl;
 }
 
 void	Character::equip(AMateria* m) {
@@ -59,11 +59,11 @@ void	Character::equip(AMateria* m) {
 		if (this->_inventory[i] == NULL)
 		{
 			this->_inventory[i] = m;
-			std::cout << "Character " << this->_name << " equipped with " << m->getType() << std::endl;
+			std::cout << COLOR_BROWN << "Character " << this->_name << " equipped with " << m->getType() << COLOR_NONE << std::endl;
 			return;
 		}
 	}
-    std::cout << "Character " << this->_name << " can't equip " << m->getType() << std::endl;
+    std::cout << COLOR_BROWN << "Character " << this->_name << " can't equip " << m->getType() << COLOR_NONE << std::endl;
 }
 
 std::string const& Character::getName() const {

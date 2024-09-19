@@ -1,17 +1,17 @@
 #include "AMateria.hpp"
 
 AMateria::AMateria(void){
-	std::cout << "AMateria Default Constructor called" << std::endl;
+	std::cout << COLOR_BLACK << "AMateria Default Constructor called" << COLOR_NONE << std::endl;
 }
 
 AMateria::AMateria(std::string const& type): _type(type){
-	std::cout << "AMateria Constructor called" << std::endl;
+	std::cout << COLOR_BLACK << "AMateria Constructor called" << COLOR_NONE << std::endl;
 }
 
 
 AMateria::AMateria(const AMateria& other){
 	this->_type = other._type;
-	std::cout << "AMateria Copy Constructor called" << std::endl;
+	std::cout << COLOR_BLACK << "AMateria Copy Constructor called" << COLOR_NONE << std::endl;
 }
 
 AMateria& AMateria::operator=(const AMateria &A){
@@ -19,12 +19,12 @@ AMateria& AMateria::operator=(const AMateria &A){
 	{
 		this->_type = A._type;
 	}
-	std::cout << "AMateria Copy assignment Constructor called" << std::endl;
+	std::cout << COLOR_BLACK << "AMateria Copy assignment Constructor called" << COLOR_NONE << std::endl;
 	return (*this);
 }
 
 AMateria::~AMateria() {
-	std::cout << "AMateria Destructor called" << std::endl;
+	std::cout << COLOR_BLACK << "AMateria Destructor called" << COLOR_NONE << std::endl;
 }
 
 std::string const& AMateria::getType() const{
@@ -32,5 +32,5 @@ std::string const& AMateria::getType() const{
 }
 
 void AMateria::use(ICharacter& target){
-		std::cout << "none" << target.getName() << std::endl;
+		std::cout << COLOR_BLACK << "none" << target.getName() << COLOR_NONE << std::endl;
 }
