@@ -1,32 +1,48 @@
 #include "MateriaSource.hpp"
 
-MateriaSource::MateriaSource(void) : IMateriaSource(){
-	std::cout << "MateriaSource Create" << std::endl;
+MateriaSource::MateriaSource() : IMateriaSource(){
+	std::cout << "MateriaSource Constructor called" << std::endl;
 }
 
 MateriaSource::MateriaSource(const MateriaSource& other): IMateriaSource(other){
-	std::cout<< "MateriaSource Copy Create" << std::endl;
+	for (int i=0;i<4;i++)
+			_learnInventory[i] = other._learnInventory[i];
+	std::cout<< "MateriaSource Copy Called" << std::endl;
 }
 
-void	MateriaSource::learnMateria(AMateria *){
-		for (int i = 0; i < 4; i++)
+MateriaSource&	MateriaSource::operator=(const MateriaSource& oth){
+	if (this != &oth){
+		for (int i=0;i<4;i++)
+			_learnInventory[i] = oth._learnInventory[i];
+	}
+	std::cout << "MateriaSource Copy assignment Called" << std::endl;
+	return (*this);
+}
+
+MateriaSource::~MateriaSource(){
+	for (int i=0;i<4;i++){
+		if (_learnInventory[i])
+			delete _learnInventory[i];
+	}
+	std::cout << "MateriaSource Destructor called" << std::endl;
+}
+
+void	MateriaSource::learnMateria(AMateria *m){
+	for (int i = 0; i < 4; i++)
 	{
-		if (materia && this->_learnInventory[i] == NULL)
+		if (m && this->_learnInventory[i] == NULL)
 		{
-			if (this->inLearnInventory(materia))
-				this->_learnInventory[i] = materia;
-			else
-				this->_learnInventory[i] = materia;
+			this->_learnInventory[i] = m;
 			std::cout << "Materia " << this->_learnInventory[i]->getType() << " learned at index " << i << std::endl;
 			return ;
 		}
 	}
-	if (materia)
+	if (m){
 		std::cout << "Cannot learn materia, inventory for MateriaSource is full!" << std::endl;
+		delete m;
+	}
 	else
 		std::cout << "Cannot learn invalid materia" << std::endl;
-	if (!this->inLearnInventory(materia))
-		delete materia;
 }
 
 AMateria*	MateriaSource::createMateria(std::string const& type){
@@ -35,6 +51,6 @@ AMateria*	MateriaSource::createMateria(std::string const& type){
 		if (this->_learnInventory[i] && this->_learnInventory[i]->getType() == type)
 			return (this->_learnInventory[i]->clone());
 	}
-	std::cout << "Cannot create materia, " << type << " is invalid!" << std::endl;
+	std::cout << "materia 생성 불가" << type << " 타입 유효하지 않음" << std::endl;
 	return (0);
 }

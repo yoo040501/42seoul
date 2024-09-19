@@ -20,6 +20,7 @@ AMateria& AMateria::operator=(const AMateria &A){
 		this->_type = A._type;
 	}
 	std::cout << "AMateria Copy assignment Constructor called" << std::endl;
+	return (*this);
 }
 
 AMateria::~AMateria() {
@@ -31,5 +32,5 @@ std::string const& AMateria::getType() const{
 }
 
 void AMateria::use(ICharacter& target){
-	std::cout << "none" << std::endl;
+		std::cout << "none" << target.getName() << std::endl;
 }

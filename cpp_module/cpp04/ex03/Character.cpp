@@ -54,21 +54,22 @@ void	Character::use(int idx, ICharacter& target){
 	std::cout << "nononononononono" << std::endl;
 }
 
-void	Character::equip(AMateria* A) {
+void	Character::equip(AMateria* m) {
 	for (int i = 0; i < 4; i++){
 		if (this->_inventory[i] == NULL)
 		{
-			this->_inventory[i] = A;
-			std::cout << "Character " << this->_name << " equipped with " << A->getType() << std::endl;
+			this->_inventory[i] = m;
+			std::cout << "Character " << this->_name << " equipped with " << m->getType() << std::endl;
 			return;
 		}
 	}
-    std::cout << "Character " << this->_name << " can't equip " << A->getType() << std::endl;
+    std::cout << "Character " << this->_name << " can't equip " << m->getType() << std::endl;
 }
 
 std::string const& Character::getName() const {
     return this->_name;
 }
+
 // use(int, ICharacter&) 멤버 함수는 AMateria::use 함수를 호출하고, 
 // 대상 파라미터를 전달해야 합니다. 복사 생성자나 복사 할당 연산자를 사용할 때는 깊은 복사가 이루어져야 하며, 
 // Character가 소멸될 때는 Materia들이 삭제되어야 합니다.
