@@ -6,14 +6,14 @@ MateriaSource::MateriaSource() : IMateriaSource(){
 
 MateriaSource::MateriaSource(const MateriaSource& other): IMateriaSource(other){
 	for (int i=0;i<4;i++)
-			_learnInventory[i] = other._learnInventory[i];
+			_learnInventory[i] = other._learnInventory[i]->clone();
 	std::cout<< "MateriaSource Copy Called" << std::endl;
 }
 
 MateriaSource&	MateriaSource::operator=(const MateriaSource& oth){
 	if (this != &oth){
 		for (int i=0;i<4;i++)
-			_learnInventory[i] = oth._learnInventory[i];
+			_learnInventory[i] = oth._learnInventory[i]->clone();
 	}
 	std::cout << "MateriaSource Copy assignment Called" << std::endl;
 	return (*this);
@@ -42,7 +42,7 @@ void	MateriaSource::learnMateria(AMateria *m){
 		delete m;
 	}
 	else
-		std::cout << "Cannot learn invalid materia" << std::endl;
+		std::cout << "Cannot learn invalid Materia" << std::endl;
 }
 
 AMateria*	MateriaSource::createMateria(std::string const& type){
@@ -51,6 +51,6 @@ AMateria*	MateriaSource::createMateria(std::string const& type){
 		if (this->_learnInventory[i] && this->_learnInventory[i]->getType() == type)
 			return (this->_learnInventory[i]->clone());
 	}
-	std::cout << "materia 생성 불가" << type << " 타입 유효하지 않음" << std::endl;
+	std::cout << "!!Materia 생성 불가 " << type << " 타입 유효하지 않음!!" << std::endl;
 	return (0);
 }

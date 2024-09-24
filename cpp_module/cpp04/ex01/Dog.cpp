@@ -25,8 +25,8 @@ Dog& Dog::operator=(const Dog &D){
 }
 
 Dog::~Dog(void){
-	std::cout << COLOR_PURPLE << "Dog Destructor called" << COLOR_NONE << std::endl;
 	delete	brain;
+	std::cout << COLOR_PURPLE << "Dog Destructor called" << COLOR_NONE << std::endl;
 }
 
 Brain*	Dog::getBrain(void) const{

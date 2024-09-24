@@ -7,14 +7,14 @@ Animal::Animal(void)
 }
 
 Animal::Animal(const Animal &Animal){
-	std::cout << COLOR_RED << "Animal Copy constructor called" << COLOR_NONE << std::endl;
 	this->type = Animal.type;
+	std::cout << COLOR_RED << "Animal Copy constructor called" << COLOR_NONE << std::endl;
 }
 
 Animal& Animal::operator=(const Animal &A){
-	std::cout << COLOR_RED << "Animal Copy assignment operator called" << COLOR_NONE << std::endl;
 	if (this != &A)
 		this->type = A.type;
+	std::cout << COLOR_RED << "Animal Copy assignment operator called" << COLOR_NONE << std::endl;
 	return (*this);
 }
 

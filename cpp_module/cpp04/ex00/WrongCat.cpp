@@ -12,9 +12,9 @@ WrongCat::WrongCat(const WrongCat &WrongCat){
 }
 
 WrongCat& WrongCat::operator=(const WrongCat &C){
-	std::cout << COLOR_BLUE << "WrongCat Copy assignment operator called" << COLOR_NONE << std::endl;
 	if (this != &C)
 		this->type = C.type;
+	std::cout << COLOR_BLUE << "WrongCat Copy assignment operator called" << COLOR_NONE << std::endl;
 	return (*this);
 }
 
