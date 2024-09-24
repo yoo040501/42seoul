@@ -3,9 +3,9 @@
 #include "Ice.hpp"
 #include "MateriaSource.hpp"
 
-void leakcheck(void){
-	system("leaks Interface");
-}
+// void leakcheck(void){
+// 	system("leaks Interface");
+// }
 
 int main()
 {
