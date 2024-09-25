@@ -48,7 +48,7 @@ void	MateriaSource::learnMateria(AMateria *m){
 AMateria*	MateriaSource::createMateria(std::string const& type){
 	for (int i = 0; i < 4; i++)
 	{
-		if (this->_learnInventory[i] && this->_learnInventory[i]->getType() == type)
+		if (this->_learnInventory[i] != NULL && this->_learnInventory[i]->getType() == type)
 			return (this->_learnInventory[i]->clone());
 	}
 	std::cout << "!!Materia 생성 불가 " << type << " 타입 유효하지 않음!!" << std::endl;
