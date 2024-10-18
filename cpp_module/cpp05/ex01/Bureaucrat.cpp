@@ -81,6 +81,7 @@ void	Bureaucrat::incrementGrade(unsigned int level){
 }
 
 void	Bureaucrat::signForm(Form &F){
+	form.beSigned(*this);
 	try
 	{
 		if (F.getSigned() == false)
