@@ -53,6 +53,13 @@ void	Form::beSigned(Bureaucrat &B){
 	{
 		std::cout << e.what() << '\n';
 	}
+	else if (this->getIsSigned() == "✗ false")
+	{
+		this->_is_signed = true;
+		std::cout << this->getName() << " Form was signed by " << signer.getName() << std::endl;
+	}
+	else
+		std::cout << this->getName() << " Form is already signed" << std::endl;
 	
 }
 
