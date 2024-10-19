@@ -52,12 +52,12 @@ std::string Bureaucrat::getName(void) const{
 	return this->_name;
 }
 
-void	Bureaucrat::decrementGrade(unsigned int level){
+void	Bureaucrat::decrementGrade(void){
 	try
 	{
-		if (_grade + level > 150)
+		if (_grade  + 1 > 150)
 			throw GradeTooLowException();
-		_grade += level;
+		_grade += 1;
 	}
 	catch(GradeTooLowException& e)
 	{
@@ -66,11 +66,12 @@ void	Bureaucrat::decrementGrade(unsigned int level){
 	
 }
 
-void	Bureaucrat::incrementGrade(unsigned int level){
+void	Bureaucrat::incrementGrade(void){
 	try
 	{
-		if (_grade <= level)
+		if (_grade - 1 == 0)
 			throw GradeTooHighException();
+				_grade--;
 	}
 	catch(GradeTooHighException& e)
 	{
@@ -78,14 +79,6 @@ void	Bureaucrat::incrementGrade(unsigned int level){
 	}
 	
 }
-
-// void	Bureaucrat::GradeTooHighException(void) const{
-// 	throw std::out_of_range("Grade is too high");
-// }
-
-// void	Bureaucrat::GradeTooLowException(void) const{
-// 	throw std::out_of_range("Grade is too low");
-// }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw() {
     return "Grade is too low!";

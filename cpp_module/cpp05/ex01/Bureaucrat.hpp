@@ -19,8 +19,8 @@ public:
 
 	std::string		getName(void) const;
 	unsigned int	getGrade(void) const;
-	void			incrementGrade(unsigned int level);
-	void			decrementGrade(unsigned int level);
+	void			incrementGrade();
+	void			decrementGrade();
 	void			signForm(Form &F);
 
 	class GradeTooLowException: public std::exception{
@@ -32,6 +32,12 @@ public:
 		public:
 			virtual const char* what() const throw();
 	};
+
+	class AlreadySigned: public std::exception {
+		public:
+			virtual const char* what() const throw();
+	};
+
 };
 
 std::ostream& operator<<(std::ostream& o, const Bureaucrat& B);

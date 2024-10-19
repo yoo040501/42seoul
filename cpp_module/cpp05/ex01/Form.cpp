@@ -47,19 +47,18 @@ void	Form::beSigned(Bureaucrat &B){
 	{
 		if (B.getGrade() > this->_signLevel)
 			throw GradeTooLowException();
-		this->_isSigned = true;
+		else if (_isSigned == false)
+		{
+			_isSigned = true;
+			std::cout << this->getName() << " Form was signed by " << B.getName() << std::endl;
+		}
+		else
+			std::cout << this->getName() << " Form is already signed" << std::endl;
 	}
 	catch(const GradeTooLowException& e)
 	{
 		std::cout << e.what() << '\n';
 	}
-	else if (this->getIsSigned() == "✗ false")
-	{
-		this->_is_signed = true;
-		std::cout << this->getName() << " Form was signed by " << signer.getName() << std::endl;
-	}
-	else
-		std::cout << this->getName() << " Form is already signed" << std::endl;
 	
 }
 

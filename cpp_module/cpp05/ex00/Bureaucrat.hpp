@@ -20,10 +20,9 @@ public:
 
 	std::string		getName(void) const;
 	unsigned int	getGrade(void) const;
-	void			incrementGrade(unsigned int level);
-	void			decrementGrade(unsigned int level);
-//	void			GradeTooLowException(void) const;
-//	void			GradeTooHighException(void) const;
+	void			incrementGrade();
+	void			decrementGrade();
+
 	class GradeTooLowException: public std::exception{
 		public:
 			virtual const char* what() const throw();

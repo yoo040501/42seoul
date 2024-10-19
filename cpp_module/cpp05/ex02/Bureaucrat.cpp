@@ -2,7 +2,7 @@
 
 Bureaucrat::Bureaucrat()
 {
-	this->_name = "UNKNOWN";
+	this->_name = "default";
 	this->_grade = 150;
 }
 
@@ -52,12 +52,12 @@ std::string Bureaucrat::getName(void) const{
 	return this->_name;
 }
 
-void	Bureaucrat::decrementGrade(unsigned int level){
+void	Bureaucrat::decrementGrade(void){
 	try
 	{
-		if (_grade + level > 150)
+		if (_grade  + 1 > 150)
 			throw GradeTooLowException();
-		_grade += level;
+		_grade += 1;
 	}
 	catch(GradeTooLowException& e)
 	{
@@ -66,28 +66,33 @@ void	Bureaucrat::decrementGrade(unsigned int level){
 	
 }
 
-void	Bureaucrat::incrementGrade(unsigned int level){
+void	Bureaucrat::incrementGrade(void){
 	try
 	{
-		if (_grade <= level)
+		if (_grade - 1 == 0)
 			throw GradeTooHighException();
-		_grade -= level;
+				_grade--;
 	}
 	catch(GradeTooHighException& e)
 	{
-		std::cout << e.what() << '\n';
+		std::cerr << e.what() << '\n';
 	}
 	
 }
-
 void	Bureaucrat::signForm(Form &F){
 	try
 	{
 		if (F.getSigned() == false)
-			throw GradeTooLowException();
-		std::cout << _name << "signed" << F.getName() << std::endl;
+		{
+			if (F.getSignLevel() > this->_grade)
+				std::cout << _name << "signed" << F.getName() << std::endl;
+			else
+				throw GradeTooLowException();
+		}
+		else
+			throw AlreadySigned();
 	}
-	catch(const GradeTooLowException& e)
+	catch(const std::exception& e)
 	{
 		std::cout << _name << "couldn't sign" << F.getName() << "because " << e.what() << "." << std::endl;
 	}
@@ -100,6 +105,10 @@ const char* Bureaucrat::GradeTooLowException::what() const throw() {
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
     return "Grade is too high!";
+}
+
+const char* Bureaucrat::AlreadySigned::what() const throw() {
+    return "this form was already signed";
 }
 
 std::ostream& operator<<(std::ostream& o, const Bureaucrat& B)
