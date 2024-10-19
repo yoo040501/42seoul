@@ -40,7 +40,7 @@ std::string	RobotomyRequestForm::getTarget(void)const
 	return (this->_target);
 }
 
-std::ostream	&operator<<(std::ostream &o, RobotomyRequestForm *a)
+std::ostream	&operator<<(std::ostream &o, RobotomyRequestForm &R)
 {
 	return (o);
 }

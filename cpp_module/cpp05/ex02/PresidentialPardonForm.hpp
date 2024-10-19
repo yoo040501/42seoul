@@ -18,4 +18,4 @@ class PresidentialPardonForm : public AForm
 		std::string getTarget(void)const;
 };
 
-std::ostream	&operator<<(std::ostream &o, PresidentialPardonForm *P);
+std::ostream	&operator<<(std::ostream &o, PresidentialPardonForm &P);

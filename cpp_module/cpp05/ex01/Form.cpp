@@ -87,6 +87,6 @@ const char* Form::GradeTooHighException::what() const throw() {
 }
 
 std::ostream& operator<<(std::ostream& o, const Form& F){
-
+	o << F.getName() << " form signed: " << std::boolalpha << F.getSigned() << ", signgrade: " << F.getSignLevel() << ", executegrade: " << F.getExecuteLevel() << ".";
 	return (o);
 }

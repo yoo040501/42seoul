@@ -85,6 +85,6 @@ const char* AForm::FormNotSigned::what() const throw() {
 }
 
 std::ostream& operator<<(std::ostream& o, const AForm& F){
-
+	o << F.getName() << " form signed: " << std::boolalpha << F.getSigned() << ", signgrade: " << F.getSignLevel() << ", executegrade: " << F.getExecuteLevel() << ".";
 	return (o);
 }

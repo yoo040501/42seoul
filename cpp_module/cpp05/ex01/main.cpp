@@ -6,4 +6,7 @@ int main(void){
 
 	a.decrementGrade();
 	std::cout << a << std::endl;
+
+	Form	c("c", 10, 4);
+	std::cout << c << std::endl;
 }

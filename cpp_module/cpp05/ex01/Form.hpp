@@ -4,6 +4,8 @@
 #include <stdexcept>
 #include "Bureaucrat.hpp"
 
+class Bureaucrat;
+
 class Form
 {
 	private:
@@ -19,7 +21,7 @@ class Form
 		Form &operator=(const Form &copy);
 		~Form();
 
-		void	beSigned(Bureaucrat &B);
+		void			beSigned(Bureaucrat &B);
 		
 		bool			getSigned(void) const;
 		std::string		getName(void) const;

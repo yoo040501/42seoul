@@ -38,7 +38,7 @@ std::string	PresidentialPardonForm::getTarget(void)const
 	return (this->_target);
 }
 
-std::ostream	&operator<<(std::ostream &o, PresidentialPardonForm *a)
+std::ostream	&operator<<(std::ostream &o, PresidentialPardonForm &P)
 {
 	return (o);
 }
