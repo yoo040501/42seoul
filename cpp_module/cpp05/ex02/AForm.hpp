@@ -19,8 +19,8 @@ class AForm
 		AForm &operator=(const AForm &copy);
 		virtual ~AForm();
 
-		virtual void	beSigned(Bureaucrat &B) = 0;
-		virtual void	execute(Bureaucrat const & executor) const;
+		void			beSigned(Bureaucrat &B);
+		virtual void	execute(Bureaucrat const & executor)const = 0;
 		
 		bool			getSigned(void) const;
 		std::string		getName(void) const;

@@ -33,27 +33,25 @@ void	ShrubberyCreationForm::execute(Bureaucrat const &executor)const
 	{
 		std::string	outfile = this->_target + "_shrubbery";
 		std::ofstream outf;
-		std::string	tree =  "        # #### ####"
-							"	### \\/#|### |/####"
-							"	##\\/#/ \\||/##/_/##/_#"
-							"###  \\/###|/ \\/ # ###"
-							"##_\\_#\\_\\## | #/###_/_####"
-							"## #### # \\ #| /  #### ##/##"
-							"__#_--###`  |{,###---###-~"
-									"\\ }{"
-										"}}{"
-										"}}{"
-										"{{}}"
-								", -=-~{ .-^- _"
-										"`}"
-										"{"
-							"------------------------------------------------";
 		outf.open(outfile);
 		if (outf.fail()){
 			std::cout << "Error: can`t open " << outfile << std::endl;
 			return ;
-		}
-
+		} 
+		outf << "   oxoxoo    ooxoo\n";
+		outf << " ooxoxo oo  oxoxooo\n";
+		outf << "oooo xxoxoo ooo ooox\n";
+		outf <<	"oxo o oxoxo  xoxxoxo\n";
+		outf <<	" oxo xooxoooo o ooo\n";
+		outf << "   ooo\\oo\\  /o/o\n";
+		outf <<	"          \\  \\/ /\n";
+		outf << "           |   /\n";
+		outf << "           |  |\n";
+		outf << "           | D|\n";
+		outf << "           |  |\n";
+		outf << "           |  |\n";
+		outf << "    ______/____\\____\n";
+		outf.close();
 	}
 }
 

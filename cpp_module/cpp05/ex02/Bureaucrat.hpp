@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <stdexcept>
-#include "Form.hpp"
+#include "AForm.hpp"
 
 class Bureaucrat
 {
@@ -21,8 +21,9 @@ public:
 	unsigned int	getGrade(void) const;
 	void			incrementGrade();
 	void			decrementGrade();
-	void			signForm(Form &F);
-
+	void			signForm(AForm &F);
+	void			executeForm(AForm const &form);
+	
 	class GradeTooLowException: public std::exception{
 		public:
 			virtual const char* what() const throw();
