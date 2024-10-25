@@ -2,7 +2,11 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <cstdlib>
+#include <ctime> 
 #include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class AForm
 {
@@ -37,7 +41,17 @@ class AForm
 				virtual const char* what() const throw();
 		};
 
-		class FormNotSigned: public std::exception{
+		class AlreadySignedException: public std::exception{
+			public:
+				virtual const char* what() const throw();
+		};
+		
+		class ImproperGradeException: public std::exception{
+			public:
+				virtual const char* what() const throw();
+		};
+
+		class FormNotSignedException: public std::exception{
 			public:
 				virtual const char* what() const throw();
 		};

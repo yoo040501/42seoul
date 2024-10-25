@@ -17,6 +17,9 @@ class ShrubberyCreationForm : public AForm
 
 		void execute(Bureaucrat const &executor)const;
 		std::string getTarget(void)const;
-};
 
-std::ostream	&operator<<(std::ostream &o, ShrubberyCreationForm &S);
+		class OpenFailException: public std::exception{
+			public:
+				virtual const char* what() const throw();
+		};
+};

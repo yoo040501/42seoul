@@ -1,11 +1,9 @@
 CPP = c++
 CFLAGS = -Wall -Wextra -Werror -pedantic -std=c++98 
-SRCS =	main.cpp		\
-		Bureaucrat.cpp	\
-		Form.cpp		\
+SRCS = $(wildcard *.cpp)
 
 OBJS = $(SRCS:.cpp=.o)
-
+DEPS = $(SRCS:.cpp=.d)
 NAME = ex01
 
 RM = rm -rf
@@ -18,10 +16,12 @@ $(NAME): $(OBJS)
 	$(CPP) $(CFLAGS) -o $@ $^
 
 %.o: %.cpp
-	$(CPP) $(CFLAGS) -c -o $@ $<
+	$(CPP) $(CFLAGS) -MMD -c -o $@ $<
+
+-include $(DEPS)
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(DEPS)
 
 fclean:
 	$(MAKE) clean

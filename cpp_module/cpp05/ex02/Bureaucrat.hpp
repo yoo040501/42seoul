@@ -2,7 +2,11 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <cstdlib>
+#include <ctime> 
 #include "AForm.hpp"
+
+class AForm;
 
 class Bureaucrat
 {
@@ -33,12 +37,6 @@ public:
 		public:
 			virtual const char* what() const throw();
 	};
-
-	class AlreadySigned: public std::exception {
-		public:
-			virtual const char* what() const throw();
-	};
-
 };
 
 std::ostream& operator<<(std::ostream& o, const Bureaucrat& B);

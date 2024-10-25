@@ -6,7 +6,7 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:43:17 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/10/16 18:43:18 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/10/25 14:14:03 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,23 @@ t_info	*info_init(void)
 	info->text = text_init();
 	map_init(&info->map_info);
 	return (info);
+}
+
+t_window	*window_init(t_info *info)
+{
+	t_window	*vars;
+	int		w;
+	int		h;
+	
+	vars = (t_window *)malloc(sizeof(t_window));
+	if(!vars)
+		print_error("Error: vars malloc fail\n");
+	vars->mlx = mlx_init();
+	vars->n_wall = mlx_xpm_file_to_image(vars->mlx, info->text->n_path, &w, &h);
+	vars->w_wall = mlx_xpm_file_to_image(vars->mlx, info->text->w_path, &w, &h);
+	vars->e_wall = mlx_xpm_file_to_image(vars->mlx, info->text->e_path, &w, &h);
+	vars->s_wall = mlx_xpm_file_to_image(vars->mlx, info->text->s_path, &w, &h);
+	vars->width = w;
+	vars->height = h;
+	vars->info = info;
 }

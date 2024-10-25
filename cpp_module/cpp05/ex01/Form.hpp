@@ -37,6 +37,16 @@ class Form
 			public:
 				virtual const char* what() const throw();
 		};
+
+		class AlreadySignedException: public std::exception{
+			public:
+				virtual const char* what() const throw();
+		};
+
+		class ImproperGradeException: public std::exception{
+			public:
+				virtual const char* what() const throw();
+		};
 	};
 
 std::ostream& operator<<(std::ostream& o, const Form& F);
