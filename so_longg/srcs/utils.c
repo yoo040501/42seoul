@@ -6,7 +6,7 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:14:47 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/10/25 17:04:28 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:11:39 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,10 +126,10 @@ int	has_valid_path(char **map, t_vars *board)
 	map_temp_c = duplicate(map);
 	map_temp_e = duplicate(map);
  
-	int c_count = dfs(player_x, player_y, map_temp_c, 'C');
-	int e_count = dfs(player_x, player_y, map_temp_e, 'E');
-	if (c_count != board->total_c_count)
-		return (0);
+	int c_count = dfs(board->player_x, board->player_y, map_temp_c, 'C');
+	int e_count = dfs(board->player_x, board->player_y, map_temp_e, 'E');
+	// if (c_count != board->total_c_count)
+	// 	return (0);
 	if (e_count != 1)
 		return (0);
 	return (1);

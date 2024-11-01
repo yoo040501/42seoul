@@ -6,8 +6,11 @@ SRCS = srcs/cub3d.c 					\
 		srcs/parsing/check_texture.c	\
 		srcs/parsing/check_texture_two.c\
 		srcs/parsing/get_map.c			\
-		srcs/parsing/init.c				\
-		srcs/parsing/free.c
+		srcs/utils/init.c				\
+		srcs/utils/free.c				\
+		srcs/raycasting/cal.c			\
+		srcs/raycasting/image.c			\
+		srcs/raycasting/key.c
 OBJS = $(SRCS:.c=.o)
 
 INC = -I$(INC_DIR)

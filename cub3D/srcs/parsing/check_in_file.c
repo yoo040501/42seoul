@@ -6,7 +6,7 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:43:11 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/10/16 18:43:12 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/01 13:12:18 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,23 @@
 
 int	is_texture(char *str, t_info *info)
 {
-	char	**is_texture;
 	int		flag;
 
 	flag = TRUE;
-	is_texture = ft_split(str, ' ');
-	if (is_texture[1] == NULL)
-		flag = FALSE;
-	else if (is_texture[2] != NULL)
-		flag = FALSE;
-	if (ft_strcmp(is_texture[0], "NO") == 0)
-		get_no_path(is_texture[1], info, &flag); // NO 경로 저장함수
-	else if (ft_strcmp(is_texture[0], "SO") == 0)
-		get_so_path(is_texture[1], info, &flag); // SO 경로 저장함수
-	else if (ft_strcmp(is_texture[0], "WE") == 0)
-		get_we_path(is_texture[1], info, &flag); // WE 경로 저장함수
-	else if (ft_strcmp(is_texture[0], "EA") == 0)
-		get_ea_path(is_texture[1], info, &flag); // EA 경로 저장함수
-	else if (ft_strcmp(is_texture[0], "F") == 0)
-		get_f_color(is_texture[1], info, &flag); // Floor 컬러 저장함수
-	else if (ft_strcmp(is_texture[0], "C") == 0)
-		get_c_color(is_texture[1], info, &flag); // Ceiling 컬러 저장함수
+	if (ft_strncmp(str, "NO", 2) == 0)
+		get_no_path(str + 2, info, &flag); // NO 경로 저장함수
+	else if (ft_strncmp(str, "SO", 2) == 0)
+		get_so_path(str + 2, info, &flag); // SO 경로 저장함수
+	else if (ft_strncmp(str, "WE", 2) == 0)
+		get_we_path(str + 2, info, &flag); // WE 경로 저장함수
+	else if (ft_strncmp(str, "EA", 2) == 0)
+		get_ea_path(str + 2, info, &flag); // EA 경로 저장함수
+	else if (ft_strncmp(str, "F ", 2) == 0)
+		get_f_color(str + 2, info, &flag); // Floor 컬러 저장함수
+	else if (ft_strncmp(str, "C ", 2) == 0)
+		get_c_color(str + 2, info, &flag); // Ceiling 컬러 저장함수
 	else
 		flag = FALSE;
-	ft_free_2d(is_texture);
 	return (flag);
 }
 
@@ -70,7 +63,7 @@ void	check_texture(t_info *info, int fd)
 	if (info->text->texture_cnt != 6)
 	{
 		close(fd);
-		print_error("Error: texture is not \n");
+		print_error("Error: check again texture\n");
 	}
 }
 

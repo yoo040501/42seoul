@@ -6,7 +6,7 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/26 15:18:03 by yohlee            #+#    #+#             */
-/*   Updated: 2024/09/25 16:27:56 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/10/28 17:46:21 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -287,10 +287,10 @@ int	main(void)
 
 	info.posX = 22.0;
 	info.posY = 11.5;
-	info.dirX = -1.0;
-	info.dirY = 0.0;
-	info.planeX = 0.0;
-	info.planeY = 0.66;
+	info.dirX = 0.0;
+	info.dirY = 1.0;
+	info.planeX = 0.66;
+	info.planeY = 0.0;
 	info.re_buf = 0;
 
 	info.buf = (int **)malloc(sizeof(int *) * height);
@@ -322,7 +322,7 @@ int	main(void)
 			int xorcolor = (x * 256 / texWidth) ^ (y * 256 / texHeight);
 			int ycolor = y * 256 / texHeight;
 			int xycolor = y * 128 / texHeight + x * 128 / texWidth;
-			info.texture[0][texWidth * y + x] = 65536 * 254 * (x != y && x != texWidth - y); //flat red texture with black cross
+			info.texture[0][texWidth * y + x] = 65536 * 1 * (x != y && x != texWidth - y); //flat red texture with black cross
 			info.texture[1][texWidth * y + x] = xycolor + 256 * xycolor + 65536 * xycolor; //sloped greyscale
 			info.texture[2][texWidth * y + x] = 256 * xycolor + 65536 * xycolor; //sloped yellow gradient
 			info.texture[3][texWidth * y + x] = xorcolor + 256 * xorcolor + 65536 * xorcolor; //xor greyscale
@@ -340,10 +340,10 @@ int	main(void)
 
 	info.img.img = mlx_new_image(info.mlx, width, height);
 	info.img.data = (int *)mlx_get_data_addr(info.img.img, &info.img.bpp, &info.img.size_l, &info.img.endian);
-	main_loop(&info);
-	mlx_key_hook(info.win, &key_press, &info);
-// 	mlx_loop_hook(info.mlx, &main_loop, &info);
-// 	mlx_hook(info.win, X_EVENT_KEY_PRESS, 0, &key_press, &info);
+	//main_loop(&info);
+	//mlx_key_hook(info.win, &key_press, &info);
+ 	mlx_loop_hook(info.mlx, &main_loop, &info);
+ 	mlx_hook(info.win, X_EVENT_KEY_PRESS, 0, &key_press, &info);
 
 	mlx_loop(info.mlx);
 }

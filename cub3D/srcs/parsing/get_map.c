@@ -6,12 +6,13 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:43:16 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/10/21 12:52:55 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/01 15:44:17 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+/* map 테스트용 함수 */
 void	print_map(t_info *info)
 {
 	int	i;
@@ -22,7 +23,8 @@ void	print_map(t_info *info)
 	{
 		printf("%s\n", info->map[i]);
 	}
-	printf("%d\n%d\n", info->width, info->height);
+	printf("%d\n%d\n", info->map_width, info->map_height);
+	printf("palyer x: %f\n player y: %f\n", info->map_info.player_x, info->map_info.player_y);
 }
 
 /*
@@ -33,22 +35,51 @@ void	is_closed(t_info *info, char **map)
 	int	x;
 	int	y;
 
-	x = -1;
-	while (map[++x])
+	y = -1;
+	while (map[++y])
 	{
-		y = -1;
-		while (map[x][++y])
+		x = -1;
+		while (map[y][++x])
 		{
-			if (map[x][y] != '1' && map[x][y] != ' ')
+			if (map[y][x] != '1' && map[y][x] != ' ')
 			{
-				if (x == 0 || x == info->height - 1
-					|| y == 0 || y == info->width - 1
-					|| map[x - 1][y] == ' ' || map[x + 1][y] == ' '
-					|| map[x][y - 1] == ' ' || map[x][y + 1] == ' '
-					|| map[x][y + 1] == 0)
+				if (y == 0 || y == info->map_height - 1
+					|| x == 0 || x == info->map_width - 1
+					|| map[y - 1][x] == ' ' || map[y + 1][x] == ' '
+					|| map[y][x - 1] == ' ' || map[y][x + 1] == ' '
+					|| map[y][x + 1] == 0)
 					print_error("Error: must be surrouned wall\n");
 			}
 		}
+	}
+}
+
+void	get_player_info(t_info *info, int i, int j, int dir)
+{
+	info->map_info.player_y = i;
+	info->map_info.player_x = j;
+	info->map_info.player_dir = dir;
+	info->map[i][j] = '0';
+	if (dir == S)
+	{
+		info->map_info.dir_x = 1.0;
+		info->map_info.dir_y = 0.0;
+		info->map_info.plane_x = 0;
+		info->map_info.plane_y = -0.66;
+	}
+	else if (dir == W)
+	{
+		info->map_info.dir_x = 0.0;
+		info->map_info.dir_y = -1.0;
+		info->map_info.plane_x = -0.66;
+		info->map_info.plane_y = 0.0;
+	}
+	else if (dir == E)
+	{
+		info->map_info.dir_x = 0.0;
+		info->map_info.dir_y = 1.0;
+		info->map_info.plane_x = 0.66;
+		info->map_info.plane_y = 0.0;
 	}
 }
 
@@ -70,15 +101,15 @@ void	check_player(t_info *info)
 				|| info->map[i][j] == 'E' || info->map[i][j] == 'W')
 				info->map_info.player_cnt++;
 			if (info->map[i][j] == 'N')
-				info->map_info.player_dir = N;
+				get_player_info(info, i, j, N);
 			else if (info->map[i][j] == 'S')
-				info->map_info.player_dir = S;
+				get_player_info(info, i, j, S);
 			else if (info->map[i][j] == 'E')
-				info->map_info.player_dir = E;
+				get_player_info(info, i, j, E);
 			else if (info->map[i][j] == 'W')
-				info->map_info.player_dir = W;
+				get_player_info(info, i, j, W);
 		}
-		info->width = ft_max(info->width, j);
+		info->map_width = ft_max(info->map_width, j);
 	}
 	if (info->map_info.player_cnt != 1)
 		print_error("Error: player must be one\n");
@@ -88,6 +119,7 @@ void	is_vaild_map(t_info *info)
 {
 	check_player(info);
 	is_closed(info, info->map);
+	//print_map(info);
 }
 
 void	get_map(t_info *info, int fd)
@@ -112,7 +144,7 @@ void	get_map(t_info *info, int fd)
 			map_tmp = ft_strjoin_free(map_tmp, str);
 		free(str);
 		str = get_next_line(fd);
-		(info->height)++;
+		(info->map_height)++;
 	}
 	info->map = ft_split(map_tmp, '\n');
 	free(map_tmp);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   04_floor_ceiling_macos.c                           :+:      :+:    :+:   */
+/*   04_floor_ceiling.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yohlee <yohlee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 19:53:20 by yohlee            #+#    #+#             */
-/*   Updated: 2020/07/21 08:11:30 by yohlee           ###   ########.fr       */
+/*   Updated: 2024/10/31 18:26:18 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 #define texHeight 64
 #define mapWidth 24
 #define mapHeight 24
-#define width 640
-#define height 480
+#define width 1280
+#define height 1024
 
 typedef struct	s_img
 {
@@ -77,8 +77,8 @@ int	worldMap[mapWidth][mapHeight] =
 										{2,2,0,0,0,0,0,2,2,2,0,0,0,2,2,0,5,0,5,0,0,0,5,5},
 										{2,0,0,0,0,0,0,0,2,0,0,0,0,0,2,5,0,5,0,5,0,5,0,5},
 										{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5},
-										{2,0,0,0,0,0,0,0,2,0,0,0,0,0,2,5,0,5,0,5,0,5,0,5},
-										{2,2,0,0,0,0,0,2,2,2,0,0,0,2,2,0,5,0,5,0,0,0,5,5},
+										{2,0,0,0,0,0,0,0,2,0,0,5,0,0,2,5,0,5,0,5,0,5,0,5},
+										{2,2,0,0,0,0,0,2,2,2,2,0,0,2,2,0,5,0,5,0,0,0,5,5},
 										{2,2,2,2,1,2,2,2,2,2,2,1,2,2,2,5,5,5,5,5,5,5,5,5}
 									};
 
@@ -139,19 +139,17 @@ void	calc(t_info *info)
 
 			// choose texture and draw the pixel
 			int floorTexture = 3;
-			int ceilingTexture = 6;
+			int ceilingTexture = 2;
 
 			int color;
 
 			// floor
 			color = info->texture[floorTexture][texWidth * ty + tx];
-			color = (color >> 1) & 8355711; // make a bit darker
 
 			info->buf[y][x] = color;
 
 			//ceiling (symmetrical, at screenHeight - y - 1 instead of y)
 			color = info->texture[ceilingTexture][texWidth * ty + tx];
-			color = (color >> 1) & 8355711; // make a bit darker
 
 			info->buf[height - y - 1][x] = color;
 		}
@@ -328,9 +326,9 @@ void	calc(t_info *info)
 			else floorTexture = 4;
 
 			//floor
-			info->buf[y][x] = (info->texture[floorTexture][texWidth * floorTexY + floorTexX] >> 1) & 8355711;
+			info->buf[y][x] = info->texture[floorTexture][texWidth * floorTexY + floorTexX];
 			//ceiling (symmetrical!)
-			info->buf[height - y][x] = info->texture[6][texWidth * floorTexY + floorTexX];
+			info->buf[height - y][x] = info->texture[2][texWidth * floorTexY + floorTexX];
 		}
 	}
 }
@@ -408,10 +406,10 @@ void	load_texture(t_info *info)
 	load_image(info, info->texture[1], "textures/redbrick.xpm", &img);
 	load_image(info, info->texture[2], "textures/purplestone.xpm", &img);
 	load_image(info, info->texture[3], "textures/greystone.xpm", &img);
-	load_image(info, info->texture[4], "textures/bluestone.xpm", &img);
+	load_image(info, info->texture[4], "../../../images/wall_e.xpm", &img);
 	load_image(info, info->texture[5], "textures/mossy.xpm", &img);
 	load_image(info, info->texture[6], "textures/wood.xpm", &img);
-	load_image(info, info->texture[7], "textures/colorstone.xpm", &img);
+	load_image(info, info->texture[7], "../../../images/wall_e.xpm", &img);
 }
 
 
@@ -420,12 +418,12 @@ int	main(void)
 	t_info info;
 	info.mlx = mlx_init();
 
-	info.posX = 22.0;
+	info.posX = 22.5;
 	info.posY = 11.5;
-	info.dirX = -1.0;
-	info.dirY = 0.0;
-	info.planeX = 0.0;
-	info.planeY = 0.66;
+	info.dirX = 0.0;
+	info.dirY = 1.0;
+	info.planeX = 0.66;
+	info.planeY = 0.0;
 
 	for (int i = 0; i < height; i++)
 	{

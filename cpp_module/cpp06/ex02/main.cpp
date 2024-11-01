@@ -50,11 +50,19 @@ void	identify(Base& p)
 }
 
 int main(){
-	srand(time(NULL));
+	std::srand(time(NULL));
 
 	Base* base = generate();
 	std::cout << "Base: " << base << std::endl;
 	identify(*base);
+	identify(base);
+
+	Base* base2 = generate();
+	std::cout << "Base2: " << base2 << std::endl;
+	identify(*base2);
+	identify(base2);
+
 	delete (base);
+	delete (base2);
 	return 0;
 }

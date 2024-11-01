@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_untextured_raycast.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yohlee <yohlee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 12:12:25 by yohan             #+#    #+#             */
-/*   Updated: 2020/07/21 08:08:19 by yohlee           ###   ########.fr       */
+/*   Updated: 2024/10/28 15:59:16 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 #define X_EVENT_KEY_EXIT	17
 #define mapWidth 24
 #define mapHeight 24
-#define width 640
-#define height 480
+#define width 1280
+#define height 1080
 
 typedef struct	s_info
 {
@@ -163,7 +163,7 @@ void	calc(t_info *info)
 
 		int	color;
 		if (worldMap[mapY][mapX] == 1)
-			color = 0xFF0000;
+			color = 0xF10500;
 		else if (worldMap[mapY][mapX] == 2)
 			color = 0x00FF00;
 		else if (worldMap[mapY][mapX] == 3)
@@ -171,7 +171,7 @@ void	calc(t_info *info)
 		else if (worldMap[mapY][mapX] == 4)
 			color = 0xFFFFFF;
 		else
-			color = 0xFFFF00;
+			color = 0xF000F0;
 		
 		if (side == 1)
 			color = color / 2;
@@ -240,15 +240,18 @@ int	main(void)
 	info.mlx = mlx_init();
 
 	info.posX = 12;
-	info.posY = 5;
+	info.posY = 5; // 플레이어 시작 위치
+	
 	info.dirX = -1;
-	info.dirY = 0;
+	info.dirY = 1; // 플레이어 초기 방향벡터
+	
 	info.planeX = 0;
-	info.planeY = 0.66;
+	info.planeY = 0.66; // 카메라 평면
+	
 	info.moveSpeed = 0.05;
 	info.rotSpeed = 0.05;
 	
-	info.win = mlx_new_window(info.mlx, width, height, "mlx");
+	info.win = mlx_new_window(info.mlx, width, height, "cub3D");
 
 	mlx_loop_hook(info.mlx, &main_loop, &info);
 	mlx_hook(info.win, X_EVENT_KEY_PRESS, 0, &key_press, &info);
