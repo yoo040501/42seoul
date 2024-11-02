@@ -6,7 +6,7 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:43:11 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/01 13:12:18 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/02 13:32:00 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,13 @@ void	check_texture(t_info *info, int fd)
 	}
 	if (str)
 		ft_free((void **)&str);
-	if (info->text->texture_cnt != 6)
-	{
+	if (info->text->f_color == -1 || info->text->c_color == -1
+		|| info->text->texture_cnt != 6)
 		close(fd);
+	if (info->text->f_color == -1 || info->text->c_color == -1)
+		print_error("Error: color value should be between 0 and 255\n");
+	if (info->text->texture_cnt != 6)
 		print_error("Error: check again texture\n");
-	}
 }
 
 void	check_in_file(char *path, t_info *info)

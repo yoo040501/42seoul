@@ -10,7 +10,9 @@ SRCS = srcs/cub3d.c 					\
 		srcs/utils/free.c				\
 		srcs/raycasting/cal.c			\
 		srcs/raycasting/image.c			\
-		srcs/raycasting/key.c
+		srcs/raycasting/key.c			\
+		srcs/raycasting/key_move.c		\
+		srcs/raycasting/save_buffer.c
 OBJS = $(SRCS:.c=.o)
 
 INC = -I$(INC_DIR)

@@ -6,7 +6,7 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 12:02:36 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/01 16:07:31 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/02 15:29:46 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	load_image(t_window *window, int *texture, char *path, t_img *i)
 	int	y;
 	int	x;
 
-	i->img = mlx_xpm_file_to_image(window->mlx, path, &i->img_width, &i->img_height);
+	i->img = mlx_xpm_file_to_image(window->mlx, path,
+			&i->img_width, &i->img_height);
 	i->data = (int *)mlx_get_data_addr(i->img, &i->bpp, &i->size_l, &i->endian);
 	y = -1;
 	while (++y < i->img_height)

@@ -6,7 +6,7 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:43:59 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/01 16:04:49 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/02 15:34:07 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,56 @@ typedef struct s_window
 	t_img	img;
 }t_window;
 
+typedef struct s_floor
+{
+	int		p;
+	int		cell_x;
+	int		cell_y;
+	int		tx;
+	int		ty;
+	float	pos_z;
+	float	row_distance;
+	float	floorstep_x;
+	float	floorstep_y;
+	float	floor_x;
+	float	floor_y;
+	float	raydir_x0;
+	float	raydir_x1;
+	float	raydir_y0;
+	float	raydir_y1;
+}t_floor;
+
+typedef struct s_raycast
+{
+	double	camera_x;
+	double	raydir_x;
+	double	raydir_y;
+	double	sidedist_x;
+	double	sidedist_y;
+	double	deltadist_x;
+	double	deltadist_y;
+	double	perpwalldist;
+	int		hit;
+	int		side;
+	int		step_x;
+	int		step_y;
+	int		map_x;
+	int		map_y;
+}t_raycast;
+
+typedef struct s_draw
+{
+	int		line_hegiht;
+	int		draw_start;
+	int		draw_end;
+	int		tex_num;
+	double	wall_x;
+	int		tex_x;
+	int		tex_y;
+	double	tex_pos;
+	double	step;
+}t_draw;
+
 # define TRUE 1
 # define FALSE 0
 # define N 0
@@ -124,7 +174,14 @@ void		load_texture(t_window *window);
 int			key_release(int key, t_window *window);
 int			key_press(int key, t_window *window);
 void		key_move(t_window *window);
-
+/*	key_move.c	*/
+void		key_rotate_l(t_window *window, t_map *map);
+void		key_rotate_r(t_window *window, t_map *map);
+void		key_move_updown(t_window *window, t_map *map, char **worldmap);
+void		key_move_rl(t_window *window, t_map *map, char **worldmap);
+/*	save_buffer.c	*/
+void		save_wall(t_window *window, t_map *info, t_raycast *r, int x);
+void		save_floor(t_window *window, t_floor *f, int y);
 /*	free.c	*/
 void		free_info(t_info *info);
 void		ft_free_2d(void **str);

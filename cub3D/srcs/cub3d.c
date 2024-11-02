@@ -6,7 +6,7 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:42:55 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/01 16:04:25 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/02 15:34:31 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 	char		*path;
 	t_info		*info;
 	t_window	*window;
-	
+
 	//atexit(check_leak);
 	if (argc != 2)
 		print_error("Error: need map file\n");
