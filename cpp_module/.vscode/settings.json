@@ -65,6 +65,9 @@
 		"fstream": "cpp",
 		"stack": "cpp",
 		"__functional_03": "cpp",
-		"memory_resource": "cpp"
+		"memory_resource": "cpp",
+		"list": "cpp",
+		"queue": "cpp",
+		"span": "cpp"
 	}
 }

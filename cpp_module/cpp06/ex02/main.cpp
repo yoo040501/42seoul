@@ -34,15 +34,15 @@ void	identify(Base& p)
 	try {
         A& a = dynamic_cast<A&>(p);
         std::cout << "This is A: " << &a << std::endl;
-    } catch (const std::bad_cast&) {
+    } catch (const std::exception&) {
         try {
             B& b = dynamic_cast<B&>(p);
             std::cout << "This is B: " << &b << std::endl;
-        } catch (const std::bad_cast&) {
+        } catch (const std::exception&) {
             try {
                 C& c = dynamic_cast<C&>(p);
                 std::cout << "This is C: " << &c << std::endl;
-            } catch (const std::bad_cast&) {
+            } catch (const std::exception&) {
                 std::cout << "Unknown type: " << std::endl;
             }
         }
