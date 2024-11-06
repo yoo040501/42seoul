@@ -6,7 +6,7 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:43:59 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/02 15:34:07 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:17:17 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,42 +66,32 @@ typedef struct s_img
 	int		img_height;
 }t_img;
 
-typedef struct s_window
+typedef struct s_key
 {
-	void	*mlx;
-	void	*win;
-	int		**texture;
-	int		**buf;
 	int		key_w;
 	int		key_a;
 	int		key_s;
 	int		key_d;
 	int		key_r;
 	int		key_l;
+	int		mouse_r;
+	int		mouse_l;
+	int		key_space;
+}t_key;
+
+typedef struct s_window
+{
+	void	*mlx;
+	void	*win;
+	int		**texture;
+	int		**buf;
+	double	camera_height;
 	double	move_speed;
 	double	rot_speed;
 	t_info	*info;
+	t_key	key_flag;
 	t_img	img;
 }t_window;
-
-typedef struct s_floor
-{
-	int		p;
-	int		cell_x;
-	int		cell_y;
-	int		tx;
-	int		ty;
-	float	pos_z;
-	float	row_distance;
-	float	floorstep_x;
-	float	floorstep_y;
-	float	floor_x;
-	float	floor_y;
-	float	raydir_x0;
-	float	raydir_x1;
-	float	raydir_y0;
-	float	raydir_y1;
-}t_floor;
 
 typedef struct s_raycast
 {
@@ -179,9 +169,12 @@ void		key_rotate_l(t_window *window, t_map *map);
 void		key_rotate_r(t_window *window, t_map *map);
 void		key_move_updown(t_window *window, t_map *map, char **worldmap);
 void		key_move_rl(t_window *window, t_map *map, char **worldmap);
+void		key_space(t_window *window);
+/*	mouse.c	*/
+void		mouse_move(t_window *window);
+int			check_mouse(int x, int y, t_window *window);
 /*	save_buffer.c	*/
 void		save_wall(t_window *window, t_map *info, t_raycast *r, int x);
-void		save_floor(t_window *window, t_floor *f, int y);
 /*	free.c	*/
 void		free_info(t_info *info);
 void		ft_free_2d(void **str);

@@ -6,32 +6,26 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 15:27:56 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/02 15:32:33 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:34:00 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	floor_casting(t_window *window, t_map *info)
+void	init_cell_floor(t_window *window)
 {
 	int		y;
-	t_floor	f;
+	int		x;
 
 	y = -1;
-	while (++y < HEIGHT)
+	while (++y < HEIGHT / 2)
 	{		
-		f.raydir_x0 = info->dir_x - info->plane_x;
-		f.raydir_y0 = info->dir_y - info->plane_y;
-		f.raydir_x1 = info->dir_x + info->plane_x;
-		f.raydir_x1 = info->dir_y + info->plane_y;
-		f.p = y - HEIGHT / 2;
-		f.pos_z = 0.5 * HEIGHT;
-		f.row_distance = f.pos_z / f.p;
-		f.floorstep_x = f.row_distance * (f.raydir_x1 - f.raydir_x0) / WIDTH;
-		f.floorstep_y = f.row_distance * (f.raydir_y1 - f.raydir_y0) / WIDTH;
-		f.floor_x = info->player_x + f.row_distance * f.raydir_x0;
-		f.floor_y = info->player_y + f.row_distance * f.raydir_y0;
-		save_floor(window, &f, y);
+		x = -1;
+		while (++x < WIDTH)
+		{
+				window->buf[y][x] = window->info->text->c_color;
+				window->buf[HEIGHT - y - 1][x] = window->info->text->f_color;
+		}
 	}
 }
 
@@ -41,7 +35,7 @@ void	init_step(t_raycast *r, t_map *info)
 	r->map_y = (int)info->player_y;
 	r->deltadist_x = fabs(1 / r->raydir_x);
 	r->deltadist_y = fabs(1 / r->raydir_y);
-	r->hit = 0; //was there a wall hit?
+	r->hit = 0;
 	if (r->raydir_x < 0)
 	{
 		r->step_x = -1;
@@ -68,7 +62,6 @@ void	dda(t_raycast *r, char **worldmap)
 {
 	while (r->hit == 0)
 	{
-		//jump to next map square, OR in x-direction, OR in y-direction
 		if (r->sidedist_x < r->sidedist_y)
 		{
 			r->sidedist_x += r->deltadist_x;
@@ -81,7 +74,6 @@ void	dda(t_raycast *r, char **worldmap)
 			r->map_y += r->step_y;
 			r->side = 1;
 		}
-		//Check if ray has hit a wall
 		if (worldmap[r->map_y][r->map_x] == '1')
 			r->hit = 1;
 	}
@@ -96,7 +88,7 @@ void	calc(t_window *window)
 
 	info = &(window->info->map_info);
 	worldmap = window->info->map;
-	floor_casting(window, info);
+	init_cell_floor(window);
 	x = -1;
 	while (++x < WIDTH)
 	{

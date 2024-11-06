@@ -6,7 +6,7 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 12:02:36 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/02 15:29:46 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/04 19:11:04 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	load_image(t_window *window, int *texture, char *path, t_img *i)
 	{
 		x = -1;
 		while (++x < i->img_width)
-			texture[i->img_width * y + x] = i->data[i->img_width * y + x];
+			texture[i->img_width * y + x] = i->data[i->img_width * y + i->img_width - x - 1];
 	}
 	mlx_destroy_image(window->mlx, i->img);
 }

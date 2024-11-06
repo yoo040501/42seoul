@@ -6,7 +6,7 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:44:00 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/10/16 18:44:01 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:13:40 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define KEYPRESS 2
 # define KEYRELEASE 3
 # define ESCPRESS 17
+# define MOUSEMOVE 6
 # define KEY_ESCAPE			53
 # define KEY_W				13
 # define KEY_A				0
@@ -26,5 +27,5 @@
 # define KEY_DOWN			125
 # define KEY_RIGHT			124
 # define KEY_UP				126
-
+# define KEY_SPACE			49
 #endif

@@ -6,7 +6,7 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 19:53:20 by yohlee            #+#    #+#             */
-/*   Updated: 2024/10/31 18:26:18 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/04 16:15:45 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #define X_EVENT_KEY_EXIT	17
 #define texWidth 64
 #define texHeight 64
-#define mapWidth 24
+#define mapWidth 23
 #define mapHeight 24
 #define width 1280
 #define height 1024
@@ -78,8 +78,7 @@ int	worldMap[mapWidth][mapHeight] =
 										{2,0,0,0,0,0,0,0,2,0,0,0,0,0,2,5,0,5,0,5,0,5,0,5},
 										{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5},
 										{2,0,0,0,0,0,0,0,2,0,0,5,0,0,2,5,0,5,0,5,0,5,0,5},
-										{2,2,0,0,0,0,0,2,2,2,2,0,0,2,2,0,5,0,5,0,0,0,5,5},
-										{2,2,2,2,1,2,2,2,2,2,2,1,2,2,2,5,5,5,5,5,5,5,5,5}
+										{2,2,0,0,0,0,0,2,2,2,2,0,0,2,2,0,5,0,5,0,0,0,5,5}
 									};
 
 void	draw(t_info *info)
@@ -418,12 +417,12 @@ int	main(void)
 	t_info info;
 	info.mlx = mlx_init();
 
-	info.posX = 22.5;
-	info.posY = 11.5;
-	info.dirX = 0.0;
-	info.dirY = 1.0;
-	info.planeX = 0.66;
-	info.planeY = 0.0;
+	info.posX = 1.5;
+	info.posY = 2.5;
+	info.dirX = -1.0;
+	info.dirY = 0.0;
+	info.planeX = 0.0;
+	info.planeY = 0.66;
 
 	for (int i = 0; i < height; i++)
 	{

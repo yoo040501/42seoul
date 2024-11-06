@@ -1,5 +1,5 @@
-CC = cc
-#CFLAGS = -Wall -Wextra -Werror
+CC = cc -g
+CFLAGS = -Wall -Wextra -Werror
 SRCS = srcs/cub3d.c 					\
 		srcs/parsing/check_file.c		\
 		srcs/parsing/check_in_file.c	\
@@ -12,15 +12,16 @@ SRCS = srcs/cub3d.c 					\
 		srcs/raycasting/image.c			\
 		srcs/raycasting/key.c			\
 		srcs/raycasting/key_move.c		\
-		srcs/raycasting/save_buffer.c
+		srcs/raycasting/save_buffer.c	\
+		srcs/raycasting/mouse.c
 OBJS = $(SRCS:.c=.o)
-
 INC = -I$(INC_DIR)
 LIB = -L$(LIB_DIR1) -lft -L$(LIB_DIR2) -lgnl
 
 LIB_DIR1 = libft/
 LIB_DIR2 = gnl/
 INC_DIR = includes/
+
 MLX = -lmlx -framework OpenGL -framework Appkit
 NAME = cub3D
 

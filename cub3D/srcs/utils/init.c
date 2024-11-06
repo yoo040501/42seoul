@@ -6,7 +6,7 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:43:17 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/01 15:58:13 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:11:52 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void	map_init(t_map *map_info)
 	map_info->player_y = 0;
 	map_info->player_cnt = 0;
 	map_info->player_dir = 0;
-	map_info->plane_x = 0;
-	map_info->plane_y = 0.66;
-	map_info->dir_x = -1.0;
-	map_info->dir_y = 0.0;
+	map_info->plane_x = -0.66;
+	map_info->plane_y = 0.0;
+	map_info->dir_x = 0.0;
+	map_info->dir_y = -1.0;
 }
 
 t_info	*info_init(void)
@@ -56,18 +56,27 @@ t_info	*info_init(void)
 	return (info);
 }
 
+void	key_flag_init(t_key *flag)
+{
+	flag->key_w = 0;
+	flag->key_a = 0;
+	flag->key_s = 0;
+	flag->key_d = 0;
+	flag->key_r = 0;
+	flag->key_l = 0;
+	flag->mouse_r = 0;
+	flag->mouse_l = 0;
+	flag->key_space = 0;
+}
+
 void	set_value(t_window *w)
 {
 	t_img	*i;
-
-	w->key_a = 0;
-	w->key_d = 0;
-	w->key_s = 0;
-	w->key_w = 0;
-	w->key_l = 0;
-	w->key_r = 0;
+	
+	key_flag_init(&w->key_flag);
 	w->move_speed = 0.05;
 	w->rot_speed = 0.05;
+	w->camera_height = 0.5;
 	load_texture(w);
 	w->win = mlx_new_window(w->mlx, WIDTH, HEIGHT, "cub3D");
 	i = &(w->img);

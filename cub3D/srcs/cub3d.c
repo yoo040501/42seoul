@@ -6,7 +6,7 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:42:55 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/02 15:34:31 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/05 12:27:21 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main_loop(t_window *window)
 	calc(window);
 	draw(window);
 	key_move(window);
+	mouse_move(window);
 	return (0);
 }
 
@@ -44,7 +45,7 @@ int	main(int argc, char **argv)
 	t_info		*info;
 	t_window	*window;
 
-	//atexit(check_leak);
+	// atexit(check_leak);
 	if (argc != 2)
 		print_error("Error: need map file\n");
 	path = check_file(argv[1]);
@@ -57,6 +58,7 @@ int	main(int argc, char **argv)
 	mlx_hook(window->win, KEYPRESS, 0, &key_press, window);
 	mlx_hook(window->win, KEYRELEASE, 0, &key_release, window);
 	mlx_hook(window->win, ESCPRESS, 0, &closed, window);
+	mlx_hook(window->win, MOUSEMOVE, 0, &check_mouse, window);
 	mlx_loop(window->mlx);
 	ft_free((void **)&path);
 	free_window(window);

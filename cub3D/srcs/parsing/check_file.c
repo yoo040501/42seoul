@@ -6,7 +6,7 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:43:10 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/10/16 18:43:11 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/04 13:25:05 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ char	*check_file(char *av)
 	char	*path;
 
 	printf("Make&Check map path...~ing\n");
-	check_file_name(av); // map이름 검사
-	path = get_path(av); // map복사
-	check_file_open(path); // map 파일 있는지
+	check_file_name(av);
+	path = get_path(av);
+	check_file_open(path);
 	return (path);
 }

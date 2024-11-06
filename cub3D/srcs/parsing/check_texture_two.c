@@ -6,7 +6,7 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:43:14 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/02 13:24:00 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/04 13:25:39 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	get_c_color(char *texture, t_info *info, int *flag)
 	i = -1;
 	while (color[++i])
 		color[i] = ft_strtrim_free(color[i], " ");
-	if (info->text->c_color >= 0 || color[3] != NULL) // 이미 저장되어있거나 쉼표가 3개 이상이면 에러
+	if (info->text->c_color >= 0 || color[3] != NULL)
 	{
 		ft_free_2d((void **)color);
 		*flag = FALSE;
@@ -71,7 +71,7 @@ void	get_f_color(char *texture, t_info *info, int *flag)
 	i = -1;
 	while (color[++i])
 		color[i] = ft_strtrim_free(color[i], " ");
-	if (info->text->f_color >= 0 || color[3] != NULL) // 이미 저장되어있거나 쉼표가 3개 이상이면 에러
+	if (info->text->f_color >= 0 || color[3] != NULL)
 	{
 		ft_free_2d((void **)color);
 		*flag = FALSE;

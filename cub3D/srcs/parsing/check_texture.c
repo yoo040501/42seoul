@@ -6,7 +6,7 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:43:14 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/01 13:13:04 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/04 13:26:01 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	get_no_path(char *texture, t_info *info, int *flag)
 	char	*path_tmp;
 	char	*path;
 
-	if (info->text->n_path) // 이미 저장되어있으면 에러
+	if (info->text->n_path)
 	{
 		*flag = FALSE;
 		return ;
@@ -27,7 +27,7 @@ void	get_no_path(char *texture, t_info *info, int *flag)
 	path = ft_strtrim(path_tmp, " ");
 	ft_free((void **)&path_tmp);
 	fd = open(path, O_RDONLY);
-	if (fd < 0) // 경로가 잘못됬으면 에러
+	if (fd < 0)
 	{
 		*flag = FALSE;
 		return ;
@@ -43,7 +43,7 @@ void	get_so_path(char *texture, t_info *info, int *flag)
 	char	*path_tmp;
 	char	*path;
 
-	if (info->text->s_path) // 이미 저장되어있으면 에러
+	if (info->text->s_path)
 	{
 		*flag = FALSE;
 		return ;
@@ -52,7 +52,7 @@ void	get_so_path(char *texture, t_info *info, int *flag)
 	path = ft_strtrim(path_tmp, " ");
 	ft_free((void **)&path_tmp);
 	fd = open(path, O_RDONLY);
-	if (fd < 0) // 경로가 잘못됬으면 에러
+	if (fd < 0)
 	{
 		*flag = FALSE;
 		return ;
@@ -68,7 +68,7 @@ void	get_we_path(char *texture, t_info *info, int *flag)
 	char	*path_tmp;
 	char	*path;
 
-	if (info->text->w_path) // 이미 저장되어있으면 에러
+	if (info->text->w_path)
 	{
 		*flag = FALSE;
 		return ;
@@ -77,7 +77,7 @@ void	get_we_path(char *texture, t_info *info, int *flag)
 	path = ft_strtrim(path_tmp, " ");
 	ft_free((void **)&path_tmp);
 	fd = open(path, O_RDONLY);
-	if (fd < 0) // 경로가 잘못됬으면 에러
+	if (fd < 0)
 	{
 		*flag = FALSE;
 		return ;
@@ -93,7 +93,7 @@ void	get_ea_path(char *texture, t_info *info, int *flag)
 	char	*path_tmp;
 	char	*path;
 
-	if (info->text->e_path) // 이미 저장되어있으면 에러
+	if (info->text->e_path)
 	{
 		*flag = FALSE;
 		return ;
@@ -102,7 +102,7 @@ void	get_ea_path(char *texture, t_info *info, int *flag)
 	path = ft_strtrim(path_tmp, " ");
 	ft_free((void **)&path_tmp);
 	fd = open(path, O_RDONLY);
-	if (fd < 0) // 경로가 잘못됬으면 에러
+	if (fd < 0)
 	{
 		*flag = FALSE;
 		return ;
