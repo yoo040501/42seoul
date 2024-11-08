@@ -33,3 +33,10 @@ std::string	PresidentialPardonForm::getTarget(void)const
 {
 	return (this->_target);
 }
+
+AForm*	PresidentialPardonForm::createForm(std::string target)
+{
+	std::cout << "Intern creates PresidentialPardonForm" << std::endl;
+	// AForm*	tmp = new PresidentialPardonForm(target);
+	return (new PresidentialPardonForm(target));
+}

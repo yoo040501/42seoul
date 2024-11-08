@@ -24,26 +24,27 @@ void	Span::addNumber(int num){
 
 int	Span::longestSpan(void){
 	int	max = 0;
+	std::vector<int>tmp = arr;
 
 	if (arr.size() < 2) {
 		throw std::out_of_range("Error: 비교 숫자가 없음");
     }
-	std::stable_sort(arr.begin(), arr.end());
-	max = arr[arr.size() - 1] - arr[0];
+	std::stable_sort(tmp.begin(), tmp.end());
+	max = tmp[tmp.size() - 1] - tmp[0];
 	return max;
 }
 
 int	Span::shortestSpan(void){
 	int	min = INT_MAX;
-
+	std::vector<int>tmp = arr;
 	if (arr.size() < 2) {
 		throw std::out_of_range("Error: 비교 숫자가 없음");
     }
-	std::stable_sort(arr.begin(), arr.end());
-	for (size_t i=0;i<arr.size() - 1;i++)
+	std::stable_sort(tmp.begin(), tmp.end(), std::greater<int>());
+	for (size_t i=0;i<tmp.size() - 1;i++)
 	{
-		if (min > abs(arr[i] - arr[i + 1]))
-			min = abs(arr[i] - arr[i + 1]);
+		if (min > tmp[i] - tmp[i + 1])
+			min = tmp[i] - tmp[i + 1];
 	}
 	return min;
 }

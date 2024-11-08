@@ -15,7 +15,8 @@ class ShrubberyCreationForm : public AForm
 		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& copy);
 		~ShrubberyCreationForm();
 
-		void execute(Bureaucrat const &executor)const;
+		void 	execute(Bureaucrat const &executor)const;
+		static	AForm*	createForm(std::string target);
 		std::string getTarget(void)const;
 
 		class OpenFailException: public std::exception{

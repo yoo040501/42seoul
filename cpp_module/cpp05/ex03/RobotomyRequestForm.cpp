@@ -36,3 +36,9 @@ std::string	RobotomyRequestForm::getTarget(void)const
 {
 	return (this->_target);
 }
+
+AForm*	RobotomyRequestForm::createForm(std::string target){
+	std::cout <<  "Intern creates RobotomyRequestForm" << std::endl;
+	return (new RobotomyRequestForm(target));
+}
+

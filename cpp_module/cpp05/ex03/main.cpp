@@ -3,6 +3,7 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "Intern.hpp"
 
 int main(void){
 	srand(time(NULL));
@@ -12,13 +13,13 @@ int main(void){
 		Bureaucrat a("a", 150);
 		Bureaucrat b("b", 20);
 
-		RobotomyRequestForm one("one");
-
-		std::cout << one << std::endl;
-
-		b.executeForm(one);	
-		b.signForm(one);	
-		b.executeForm(one);
+		Intern  someRandomIntern;
+		AForm*   rrf;
+		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+		b.executeForm(*rrf);	
+		b.signForm(*rrf);	
+		b.executeForm(*rrf);
+		delete rrf;
 	}
 	catch(const std::exception& e)
 	{

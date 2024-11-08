@@ -56,3 +56,9 @@ std::string	ShrubberyCreationForm::getTarget(void)const
 const char* ShrubberyCreationForm::OpenFailException::what() const throw(){
 	return "\033[0;31m Error: can`t open file\033[0m";
 }
+
+AForm*	ShrubberyCreationForm::createForm(std::string target)
+{
+	std::cout <<  "Intern creates ShrubberyCreationForm" << std::endl;
+	return (new ShrubberyCreationForm(target));
+}
