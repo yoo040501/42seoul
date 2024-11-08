@@ -8,7 +8,7 @@ class ScalarConverter
 		ScalarConverter();
 		ScalarConverter(ScalarConverter const &S);
 		ScalarConverter& operator=(ScalarConverter const &copy);
-	public:
 		~ScalarConverter();
+	public:
 		static void	convert(std::string word);
 };
