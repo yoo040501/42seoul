@@ -1,6 +1,8 @@
 #pragma once
 
 #include <iostream>
+#include <sstream>
+#include <string>
 
 class ScalarConverter
 {
@@ -10,5 +12,5 @@ class ScalarConverter
 		ScalarConverter& operator=(ScalarConverter const &copy);
 		~ScalarConverter();
 	public:
-		static void	convert(std::string word);
+		static void	convert(char *word);
 };

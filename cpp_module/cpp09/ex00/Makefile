@@ -1,10 +1,10 @@
 CPP = c++
 CFLAGS = -Wall -Wextra -Werror -pedantic -std=c++98 
-SRCS = $(wildcard *.cpp)
+SRCS =	$(wildcard *.cpp)
 
 OBJS = $(SRCS:.cpp=.o)
 DEPS = $(SRCS:.cpp=.d)
-NAME = convert
+NAME = btc
 
 RM = rm -rf
 TOUCH = touch

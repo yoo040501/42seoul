@@ -71,6 +71,8 @@
 		"span": "cpp",
 		"*.tpp": "cpp",
 		"__cxx_version": "cpp",
-		"filesystem": "cpp"
+		"filesystem": "cpp",
+		"__tree": "cpp",
+		"map": "cpp"
 	}
 }

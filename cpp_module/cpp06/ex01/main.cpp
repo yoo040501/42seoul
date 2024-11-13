@@ -3,7 +3,7 @@
 int main()
 {
 	Data data;
-	data.len = "asdasd";
+	data.len = "hello";
 	data.n = 42;
 
 	std::cout << &data << std::endl;
@@ -22,7 +22,7 @@ int main()
 
 	uintptr_t b = 123456;
 
-	std::cout << std::endl << b << std::endl;
+	std::cout << "\n" << b << std::endl;
 	Data *test = Serializer::deserialize(b);
 	std::cout << test << std::endl;
 	std::cout << Serializer::serialize(test) << std::endl;
