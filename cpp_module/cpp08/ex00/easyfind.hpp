@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <cstring>
+#include <algorithm>
 
 class NotFoundException : public std::exception {
 public:

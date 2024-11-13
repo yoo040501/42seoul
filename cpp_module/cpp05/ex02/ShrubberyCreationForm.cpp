@@ -28,7 +28,7 @@ void	ShrubberyCreationForm::execute(Bureaucrat const &executor)const
 	AForm::execute(executor);
 	std::string	outfile = this->_target + "_shrubbery";
 	std::ofstream outf;
-	outf.open(outfile);
+	outf.open(outfile.c_str());
 	if (outf.fail()){
 		throw OpenFailException();
 	} 
