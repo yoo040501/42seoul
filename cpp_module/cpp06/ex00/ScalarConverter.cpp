@@ -67,7 +67,7 @@ void	ScalarConverter::convert(char *word){
 	else if (isNumber(str))
 	{
 		if (str[str.length() - 1] == 'f')
-			str.erase(std::find(str.begin(),str.end(), 'f'));
+			str.erase(str.length() - 1);
 		std::stringstream tmp(str);
 		double	num;
 		if (tmp >> num)
@@ -91,7 +91,7 @@ void	ScalarConverter::convert(char *word){
 			std::cout << "float: ";
 			if (num > std::numeric_limits<float>::max())
 				std::cout << "+inf";
-			else if (num < std::numeric_limits<float>::lowest())
+			else if (num < -std::numeric_limits<float>::max())
 				std::cout << "-inf" ;
 			else
 				std::cout << static_cast<float>(num);
@@ -100,7 +100,7 @@ void	ScalarConverter::convert(char *word){
 			std::cout << "double: ";
 			if (num > std::numeric_limits<double>::max())
 				std::cout << "+inf" << std::endl;
-			else if (num < std::numeric_limits<double>::lowest())
+			else if (num < -std::numeric_limits<double>::max())
 				std::cout << "-inf" << std::endl;
 			else
 				std::cout << num << std::endl;
