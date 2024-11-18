@@ -40,7 +40,7 @@ void	changeInt(std::string str) //int형에서 변환
 		std::cout << std::fixed;
 
 		std::cout << "char: ";
-		if (isprint(static_cast<char>(num)) || num < 255)
+		if (isprint(static_cast<char>(num)) && num < 255)
 			std::cout << "'" << static_cast<char>(num) << "'" << std::endl;
 		else
 			std::cout << "Non displayable" << std::endl;
@@ -53,6 +53,8 @@ void	changeInt(std::string str) //int형에서 변환
 
 		std::cout << "double: " << static_cast<double>(num) << std::endl;
 	}
+	else
+		throw std::overflow_error("int형 범위 초과");
 }
 
 void	changeFloat(std::string str)
@@ -67,7 +69,38 @@ void	changeFloat(std::string str)
 		std::cout << std::fixed;
 
 		std::cout << "char: ";
-		if (isprint(static_cast<char>(num)))
+		if (isprint(static_cast<char>(num)) && num < 255)
+			std::cout << "'" << static_cast<char>(num) << "'" << std::endl;
+		else
+			std::cout << "Non displayable" << std::endl;
+
+		std::cout << "int: ";
+		if (num > INT_MAX || num < INT_MIN)
+			std::cout << " impossible" << std::endl;
+		else
+			std::cout << static_cast<int>(num) << std::endl;
+
+		std::cout << "float: " << num << "f" << std::endl;
+
+		std::cout << "double: ";
+		// if (num > std::numeric_limits<double>::max())
+		// 	std::cout << "+inf" << std::endl;
+		// else if (num < -std::numeric_limits<double>::max())
+		// 	std::cout << "-inf" << std::endl;
+		std::cout << static_cast<double>(num) << std::endl;
+	}
+	else
+		throw std::overflow_error("float형 범위 초과");
+}
+
+void	changeDouble(std::string str)
+{
+	double	num;
+	std::stringstream tmp(str);
+	if (tmp >> num)
+	{
+		std::cout << "char: ";
+		if (isprint(static_cast<char>(num)) && num < 255)
 			std::cout << "'" << static_cast<char>(num) << "'" << std::endl;
 		else
 			std::cout << "Non displayable" << std::endl;
@@ -84,17 +117,13 @@ void	changeFloat(std::string str)
 		else if (num < -std::numeric_limits<float>::max())
 			std::cout << "-inf" ;
 		else
-			std::cout << num;
+			std::cout << static_cast<float>(num);
 		std::cout << "f" << std::endl;
 
-		std::cout << "double: ";
-		if (num > std::numeric_limits<double>::max())
-			std::cout << "+inf" << std::endl;
-		else if (num < -std::numeric_limits<double>::max())
-			std::cout << "-inf" << std::endl;
-		else
-			std::cout << static_cast<double>(num) << std::endl;
+		std::cout << "double: " << num << std::endl;
 	}
+	else
+		throw std::overflow_error("double형 범위 초과");
 }
 
 void	ScalarConverter::convert(char *word){
@@ -142,40 +171,7 @@ void	ScalarConverter::convert(char *word){
 		else if (getType == 2)
 			changeFloat(str);
 		else
-		{
-			double	num;
-			if (tmp >> num)
-			{
-				std::cout << "char: ";
-				if (isprint(static_cast<char>(num)) || num < 255)
-					std::cout << "'" << static_cast<char>(num) << "'" << std::endl;
-				else
-					std::cout << "Non displayable" << std::endl;
-
-				std::cout << "int: ";
-				if (num > INT_MAX || num < INT_MIN)
-					std::cout << " impossible" << std::endl;
-				else
-					std::cout << static_cast<int>(num) << std::endl;
-
-				std::cout << "float: ";
-				if (num > std::numeric_limits<float>::max())
-					std::cout << "+inf";
-				else if (num < -std::numeric_limits<float>::max())
-					std::cout << "-inf" ;
-				else
-					std::cout << static_cast<float>(num);
-				std::cout << "f" << std::endl;
-
-				std::cout << "double: ";
-				if (num > std::numeric_limits<double>::max())
-					std::cout << "+inf" << std::endl;
-				else if (num < -std::numeric_limits<double>::max())
-					std::cout << "-inf" << std::endl;
-				else
-					std::cout << static_cast<double>(num) << std::endl;
-			}
-		}
+			changeDouble(str);
 	}
 	else
 		throw	std::invalid_argument("잘못된 입력");

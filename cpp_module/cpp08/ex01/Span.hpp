@@ -16,7 +16,18 @@ class Span
 		Span& operator=(const Span &S);
 		~Span();
 
-		void	addNumber(int num);
-		int		shortestSpan(void);
-		int		longestSpan(void);
+		void		addNumber(int num);
+		long		shortestSpan(void);
+		long		longestSpan(void);
+		template <typename Iterator>
+		void	addNumber(Iterator begin, Iterator end){
+			int size= static_cast<int>(std::distance(begin, end));
+			if (len < size)
+				throw std::out_of_range("out_of_range");
+			while (begin != end)
+			{
+				addNumber(*begin);
+				begin++;
+			}
+		}
 };

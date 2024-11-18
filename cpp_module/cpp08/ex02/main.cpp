@@ -1,4 +1,5 @@
 #include "MutantStack.hpp"
+#include <list>
 
 int main()
 {
@@ -18,5 +19,13 @@ int main()
 	while (it != ite) {
 		std::cout << *it << std::endl;
 	++it; }
-	std::stack<int> s(mstack); return 0;
+	std::stack<int> s(mstack);
+	MutantStack<int>::reverse_iterator rit = mstack.rbegin();
+	MutantStack<int>::reverse_iterator rite = mstack.rend();
+	++rit;
+	--rit;
+	while (rit != rite) {
+		std::cout << *rit << std::endl;
+	++rit; }
+	return 0;
 }

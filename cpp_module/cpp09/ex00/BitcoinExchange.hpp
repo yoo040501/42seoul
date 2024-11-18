@@ -1,22 +1,20 @@
 #pragma once
 
 #include <iostream>
+#include <algorithm>
+#include <fstream>
+#include <sstream>
 #include <map>
 #include <cmath>
 
-class BitcoinExchange
-{
-	private:
-		
+void	bitcoinexchange(char *file);
+
+class OpenFailException: public std::exception{
 	public:
-		BitcoinExchange();
-		~BitcoinExchange();
+		virtual const char* what() const throw();
 };
 
-BitcoinExchange::BitcoinExchange()
-{
-}
-
-BitcoinExchange::~BitcoinExchange()
-{
-}
+class BadInfoException: public std::exception{
+	public:
+		virtual const char* what() const throw();
+};

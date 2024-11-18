@@ -20,15 +20,9 @@ int main()
         std::cerr << e.what() << std::endl;
     }
 
-	std::list<int> lt;
-	lt.push_back(5);
-	lt.push_back(50);
-	lt.push_back(3);
-	lt.push_back(1);
-	lt.push_back(2);
-	lt.push_back(4);
+	std::list<int> lt = {5, 50, 3, 1, 2, 5};
 
-	 try {
+	try {
         std::list<int>::iterator it = easyfind(lt, 1);
         std::cout << "찾은 값: " << *it << std::endl;
     } catch (const std::exception& e) {
