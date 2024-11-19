@@ -20,7 +20,12 @@ int main()
         std::cerr << e.what() << std::endl;
     }
 
-	std::list<int> lt = {5, 50, 3, 1, 2, 5};
+	std::list<int> lt;
+    lt.push_back(5);
+    lt.push_back(50);
+    lt.push_back(4);
+    lt.push_back(12);
+    lt.push_back(1);
 
 	try {
         std::list<int>::iterator it = easyfind(lt, 1);
