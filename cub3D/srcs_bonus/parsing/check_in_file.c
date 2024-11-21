@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_in_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ycho2 <ycho2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:43:11 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/18 11:19:40 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:55:09 by ycho2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 int	is_texture(char *str, t_info *info)
 {

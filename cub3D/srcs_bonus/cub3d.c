@@ -6,11 +6,11 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:42:55 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/18 14:09:36 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/18 14:03:17 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
 int	closed(t_window *window)
 {

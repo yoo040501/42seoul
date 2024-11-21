@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   key_move.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ycho2 <ycho2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 15:07:56 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/12 16:12:01 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/14 19:26:40 by ycho2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	key_updown(t_window *window)
 {

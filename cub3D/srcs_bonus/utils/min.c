@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   min.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ycho2 <ycho2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 17:33:34 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/15 21:10:25 by dongeunk         ###   ########.fr       */
+/*   Created: 2024/11/09 19:21:22 by ycho2             #+#    #+#             */
+/*   Updated: 2024/11/14 19:24:43 by ycho2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "../../includes/cub3d_bonus.h"
 
-void	*ft_calloc(size_t count, size_t size);
-
-void	*ft_calloc(size_t count, size_t size)
+int	ft_min(int a, int b)
 {
-	void	*arr;
-
-	arr = malloc(size * count);
-	if (!arr)
-		exit (0);
-	ft_memset(arr, 0, size * count);
-	return (arr);
+	if (a < b)
+		return (a);
+	return (b);
 }

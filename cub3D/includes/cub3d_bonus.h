@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:43:59 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/18 12:30:31 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:52:18 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H 
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H 
 
 # include <stdio.h>
 # include "mlx_keycode.h"
@@ -33,6 +33,12 @@ typedef struct s_text
 	int		c_color;
 	int		f_color;
 }t_text;
+
+typedef struct s_mouse
+{
+	int	x;
+	int	y;
+}t_mouse;
 
 typedef struct s_map
 {
@@ -89,9 +95,11 @@ typedef struct s_window
 	void	*win;
 	int		**texture;
 	int		**buf;
+	int		minimap_grid;
 	double	camera_height;
 	double	move_speed;
 	double	rot_speed;
+	t_mouse	mouse;
 	t_info	*info;
 	t_key	key_flag;
 	t_img	img;
@@ -139,6 +147,19 @@ typedef struct s_line
 	int		end_x;
 	int		end_y;
 }t_line;
+
+typedef struct s_player
+{
+	double	cos_theta;
+	double	sin_theta;
+	int		triangle[3][2];
+	int		line_vec[3][2];
+	int		min_x;
+	int		min_y;
+	int		max_x;
+	int		max_y;
+	double	theta;
+}t_player;
 
 # define TRUE 1
 # define FALSE 0
@@ -195,4 +216,11 @@ t_info		*info_init(void);
 void		is_image(t_window *window, char *path, t_img *i);
 void		get_max_image(t_window *window, t_text *text, t_img *i);
 t_window	*window_init(t_info *info);
+
+/*	minimap.c	*/
+void		minimap(t_window *window);
+void		minimap_player(t_window *window);
+
+void		print_error(char *str);
+int			ft_min(int a, int b);
 #endif

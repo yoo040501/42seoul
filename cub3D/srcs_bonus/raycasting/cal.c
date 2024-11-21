@@ -6,11 +6,11 @@
 /*   By: ycho2 <ycho2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 15:27:56 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/14 19:49:38 by ycho2            ###   ########.fr       */
+/*   Updated: 2024/11/14 19:26:39 by ycho2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	init_cell_floor(t_window *window)
 {
@@ -107,4 +107,5 @@ void	calc(t_window *window)
 					+ (1 - r.step_y) / 2) / r.raydir_y;
 		save_wall(window, info, &r, x);
 	}
+	minimap(window);
 }

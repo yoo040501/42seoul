@@ -6,11 +6,11 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 14:01:30 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/18 14:22:55 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/18 14:23:28 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 static void	check_x(int *x, t_window *window)
 {

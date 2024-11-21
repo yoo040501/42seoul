@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ycho2 <ycho2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 15:28:12 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/12 16:18:49 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/14 19:23:58 by ycho2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 int	key_press(int key, t_window *window)
 {

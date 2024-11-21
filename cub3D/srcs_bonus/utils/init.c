@@ -6,11 +6,11 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:43:17 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/15 21:15:43 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/15 21:15:07 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	get_max_image(t_window *window, t_text *text, t_img *i)
 {

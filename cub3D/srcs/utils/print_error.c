@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 17:33:34 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/15 21:10:25 by dongeunk         ###   ########.fr       */
+/*   Created: 2024/11/11 19:43:37 by dongeunk          #+#    #+#             */
+/*   Updated: 2024/11/11 20:26:57 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "../../includes/cub3d.h"
 
-void	*ft_calloc(size_t count, size_t size);
-
-void	*ft_calloc(size_t count, size_t size)
+void	print_error(char *str)
 {
-	void	*arr;
-
-	arr = malloc(size * count);
-	if (!arr)
-		exit (0);
-	ft_memset(arr, 0, size * count);
-	return (arr);
+	while (*str)
+		write(2, str++, 1);
+	exit(1);
 }

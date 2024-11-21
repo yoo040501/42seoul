@@ -6,7 +6,7 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:44:00 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/06 15:13:40 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/10 13:46:24 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,6 @@
 # define KEY_RIGHT			124
 # define KEY_UP				126
 # define KEY_SPACE			49
+# define KEY_NUM_ONE		18
+# define KEY_NUM_TWO		19
 #endif

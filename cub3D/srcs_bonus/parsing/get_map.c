@@ -6,11 +6,11 @@
 /*   By: dongeunk <dongeunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 18:43:16 by dongeunk          #+#    #+#             */
-/*   Updated: 2024/11/15 21:13:28 by dongeunk         ###   ########.fr       */
+/*   Updated: 2024/11/15 21:14:18 by dongeunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	resize_map(t_info *info, char **map)
 {
