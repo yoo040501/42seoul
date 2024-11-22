@@ -8,14 +8,15 @@ template <typename T>
 Array<T>::Array(std::size_t n) : len(n), arr(new T[n]()) {}
 
 template <typename T>
-Array<T>::Array(const Array<T>& copy)
-    : len(copy.len), arr(new T[copy.len]) {
-  for (size_t i = 0; i < len; i++)
-    arr[i] = copy.arr[i];
+Array<T>::Array(const Array<T>& copy) {
+	len = copy.len;
+	arr = new T[copy.len];
+	for (size_t i = 0; i < len; i++)
+		arr[i] = copy.arr[i];
 }
 
 template <typename T>
-Array<T>& Array<T>::operator=(const Array<T>& other) {
+Array<T>& Array<T>::operator=(Array<T> const &other) {
 	if (*this != other)
 	{
 		this->len = other.len;
@@ -49,4 +50,17 @@ T& Array<T>::operator[](size_t i) {
 template <typename T>
 size_t Array<T>::size() const {
   return this->len;
+}
+
+template <typename T>
+bool Array<T>::operator!=(const Array<T>& other) const {
+    if (this->len != other.len) {
+        return true;
+    }
+    for (size_t i = 0; i < this->len; i++) {
+        if (this->arr[i] != other.arr[i]) {
+            return true;
+        }
+    }
+    return false;
 }

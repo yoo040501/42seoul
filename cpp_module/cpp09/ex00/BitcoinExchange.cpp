@@ -140,7 +140,15 @@ static void    getBitcoinInfo(std::map<std::string, float> &data)
         std::string::size_type delimiter = contents.find(',');
         if (delimiter == std::string::npos)
             throw BadInfoException();
-        data[contents.substr(0, delimiter)] = static_cast<float>(atof(contents.substr(delimiter + 1).c_str()));
+		std::string date = contents.substr(0, delimiter);
+		float	value;
+		std::istringstream iss(contents.substr(delimiter + 1)); //value확인
+        iss >> std::noskipws >> value;
+        if (!iss.eof() || iss.fail())
+            throw BadInfoException();
+		if (is_valid_date(date) == false)
+			throw BadInfoException();
+       	data[date] = value;//static_cast<float>(atof(contents.substr(delimiter + 1).c_str()));
     }
 }
 

@@ -8,6 +8,9 @@ template <class T, class Container = std::deque<T> >
 
 class MutantStack :public std::stack<T, Container>
 {
+	private:
+		MutantStack(MutantStack const &copy);
+		MutantStack& operator=(MutantStack const &M);
 	public:
 		MutantStack() {}
 		~MutantStack(){}

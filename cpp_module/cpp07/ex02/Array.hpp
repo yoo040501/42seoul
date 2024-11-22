@@ -18,6 +18,7 @@ class Array
 		std::size_t size(void) const;
 		T& operator[] (std::size_t i);
 		const T& operator[] (std::size_t i) const;
+		bool operator!=(const Array<T>& other) const;
 };
 
 #include "Array.tpp"

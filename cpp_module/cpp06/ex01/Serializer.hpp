@@ -5,7 +5,8 @@ typedef unsigned long	uintptr_t;
 
 struct Data
 {
-	int			n;
+	int			n[10];
+	int			*a;
 	std::string	len;
 };
 
