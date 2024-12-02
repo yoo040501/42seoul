@@ -1,11 +1,18 @@
 #include "BitcoinExchange.hpp"
 
-static bool isLeap(int year)
+BitcoinExchange::BitcoinExchange(char *av)
+{
+	exchange(av);
+}
+
+BitcoinExchange::~BitcoinExchange(){}
+
+bool BitcoinExchange::isLeap(int year)
 {
     return ((year % 4==0 && year % 100 != 0) || year % 400 == 0) ? false: true; // true == 평년
 }
 
-static bool check_date(int year, int month, int date)
+bool	BitcoinExchange::check_date(int year, int month, int date)
 {
     if (date < 1 || date > 31)
         return false;
@@ -22,7 +29,7 @@ static bool check_date(int year, int month, int date)
     return true;
 }
 
-static bool    is_valid_date(std::string info)
+bool    BitcoinExchange::is_valid_date(std::string info)
 {
     std::string tmp;
     int year;
@@ -64,7 +71,7 @@ static bool    is_valid_date(std::string info)
     return true;
 }
 
-static void    checkfile(char *file, std::map<std::string, float> data)
+void    BitcoinExchange::checkfile(char *file, std::map<std::string, float> data)
 {
     std::ifstream   infile(file);
     std::string     info;
@@ -122,7 +129,7 @@ static void    checkfile(char *file, std::map<std::string, float> data)
     }
 }
 
-static void    getBitcoinInfo(std::map<std::string, float> &data)
+void    BitcoinExchange::getBitcoinInfo(std::map<std::string, float> &data)
 {
     std::ifstream infile("data.csv");
     std::string contents;
@@ -152,7 +159,7 @@ static void    getBitcoinInfo(std::map<std::string, float> &data)
     }
 }
 
-void    bitcoinexchange(char *file){
+void    BitcoinExchange::exchange(char *file){
     std::map<std::string, float> data;
     getBitcoinInfo(data);
     checkfile(file, data);

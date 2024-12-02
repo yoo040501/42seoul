@@ -6,7 +6,7 @@ int main(int argc, char **argv)
 	{
 		if (argc != 2)
 			throw std::invalid_argument("Error: could not open file");
-		bitcoinexchange(argv[1]);
+		BitcoinExchange bit(argv[1]);
 		
 	}
 	catch(const std::exception& e)

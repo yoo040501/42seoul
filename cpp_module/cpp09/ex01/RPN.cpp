@@ -1,6 +1,12 @@
 #include "RPN.hpp"
 
-bool isFlag(const char c)
+RPN::RPN(char *av){
+	cal(av);
+}
+
+RPN::~RPN(){}
+
+bool RPN::isFlag(const char c)
 {
 	const char flag[4] = {'+', '-', '/', '*'};
 	for (int i=0;i<4;i++)
@@ -11,7 +17,7 @@ bool isFlag(const char c)
 	return false;
 }
 
-bool	exec(std::stack<long> &save, char c)
+bool	RPN::exec(std::stack<long> &save, char c)
 {
 	long	num1, num2;
 
@@ -45,7 +51,7 @@ bool	exec(std::stack<long> &save, char c)
 	return true;
 }
 
-void    cal(char* input)
+void    RPN::cal(char* input)
 {
     std::string str(input);
     std::string buffer;
@@ -63,7 +69,9 @@ void    cal(char* input)
 			else
 				throw std::invalid_argument("Error");
         }
-        else
+        else if (buffer.length() == 0)
+			continue;
+		else
             throw std::invalid_argument("Error");
     }
 	if (save.size() != 1)
