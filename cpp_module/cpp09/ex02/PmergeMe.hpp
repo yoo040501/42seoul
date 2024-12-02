@@ -21,6 +21,9 @@ class PmergeMe
 		void	getNum(char *str);
 		void	printElement();
 		void	alreadySorted();
+		void mergeInsertVec(int start, int end);
+	        void InsertVec(int start, int end);
+	        void mergeVec(int start, int mid, int end);
 
 	public:
 		PmergeMe(char **av, int len);
