@@ -6,9 +6,6 @@
 #include <algorithm>
 #include <string>
 
-
-void    cal(char *input);
-
 class RPN
 {
 	private:
