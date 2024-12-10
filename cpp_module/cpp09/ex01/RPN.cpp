@@ -45,7 +45,6 @@ bool	RPN::exec(std::stack<long> &save, char c)
 		save.push(num1 / num2);
 		break;
 	default:
-		std::cout << "aa\n";
 		return false;
 	}
 	return true;
