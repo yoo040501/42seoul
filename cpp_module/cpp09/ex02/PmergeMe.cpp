@@ -37,7 +37,7 @@ void	PmergeMe::alreadySorted(){
 	for (size_t i = 1; i < data.size(); ++i) {
         if (data[i - 1] > data[i]) return;
     }
-	throw std::invalid_argument("Already sorted");
+	throw std::invalid_argument("\033[0;31mAlready sorted...\033[0;0m");
 }
 
 void	PmergeMe::printElement(std::vector<int> sorted_vector, std::deque<int> sorted_deque)
@@ -51,14 +51,14 @@ void	PmergeMe::printElement(std::vector<int> sorted_vector, std::deque<int> sort
 	sort(tmp.begin(), tmp.end());
 	for (size_t i=0;i<tmp.size();i++){
 		if (tmp[i] != sorted_vector[i])
-			throw std::invalid_argument("sort fail!");
+			throw std::invalid_argument("\033[0;31msort fail!\033[0;0m");
 	}
 
 	std::deque<int> tmp_deq = data_deq;
 	sort(tmp_deq.begin(), tmp_deq.end());
 	for (size_t i=0;i<tmp_deq.size();i++){
 		if (tmp_deq[i] != sorted_deque[i])
-			throw std::invalid_argument("sort fail!");
+			throw std::invalid_argument("\033[0;31msort fail!\033[0;0m");
 	}
 
 	std::cout << "After: ";
@@ -92,7 +92,7 @@ size_t	getJacobsthalNum(size_t i, size_t *beforeJacobNum)
 	while (1)
 	{
 		JacobNum = (pow(2, t) - pow(-1, t)) / 3;
-		if (i < JacobNum || JacobNum > SIZE_MAX)
+		if (i < JacobNum)
 			break ;
 		t++;
 		*beforeJacobNum = JacobNum;
@@ -115,7 +115,7 @@ void mergeSortVec(std::vector<std::pair<int, int> > &mainChain, int left, int ri
 	if (left >= right)
 		return;
 	int mid = left + (right - left) / 2;
-    // 왼쪽 및 오른쪽 반을 재귀적으로 정렬
+    // 왼쪽 및 오른쪽 반을 재귀 정렬
     mergeSortVec(mainChain, left, mid);
     mergeSortVec(mainChain, mid + 1, right);
 
@@ -123,7 +123,7 @@ void mergeSortVec(std::vector<std::pair<int, int> > &mainChain, int left, int ri
     int i = left;
     int j = mid + 1;
     int k = 0;
-    std::vector<std::pair<int, int> > temp(right - left + 1);
+    std::vector<std::pair<int, int> > temp(right - left + 1); // 정렬될 공간 우선 확보 (idx로 하기 위해서)
 
     // 왼쪽과 오른쪽 리스트를 병합
     while (i <= mid && j <= right) {
@@ -146,7 +146,6 @@ void mergeSortVec(std::vector<std::pair<int, int> > &mainChain, int left, int ri
     }
 }
 
-
 std::vector<int> mergeInsertionVector(std::vector<int> data, std::vector<std::pair<int, int> > mainChain) {
   mergeSortVec(mainChain, 0, mainChain.size() - 1);
   std::vector<int> sorted_vector;
@@ -155,6 +154,7 @@ std::vector<int> mergeInsertionVector(std::vector<int> data, std::vector<std::pa
     sorted_vector.push_back(mainChain[i].first);
   }
   sorted_vector.insert(sorted_vector.begin(), mainChain[0].second);
+	size_t idx = 1;
   
   for (size_t i = 1; i < mainChain.size(); i++) {       
 	if (mainChain[i].first == 0)
@@ -164,14 +164,13 @@ std::vector<int> mergeInsertionVector(std::vector<int> data, std::vector<std::pa
 	size_t k = getJacobsthalNum(i, &beforeJacobNum) - 1;
 	if (k >= mainChain.size()) // JacobNum보다 사이즈가 작으면 사이즈부터 시작 ex) JacobNum = 11, mainChain.size = 8 -> 8부터 시작
 		k = mainChain.size() - 1;
-	for (; k >= beforeJacobNum && k != SIZE_MAX; k--)
+	for (; k >= beforeJacobNum; k--)
 	{
-		// mainChain에서 a값 위치 찾아서 이진탐색할 b 오른쪽 범위 설정 (1 3 4 5 6 6 7 10) 6을 찾을때 처음으로 보는 6까지 이진탐색을 하면 됨
-		std::vector<int>::iterator it = std::lower_bound(sorted_vector.begin(), sorted_vector.end(), mainChain[k].first);
-		size_t right = it - sorted_vector.begin();
-		// right = std::find(sorted_vector.begin(), sorted_vector.end(), mainChain[k].first) - sorted_vector.begin();
+		// mainChain에서 a값 위치 찾아서 이진탐색할 b 오른쪽 범위 설정 (sorted : 1 3 4 5 6 7 10) 6까지 이진탐색을 하면 됨
+		size_t right = k + idx;
 		binarySearchVec(sorted_vector, static_cast<int>(mainChain[k].second), 0, static_cast<int>(right));
 		mainChain[k].first = 0;
+		idx++;
 	}
   }
   if (data.size() % 2 == 1) {
@@ -248,21 +247,22 @@ std::deque<int> mergeInsertionDeque(std::deque<int> data, std::deque<std::pair<i
   }
   sorted_deque.insert(sorted_deque.begin(), mainChain[0].second);
   
-  for (size_t i = 1; i < mainChain.size(); i++) {       
+  size_t idx = 1;
+  for (size_t i = 1; i < mainChain.size(); i++) {
+	if (mainChain[i].first == 0)
+		continue;
 	size_t beforeJacobNum = 1;
 	size_t k = getJacobsthalNum(i, &beforeJacobNum) - 1;
 	if (k > mainChain.size() - 1) // JacobNum보다 사이즈가 작으면 사이즈부터 시작 ex) JacobNum = 11, mainChain.size = 8 -> 8부터 시작
 		k = mainChain.size() - 1;
-	i = k;
-	for (; k >= beforeJacobNum  && k != SIZE_MAX; k--)
-	{
-		// mainChain에서 a값 위치 찾아서 이진탐색할 b 오른쪽 범위 설정 (1 3 4 5 6 6 7 10) 6을 찾을때 처음으로 보는 6까지 이진탐색을 하면 됨
-		std::deque<int>::iterator it = std::lower_bound(sorted_deque.begin(), sorted_deque.end(), mainChain[k].first);
-		size_t right = it - sorted_deque.begin();
 	
+	for (; k >= beforeJacobNum; k--)
+	{
+		size_t right = k + idx;
 		// size_t right = std::find(sorted_vector.begin(), sorted_vector.end(), mainChain[k].first) - sorted_vector.begin();
 		binarySearchDeq(sorted_deque, static_cast<int>(mainChain[k].second), 0, static_cast<int>(right) - 1);
 		mainChain[k].first = 0;
+		idx++;
 	}
   }
   if (data.size() % 2 == 1) {

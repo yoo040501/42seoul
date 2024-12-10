@@ -127,6 +127,7 @@ void    BitcoinExchange::checkfile(char *file, std::map<std::string, float> data
             std::cout << "Error: no data available for date " << date << std::endl;
         }
     }
+	infile.close();
 }
 
 void    BitcoinExchange::getBitcoinInfo(std::map<std::string, float> &data)
@@ -157,6 +158,7 @@ void    BitcoinExchange::getBitcoinInfo(std::map<std::string, float> &data)
 			throw BadInfoException();
        	data[date] = value;//static_cast<float>(atof(contents.substr(delimiter + 1).c_str()));
     }
+	infile.close();
 }
 
 void    BitcoinExchange::exchange(char *file){

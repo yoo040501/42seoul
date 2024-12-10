@@ -5,7 +5,7 @@ int main(int argc, char **argv)
     try
     {
         if (argc != 2)
-            throw std::invalid_argument("Error");
+            throw std::invalid_argument("\033[0;31mError\033[0;0m");
 		RPN a(argv[1]);
         
     }
