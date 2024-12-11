@@ -5,6 +5,7 @@ PmergeMe::PmergeMe(char **av, int len)
 	clock_t	vec_start, vec_finish, deq_start, deq_finish;
 	std::vector<int> sorted_vector;
 	std::deque<int> sorted_deque;
+	std::list<int> sorted_list;
 
 	for (int i=1;i<len;i++)
 		getData(av[i]);
@@ -18,6 +19,7 @@ PmergeMe::PmergeMe(char **av, int len)
 	sortDeq(sorted_deque);
 	deq_finish = clock();
 
+	sortList(sorted_list);
 	printElement(sorted_vector, sorted_deque);
 	printTime(vec_start, vec_finish, deq_start, deq_finish);
 }
@@ -82,6 +84,7 @@ void	PmergeMe::getData(char *str)
 	else{
 		data.push_back(static_cast<int>(number));
 		data_deq.push_back(static_cast<int>(number));
+		data_list.push_back(static_cast<int>(number));
 	}
 }
 
@@ -191,94 +194,103 @@ void PmergeMe::sortVec(std::vector<int> &sorted_vector) {
 	sorted_vector = mergeInsertionVector(data, mainChain);
 }
 
-void binarySearchDeq(std::deque<int> &sorted, int b, int left, int right) {
-  while (left <= right) {
-    int mid = left + (right - left) / 2;
-    if (sorted[mid] <= b){
-      left = mid + 1;}
-	else if (sorted[mid] > b){
-      right = mid - 1;}
-  }
-  sorted.insert(sorted.begin() + left, b);
-}
+// void binarySearchList(std::list<int> &sorted, int b, int left, int right) {
+// //   while (left <= right) {
+// //     int mid = left + (right - left) / 2;
+// //     if (sorted[mid] <= b){
+// //       left = mid + 1;}
+// // 	else if (sorted[mid] > b){
+// //       right = mid - 1;}
+// //   }
+// //   sorted.insert(sorted.begin() + left, b);
+// }
 
-void mergeSortDeq(std::deque<std::pair<int, int> > &mainChain, int left, int right) {
-	if (left >= right)
-		return;
-	int mid = left + (right - left) / 2;
-    // 왼쪽 및 오른쪽 반을 재귀적으로 정렬
-    mergeSortDeq(mainChain, left, mid);
-    mergeSortDeq(mainChain, mid + 1, right);
+// void mergeSortList(std::list<std::pair<int, int> > &mainChain, int left, int right) {
+// 	if (left >= right)
+// 		return;
+// 	int mid = left + (right - left) / 2;
+//     // 왼쪽 및 오른쪽 반을 재귀적으로 정렬
+//     mergeSortList(mainChain, left, mid);
+//     mergeSortList(mainChain, mid + 1, right);
 
-    // 병합 단계
-    int i = left;
-    int j = mid + 1;
-    int k = 0;
-    std::deque<std::pair<int, int> > temp(right - left + 1);
+//     // 병합 단계
+//     int i = left;
+//     int j = mid + 1;
+//     int k = 0;
+//     std::list<std::pair<int, int> > temp(right - left + 1);
 
-    // 왼쪽과 오른쪽 리스트를 병합
-    while (i <= mid && j <= right) {
-        if (mainChain[i].first <= mainChain[j].first)
-            temp[k++] = mainChain[i++];
-		else {
-            temp[k++] = mainChain[j++];}
-    }
-    // 왼쪽 리스트의 남은 요소 복사
-    while (i <= mid) {
-        temp[k++] = mainChain[i++];
-    }
-    // 오른쪽 리스트의 남은 요소 복사
-    while (j <= right) {
-        temp[k++] = mainChain[j++];
-    }
-    // 병합된 결과를 원래 리스트에 복사
-    for (size_t l = 0; l < temp.size(); ++l) {
-        mainChain[left + l] = temp[l];
-    }
-}
-
-
-std::deque<int> mergeInsertionDeque(std::deque<int> data, std::deque<std::pair<int, int> > mainChain) {
-  mergeSortDeq(mainChain, 0, mainChain.size() - 1);
-  std::deque<int> sorted_deque;
-  
-  for (size_t i = 0; i < mainChain.size(); i++) {
-    sorted_deque.push_back(mainChain[i].first);
-  }
-  sorted_deque.insert(sorted_deque.begin(), mainChain[0].second);
-  
-  size_t idx = 1;
-  for (size_t i = 1; i < mainChain.size(); i++) {
-	if (mainChain[i].first == 0)
-		continue;
-	size_t beforeJacobNum = 1;
-	size_t k = getJacobsthalNum(i, &beforeJacobNum) - 1;
-	if (k > mainChain.size() - 1) // JacobNum보다 사이즈가 작으면 사이즈부터 시작 ex) JacobNum = 11, mainChain.size = 8 -> 8부터 시작
-		k = mainChain.size() - 1;
 	
-	for (; k >= beforeJacobNum; k--)
-	{
-		size_t right = k + idx;
-		// size_t right = std::find(sorted_vector.begin(), sorted_vector.end(), mainChain[k].first) - sorted_vector.begin();
-		binarySearchDeq(sorted_deque, static_cast<int>(mainChain[k].second), 0, static_cast<int>(right) - 1);
-		mainChain[k].first = 0;
-		idx++;
-	}
-  }
-  if (data.size() % 2 == 1) {
-    binarySearchDeq(sorted_deque, data[data.size() - 1], 0, static_cast<int>(sorted_deque.size()) - 1);
-  }
-  return sorted_deque;
-}
+//     // // 왼쪽과 오른쪽 리스트를 병합
+//     // while (i <= mid && j <= right) {
+//     //     if (mainChain[i].first <= mainChain[j].first)
+//     //         temp[k++] = mainChain[i++];
+// 	// 	else {
+//     //         temp[k++] = mainChain[j++];}
+//     // }
+//     // // 왼쪽 리스트의 남은 요소 복사
+//     // while (i <= mid) {
+//     //     temp[k++] = mainChain[i++];
+//     // }
+//     // // 오른쪽 리스트의 남은 요소 복사
+//     // while (j <= right) {
+//     //     temp[k++] = mainChain[j++];
+//     // }
+//     // // 병합된 결과를 원래 리스트에 복사
+//     // for (size_t l = 0; l < temp.size(); ++l) {
+//     //     mainChain[left + l] = temp[l];
+//     // }
+// }
 
-void PmergeMe::sortDeq(std::deque<int> &sorted_deq) {
-  std::deque<std::pair<int, int> > mainChain;
 
-	for (size_t i = 0; i + 1 < data_deq.size(); i += 2){
-		if (data_deq[i] < data_deq[i + 1])
-			mainChain.push_back(std::make_pair(data_deq[i + 1], data_deq[i]));
-		else
-			mainChain.push_back(std::make_pair(data_deq[i], data_deq[i + 1]));
-	}
-	sorted_deq = mergeInsertionDeque(data_deq, mainChain);
-}
+// std::list<int> mergeInsertionList(std::list<int> data_list, std::list<std::pair<int, int> > mainChain) {
+//   mergeSortList(mainChain, 0, mainChain.size() - 1);
+//   std::list<int> sorted_list;
+  
+//   for (size_t i = 0; i < mainChain.size(); i++) {
+//     sorted_list.push_back(mainChain[i].first);
+//   }
+//   sorted_list.insert(sorted_list.begin(), mainChain[0].second);
+  
+//   size_t idx = 1;
+//   for (size_t i = 1; i < mainChain.size(); i++) {
+// 	if (mainChain[i].first == 0)
+// 		continue;
+// 	size_t beforeJacobNum = 1;
+// 	size_t k = getJacobsthalNum(i, &beforeJacobNum) - 1;
+// 	if (k > mainChain.size() - 1) // JacobNum보다 사이즈가 작으면 사이즈부터 시작 ex) JacobNum = 11, mainChain.size = 8 -> 8부터 시작
+// 		k = mainChain.size() - 1;
+	
+// 	for (; k >= beforeJacobNum; k--)
+// 	{
+// 		size_t right = k + idx;
+// 		// size_t right = std::find(sorted_vector.begin(), sorted_vector.end(), mainChain[k].first) - sorted_vector.begin();
+// 		binarySearchList(sorted_list, static_cast<int>(mainChain[k].second), 0, static_cast<int>(right) - 1);
+// 		mainChain[k].first = 0;
+// 		idx++;
+// 	}
+//   }
+//   if (data_list.size() % 2 == 1) {
+//     binarySearchList(sorted_deque, data_list[data_list.size() - 1], 0, static_cast<int>(sorted_deque.size()) - 1);
+//   }
+//   return sorted_deque;
+// }
+
+// void PmergeMe::sortList(std::list<int> &sorted_list) {
+//   std::list<std::pair<int, int> > mainChain;
+
+// 	for (std::list<int>::iterator i = data_list.begin(); i != data_list.end();){
+// 		std::list<int>::iterator next = i;
+//         ++next;
+//         if (next == data_list.end())
+//             break;
+//         if (*i < *next)
+//             mainChain.push_back(std::make_pair(*next, *i));
+//         else
+//             mainChain.push_back(std::make_pair(*i, *next));
+
+//         // 두 단계 이동
+//         i = ++next;
+// 	}
+// 	sorted_list = mergeInsertionList(data_list, mainChain);
+// }
+
