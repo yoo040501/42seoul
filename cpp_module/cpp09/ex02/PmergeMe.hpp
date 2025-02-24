@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <list>
+#include <iterator>
 #include <climits>
 #include <cmath>
 #include <deque>
@@ -16,13 +17,13 @@ class PmergeMe
 		PmergeMe();
 		PmergeMe(PmergeMe const& copy);
 		PmergeMe& operator=(PmergeMe const& oth);
-		std::vector<int> data;
+		std::vector<int> data_vec;
 		std::deque<int> data_deq;
 		std::list<int> data_list;
 		void	getData(char *str);
-		void	printElement(std::vector<int> sorted_vector, std::deque<int> sorted_deque);
+		void	printElement(std::vector<int> sorted_vector, std::list<int> sorted_list);
 		void	alreadySorted();
-		void	printTime(clock_t start, clock_t finish, clock_t start1, clock_t finish1);
+		void	printTime(clock_t vec, clock_t lst);
 		
 		void	sortVec(std::vector<int> &sorted_vector);
 		void	sortDeq(std::deque<int> &sorted_deq);
