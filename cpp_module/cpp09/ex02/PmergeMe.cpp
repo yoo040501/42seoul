@@ -150,7 +150,7 @@ std::vector<size_t> computeInsertionOrder(size_t n) {
 //   }
 //   sorted.insert(sorted.begin() + left, b);
 // }
-
+// 
 // void mergeSortVec(std::vector<std::pair<int, int> > &mainChain, int left, int right) {
 // 	if (left >= right)
 // 		return;
@@ -185,7 +185,7 @@ std::vector<size_t> computeInsertionOrder(size_t n) {
 //         mainChain[left + l] = temp[l];
 //     }
 // }
-
+// 
 // std::vector<int> mergeInsertionVector(std::vector<int> data, std::vector<std::pair<int, int> > mainChain) {
 //   mergeSortVec(mainChain, 0, mainChain.size() - 1);
 //   std::vector<int> sorted_vector;
@@ -277,8 +277,8 @@ std::vector<int> fordJohnsonRecursiveVec(const std::vector<int>& data) {
     // pending 삽입 순서 -> 야콥스탈 수
     std::vector<size_t> insertionOrder = computeInsertionOrder(B.size());
     
-    for (size_t j = 0; j < insertionOrder.size(); j++) {
-        size_t idx = insertionOrder[j];
+    for (size_t i = 0; i < insertionOrder.size(); i++) {
+        size_t idx = insertionOrder[i];
         sortedA = recursiveInsertVec(sortedA, B[idx]);
     }
     
@@ -288,14 +288,6 @@ std::vector<int> fordJohnsonRecursiveVec(const std::vector<int>& data) {
 
 void PmergeMe::sortVec(std::vector<int> &sorted_vector) {
 	sorted_vector = fordJohnsonRecursiveVec(data_vec);
-//   std::vector<std::pair<int, int> > mainChain;
-// 	for (size_t i = 0; i + 1 < data.size(); i += 2){
-// 		if (data[i] < data[i + 1])
-// 			mainChain.push_back(std::make_pair(data[i + 1], data[i]));
-// 		else
-// 			mainChain.push_back(std::make_pair(data[i], data[i + 1]));
-// 	}
-// 	sorted_vector = mergeInsertionVector(data, mainChain);
 }
 
 // void binarySearchDeq(std::deque<int> &sorted, int b, int left, int right) {
@@ -385,7 +377,7 @@ void PmergeMe::sortVec(std::vector<int> &sorted_vector) {
 // 	}
 // 	sorted_deq = mergeInsertionDeque(data_deq, mainChain);
 // }
-
+// 
 // void binarySearchList(std::list<int> &sorted, int b, std::list<int>::iterator left, std::list<int>::iterator right) {
 // 	while (left != right) {
 //         std::list<int>::iterator mid = left;

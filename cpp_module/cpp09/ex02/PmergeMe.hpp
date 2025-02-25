@@ -10,6 +10,7 @@
 #include <cmath>
 #include <deque>
 #include <ctime>
+#include <cstring>
 
 class PmergeMe
 {
