@@ -121,7 +121,7 @@ size_t	getJacobsthalNum(size_t i, size_t *beforeJacobNum)
 	return JacobNum;
 }
 
-std::vector<size_t> computeInsertionOrder(size_t n) {
+std::vector<size_t> saveJacobsthal(size_t n) {
     std::vector<size_t> order;
     size_t start = 0;
 
@@ -140,85 +140,6 @@ std::vector<size_t> computeInsertionOrder(size_t n) {
     return order;
 }
 
-// void binarySearchVec(std::vector<int> &sorted, int b, int left, int right) {
-//   while (left <= right) {
-//     int mid = left + (right - left) / 2;
-//     if (sorted[mid] <= b){
-//       left = mid + 1;}
-// 	else if (sorted[mid] > b){
-//       right = mid - 1;}
-//   }
-//   sorted.insert(sorted.begin() + left, b);
-// }
-// 
-// void mergeSortVec(std::vector<std::pair<int, int> > &mainChain, int left, int right) {
-// 	if (left >= right)
-// 		return;
-// 	int mid = left + (right - left) / 2;
-//     // 왼쪽 및 오른쪽 반을 재귀 정렬
-//     mergeSortVec(mainChain, left, mid);
-//     mergeSortVec(mainChain, mid + 1, right);
-// 
-//     // 병합 단계
-//     int i = left;
-//     int j = mid + 1;
-//     int k = 0;
-//     std::vector<std::pair<int, int> > temp(right - left + 1); // 정렬될 공간 우선 확보 (idx로 하기 위해서)
-// 
-//     // 왼쪽과 오른쪽 리스트를 병합
-//     while (i <= mid && j <= right) {
-//         if (mainChain[i].first <= mainChain[j].first)
-//             temp[k++] = mainChain[i++];
-// 		else {
-//             temp[k++] = mainChain[j++];}
-//     }
-//     // 왼쪽 리스트의 남은 요소 복사
-//     while (i <= mid) {
-//         temp[k++] = mainChain[i++];
-//     }
-//     // 오른쪽 리스트의 남은 요소 복사
-//     while (j <= right) {
-//         temp[k++] = mainChain[j++];
-//     }
-//     // 병합된 결과를 원래 리스트에 복사
-//     for (size_t l = 0; l < temp.size(); ++l) {
-//         mainChain[left + l] = temp[l];
-//     }
-// }
-// 
-// std::vector<int> mergeInsertionVector(std::vector<int> data, std::vector<std::pair<int, int> > mainChain) {
-//   mergeSortVec(mainChain, 0, mainChain.size() - 1);
-//   std::vector<int> sorted_vector;
-//   
-//   for (size_t i = 0; i < mainChain.size(); i++) {
-//     sorted_vector.push_back(mainChain[i].first);
-//   }
-//   sorted_vector.insert(sorted_vector.begin(), mainChain[0].second);
-// 	size_t idx = 1;
-//   
-//   for (size_t i = 1; i < mainChain.size(); i++) {       
-// 	if (mainChain[i].first == 0)
-// 		continue;
-// 
-// 	size_t beforeJacobNum = 1;
-// 	size_t k = getJacobsthalNum(i, &beforeJacobNum) - 1;
-// 	if (k >= mainChain.size()) // JacobNum보다 사이즈가 작으면 사이즈부터 시작 ex) JacobNum = 11, mainChain.size = 8 -> 8부터 시작
-// 		k = mainChain.size() - 1;
-// 	for (; k >= beforeJacobNum; k--)
-// 	{
-// 		// mainChain에서 a값 위치 찾아서 이진탐색할 b 오른쪽 범위 설정 (sorted : 1 3 4 5 6 7 10) 6까지 이진탐색을 하면 됨
-// 		size_t right = k + idx;
-// 		binarySearchVec(sorted_vector, static_cast<int>(mainChain[k].second), 0, static_cast<int>(right));
-// 		mainChain[k].first = 0;
-// 		idx++;
-// 	}
-//   }
-//   if (data.size() % 2 == 1) {
-//     binarySearchVec(sorted_vector, data[data.size() - 1], 0, static_cast<int>(sorted_vector.size()) - 1);
-//   }
-//   return sorted_vector;
-// }
-
 int recursiveBinarySearchVec(const std::vector<int>& sorted, int value, int left, int right) {
     if (left > right)
         return left;
@@ -236,7 +157,6 @@ std::vector<int> recursiveInsertVec(const std::vector<int>& sorted, int value) {
     result.insert(result.begin() + index, value);
     return result;
 }
-
 
 std::vector<int> fordJohnsonRecursiveVec(const std::vector<int>& data) {
     if (data.size() <= 1)
@@ -275,7 +195,7 @@ std::vector<int> fordJohnsonRecursiveVec(const std::vector<int>& data) {
     std::vector<int> sortedA = fordJohnsonRecursiveVec(A);
     
     // pending 삽입 순서 -> 야콥스탈 수
-    std::vector<size_t> insertionOrder = computeInsertionOrder(B.size());
+    std::vector<size_t> insertionOrder = saveJacobsthal(B.size());
     
     for (size_t i = 0; i < insertionOrder.size(); i++) {
         size_t idx = insertionOrder[i];
@@ -288,6 +208,113 @@ std::vector<int> fordJohnsonRecursiveVec(const std::vector<int>& data) {
 
 void PmergeMe::sortVec(std::vector<int> &sorted_vector) {
 	sorted_vector = fordJohnsonRecursiveVec(data_vec);
+}
+
+
+std::list<size_t> saveJacobsthalList(size_t n) {
+    std::list<size_t> order;
+    size_t start = 0;
+
+    while (start < n) {
+        size_t beforeJacob = 0;
+        size_t J = getJacobsthalNum(start, &beforeJacob);
+        size_t groupSize = J - beforeJacob;
+        if (start + groupSize > n)
+            groupSize = n - start;
+        //역순으로 삽입 (마지막 인덱스부터 시작)
+        for (size_t i = start + groupSize; i > start; i--) {
+            order.push_back(i - 1);
+        }
+        start += groupSize;
+    }
+    return order;
+}
+
+std::list<int>::iterator listBinarySearchHelper(std::list<int>& sorted, int value,
+                                                  std::list<int>::iterator begin,
+                                                  std::list<int>::iterator end, int n) {
+    if (n <= 0) return begin;
+    int midIndex = n / 2;
+    std::list<int>::iterator mid = begin;
+    std::advance(mid, midIndex);
+    if (value < *mid) {
+        return listBinarySearchHelper(sorted, value, begin, mid, midIndex);
+    } else {
+        std::list<int>::iterator next = mid;
+        ++next;
+        return listBinarySearchHelper(sorted, value, next, end, n - midIndex - 1);
+    }
+}
+
+std::list<int>::iterator recursiveBinarySearchList(std::list<int>& sorted, int value) {
+    int n = static_cast<int>(sorted.size());
+    return listBinarySearchHelper(sorted, value, sorted.begin(), sorted.end(), n);
+}
+
+void recursiveInsertList(std::list<int>& sorted, int value) {
+    std::list<int>::iterator pos = recursiveBinarySearchList(sorted, value);
+    sorted.insert(pos, value);
+}
+
+std::list<int> fordJohnsonRecursiveList(const std::list<int>& data) {
+    if (data.size() <= 1)
+        return data;
+
+    if (data.size() == 2) {
+        std::list<int> result;
+        std::list<int>::const_iterator it = data.begin();
+
+        int first = *it;
+        ++it;
+        int second = *it;
+
+        if (first <= second) {
+            result.push_back(first);
+            result.push_back(second);
+        } else {
+            result.push_back(second);
+            result.push_back(first);
+        }
+        return result;
+    }
+    
+    std::list<int> A;
+    std::list<int> B;
+    std::list<int>::const_iterator it = data.begin();
+    while (it != data.end()) {
+        int first = *it;
+        ++it;
+        if (it != data.end()) {
+            int second = *it;
+            ++it;
+            if (first < second) {
+                A.push_back(second);
+                B.push_back(first);
+            } else {
+                A.push_back(first);
+                B.push_back(second);
+            }
+        } else {
+            // 홀수인 경우, 마지막 원소는 pending에 추가.
+            B.push_back(first);
+        }
+    }
+    std::list<int> sortedA = fordJohnsonRecursiveList(A); //계속 정렬
+    std::list<size_t> insertionOrder = saveJacobsthalList(B.size()); 
+    for (size_t i = 0; i < insertionOrder.size(); i++) {
+		std::list<size_t>::const_iterator ite = insertionOrder.begin();
+        size_t idx = *ite + i;
+		std::list<int>::const_iterator it = B.begin();
+    	std::advance(it, idx);
+        int value = *it;
+        recursiveInsertList(sortedA, value);
+    }
+    
+    return sortedA;
+}
+
+void	PmergeMe::sortList(std::list<int> &sort_list){
+	sort_list = fordJohnsonRecursiveList(data_list);
 }
 
 // void binarySearchDeq(std::deque<int> &sorted, int b, int left, int right) {
@@ -488,109 +515,3 @@ void PmergeMe::sortVec(std::vector<int> &sorted_vector) {
 // 	}
 // 	sorted_list = mergeInsertionList(data_list, mainChain);
 // }
-
-std::list<size_t> computeInsertionOrderList(size_t n) {
-    std::list<size_t> order;
-    size_t start = 0;
-
-    while (start < n) {
-        size_t beforeJacob = 0;
-        size_t J = getJacobsthalNum(start, &beforeJacob);
-        size_t groupSize = J - beforeJacob;
-        if (start + groupSize > n)
-            groupSize = n - start;
-        //역순으로 삽입 (마지막 인덱스부터 시작)
-        for (size_t i = start + groupSize; i > start; i--) {
-            order.push_back(i - 1);
-        }
-        start += groupSize;
-    }
-    return order;
-}
-
-std::list<int>::iterator listBinarySearchHelper(std::list<int>& sorted, int value,
-                                                  std::list<int>::iterator begin,
-                                                  std::list<int>::iterator end, int n) {
-    if (n <= 0) return begin;
-    int midIndex = n / 2;
-    std::list<int>::iterator mid = begin;
-    std::advance(mid, midIndex);
-    if (value < *mid) {
-        return listBinarySearchHelper(sorted, value, begin, mid, midIndex);
-    } else {
-        std::list<int>::iterator next = mid;
-        ++next;
-        return listBinarySearchHelper(sorted, value, next, end, n - midIndex - 1);
-    }
-}
-
-std::list<int>::iterator recursiveBinarySearchList(std::list<int>& sorted, int value) {
-    int n = static_cast<int>(sorted.size());
-    return listBinarySearchHelper(sorted, value, sorted.begin(), sorted.end(), n);
-}
-
-void recursiveInsertList(std::list<int>& sorted, int value) {
-    std::list<int>::iterator pos = recursiveBinarySearchList(sorted, value);
-    sorted.insert(pos, value);
-}
-
-std::list<int> fordJohnsonRecursiveList(const std::list<int>& data) {
-    if (data.size() <= 1)
-        return data;
-
-    if (data.size() == 2) {
-        std::list<int> result;
-        std::list<int>::const_iterator it = data.begin();
-
-        int first = *it;
-        ++it;
-        int second = *it;
-
-        if (first <= second) {
-            result.push_back(first);
-            result.push_back(second);
-        } else {
-            result.push_back(second);
-            result.push_back(first);
-        }
-        return result;
-    }
-    
-    std::list<int> A;
-    std::list<int> B;
-    std::list<int>::const_iterator it = data.begin();
-    while (it != data.end()) {
-        int first = *it;
-        ++it;
-        if (it != data.end()) {
-            int second = *it;
-            ++it;
-            if (first < second) {
-                A.push_back(second);
-                B.push_back(first);
-            } else {
-                A.push_back(first);
-                B.push_back(second);
-            }
-        } else {
-            // 홀수인 경우, 마지막 원소는 pending에 추가.
-            B.push_back(first);
-        }
-    }
-    std::list<int> sortedA = fordJohnsonRecursiveList(A);
-    std::list<size_t> insertionOrder = computeInsertionOrderList(B.size());
-    for (size_t i = 0; i < insertionOrder.size(); i++) {
-		std::list<size_t>::const_iterator ite = insertionOrder.begin();
-        size_t idx = *ite + i;
-		std::list<int>::const_iterator it = B.begin();
-    	std::advance(it, idx);
-        int value = *it;
-        recursiveInsertList(sortedA, value);
-    }
-    
-    return sortedA;
-}
-
-void	PmergeMe::sortList(std::list<int> &sort_list){
-	sort_list = fordJohnsonRecursiveList(data_list);
-}
