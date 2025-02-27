@@ -1,5 +1,5 @@
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -pedantic -std=c++98 
+CXXFLAGS = -Wall -Wextra -Werror -pedantic -std=c++98
 SRCS =	$(wildcard *.cpp)
 
 OBJS = $(SRCS:.cpp=.o)
