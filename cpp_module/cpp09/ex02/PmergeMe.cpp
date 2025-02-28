@@ -4,7 +4,6 @@ PmergeMe::PmergeMe(char **av, int len)
 {
 	clock_t	vec_start, vec_finish, list_start, list_finish;
 	std::vector<int> sorted_vector;
-	// std::deque<int> sorted_deque;
 	std::list<int> sorted_list;
 
 	for (int i=1;i<len;i++)
@@ -14,10 +13,6 @@ PmergeMe::PmergeMe(char **av, int len)
 	vec_start = clock();
 	sortVec(sorted_vector);
 	vec_finish = clock();
-
-	// deq_start = clock();
-	// sortDeq(sorted_deque);
-	// deq_finish = clock();
 
 	list_start = clock();
 	sortList(sorted_list);
@@ -34,8 +29,7 @@ void	PmergeMe::printTime(clock_t vec, clock_t lst)
 {
 	std::cout << "Time to process a range of " << data_vec.size() << " elements with std::vector : "
 				<< static_cast<double>(vec) / CLOCKS_PER_SEC * 1000 << " ms" << std::endl;
-	// std::cout << "Time to process a range of " << data_deq.size() << " elements with std::deque : "
-	// 		<< static_cast<double>(deq) / CLOCKS_PER_SEC * 1000 << " ms" << std::endl;
+
 	std::cout << "Time to process a range of " << data_list.size() << " elements with std::list : "
 		<< static_cast<double>(lst) / CLOCKS_PER_SEC * 1000 << " ms" << std::endl;
 }
@@ -60,13 +54,6 @@ void	PmergeMe::printElement(std::vector<int> sorted_vector, std::list<int> sorte
 		if (tmp[i] != sorted_vector[i])
 			throw std::invalid_argument("\033[0;31msort fail!\033[0;0m");
 	}
-
-	// std::deque<int> tmp_deq = data_deq;
-	// sort(tmp_deq.begin(), tmp_deq.end());
-	// for (size_t i=0;i<tmp_deq.size();i++){
-	// 	if (tmp_deq[i] != sorted_deque[i])
-	// 		throw std::invalid_argument("\033[0;31msort fail!\033[0;0m");
-	// }
 
 	std::list<int> tmp_list = data_list;
 	tmp_list.sort();
@@ -110,10 +97,10 @@ void mergeSortVec(std::vector< std::pair<int, int> >& pairs, int left, int right
     int mid = left + (right - left) / 2;
     mergeSortVec(pairs, left, mid);
     mergeSortVec(pairs, mid + 1, right);
-    
     std::vector< std::pair<int, int> > temp;
     int i = left, j = mid + 1;
     while (i <= mid && j <= right) {
+    	// cnt++;
         if (pairs[i].first < pairs[j].first)
             temp.push_back(pairs[i++]);
         else
@@ -164,6 +151,7 @@ int recursiveBinarySearchVec(const std::vector<int>& sorted, int value, int left
     if (left > right)
         return left;
     int mid = left + (right - left) / 2;
+	// cnt++;
     if (value < sorted[mid])
         return recursiveBinarySearchVec(sorted, value, left, mid - 1);
     else
@@ -182,6 +170,7 @@ std::vector<int> fordJohnsonRecursiveVec(const std::vector<int>& data) {
     if (data.size() <= 1)
         return data;
     if (data.size() == 2) {
+		// cnt++;
         std::vector<int> res;
         if (data[0] < data[1]) {
             res.push_back(data[0]);
@@ -226,11 +215,9 @@ std::vector<int> fordJohnsonRecursiveVec(const std::vector<int>& data) {
     if (B.size() > 0) {
         std::vector<size_t> insertionOrder = saveJacobsthalNum(B.size());
         for (size_t i = 1; i < insertionOrder.size(); i++) {
-			std::cout << insertionOrder[i] << ' ';
             size_t idx = insertionOrder[i];
             sortedA = recursiveInsertVec(sortedA, B[idx]);
         }
-		std::cout << std::endl;
     }
     
     // 홀수개인 경우, 남은 unpaired 원소 삽입
