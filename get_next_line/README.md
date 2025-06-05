@@ -1,4 +1,3 @@
-```markdown
 # get_next_line
 
 ## 📌 프로젝트 설명
@@ -101,4 +100,3 @@ int main(void)
 ---
 
 > 🏁 `get_next_line`은 C 언어로 low-level I/O와 버퍼링 구조를 깊이 이해하는 데 중요한 과제이며, 이후 `minishell`, `pipex` 같은 프로젝트에서도 핵심적인 기반이 됩니다.
-```
