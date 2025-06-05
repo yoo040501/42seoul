@@ -1,44 +1,25 @@
-# 42Seoul Projects
+📁 과제 목록
+과제명	설명
+Libft	C 표준 라이브러리 함수들을 직접 구현한 기본 과제
+get_next_line	파일 디스크립터에서 한 줄씩 읽어오는 함수 구현
+ft_printf	C 언어의 printf 함수 기능을 직접 구현
+Born2beroot (선택)	리눅스 서버 환경 구축 및 시스템 보안 설정 실습
+so_long	MiniLibX를 사용한 2D 게임 제작 프로젝트
+push_swap	제한된 연산만을 사용하여 스택 정렬 최적화
+pipex	리눅스 파이프와 프로세스를 활용한 명령어 실행
+philo	고전적인 철학자 문제를 멀티스레딩으로 구현 (Race Condition 방지 등)
+minishell	bash 유사한 쉘 구현, 명령어 파싱, 리다이렉션, 파이프 등
+cub3D	Raycasting을 활용한 3D 시점 게임 (Wolfenstein 3D 스타일)
+cpp_module	C++ 언어 문법 및 객체지향 프로그래밍 학습용 모듈 프로젝트
+ft_irc	RFC 문서를 기반으로 한 IRC 서버 구현 (네트워크 소켓 프로그래밍)
+inception	Docker를 활용한 웹 서비스 구성 (NGINX, WordPress, MariaDB 등)
+ft_transcendence	NestJS + Vue 기반 풀스택 웹 애플리케이션 제작 (2FA, 실시간 게임 포함)
 
-42서울에서 수행한 주요 과제들을 정리한 저장소입니다. 각 과제는 Unix/Linux 환경에서의 시스템 프로그래밍과 알고리즘 구현을 중점적으로 다루며, 동료 평가(Peer Evaluation)를 통해 코드 품질과 협업 능력을 검증받았습니다.
+✅ 사용 기술 요약
+언어: C, C++, JavaScript, TypeScript
 
-## 📁 프로젝트 목록
+툴/환경: Linux, Docker, Git, Makefile, NGINX, MariaDB, Vue, NestJS
 
-### 1. Libft
-- **설명**: C 표준 라이브러리의 함수들을 직접 구현한 프로젝트
-- **기술스택**: C, 메모리 관리, 문자열 처리
-- **학습내용**: 포인터 사용법, 함수 분할 및 테스트 작성, 코드 스타일
+라이브러리: MiniLibX, pthread, socket API 등
 
-### 2. get_next_line
-- **설명**: 파일 디스크립터로부터 한 줄씩 읽어오는 함수 구현
-- **기술스택**: C, 파일 I/O, 버퍼 처리
-- **학습내용**: 메모리 누수 방지, 다중 파일 디스크립터 처리
-
-### 3. ft_printf
-- **설명**: C의 printf 함수를 직접 구현
-- **기술스택**: C, 가변 인자 처리
-- **학습내용**: 포맷 파싱, 다양한 타입 처리, 비트 연산
-
-### 4. Born2beroot
-- **설명**: 리눅스 서버에 가상 머신을 구축하고 시스템 설정 수행
-- **기술스택**: Debian, LVM, SSH, UFW, Crontab, Nginx
-- **학습내용**: 리눅스 기본 구조 이해, 보안 설정, 서버 유지관리
-
-### 5. So_long
-- **설명**: 간단한 2D 게임을 C로 제작
-- **기술스택**: C, MiniLibX, 2D 그래픽
-- **학습내용**: 맵 파싱, 이벤트 루프, 충돌 처리
-
-### 6. Pipex
-- **설명**: 파이프와 리다이렉션을 구현하여 쉘 명령어처럼 동작하게 함
-- **기술스택**: C, 시스템 호출, 프로세스 생성
-- **학습내용**: `fork`, `execve`, `pipe` 등 저수준 시스템 함수
-
-<!-- 필요시 추가 과제들 여기에 계속 작성 -->
-
-## ✅ 사용 기술 요약
-
-- **언어**: C
-- **툴**: Git, Makefile, Shell
-- **환경**: Unix/Linux (Debian, Bash)
-- **역량**: 알고리즘 구현, 시스템 프로그래밍, 문제 해결, 협업
+역량: 시스템 프로그래밍, 알고리즘, 게임 개발, 네트워크, 웹 개발, DevOps, 보안 설정
