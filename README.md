@@ -1,34 +1,43 @@
 # 42Seoul Projects
 
-*IMAC*으로 구현해서 linux나 window에서 호환불가능한 라이브러리들이 많습니다...
-이 저장소는 42서울 과정 중 수행한 주요 과제들을 정리한 것입니다.
-모든 과제는 C/C++ 기반의 시스템 프로그래밍과 알고리즘, 네트워크, 게임 개발, 풀스택 웹, 컨테이너 기반 인프라 구축 등 다양한 분야를 다루고 있으며, 동료 평가를 통해 코드 품질과 문제 해결 능력을 검증받았습니다.
+42서울 과정에서 수행한 C/C++ 기반 프로젝트를 정리한 저장소입니다. 시스템 프로그래밍, 프로세스·파이프, 멀티스레딩, 네트워크 소켓, 컨테이너 환경을 직접 구현하며 동작 원리를 학습했습니다.
 
----
+> 주로 42Seoul의 macOS 환경에서 구현했습니다. `kqueue`, MiniLibX, Readline 경로 등에 의존하는 프로젝트는 Linux나 Windows에서 추가 설정 없이 빌드되지 않을 수 있습니다.
 
-## 📁 과제 목록
+## Featured Projects
 
-| 과제명               | 설명                                                                 |
-|----------------------|----------------------------------------------------------------------|
-| **Libft**            | C 표준 라이브러리 함수들을 직접 구현한 기본 과제                     |
-| **get_next_line**    | 파일 디스크립터에서 한 줄씩 읽어오는 함수 구현                         |
-| **ft_printf**        | C 언어의 `printf` 함수 기능을 직접 구현                               |
-| **so_long**          | MiniLibX를 사용한 2D 게임 제작 프로젝트                               |
-| **push_swap**        | 제한된 연산만을 사용하여 스택 정렬 최적화                             |
-| **pipex**            | 리눅스 파이프와 프로세스를 활용한 명령어 실행                          |
-| **philo**            | 고전적인 철학자 문제를 멀티스레딩으로 구현 (Race Condition 방지 등)    |
-| **minishell(2인과제)** | bash 유사한 쉘 구현, 명령어 파싱, 리다이렉션, 파이프 등                 |
-| **cub3D(2인과제)**            | Raycasting을 활용한 3D 시점 게임 (Wolfenstein 3D 스타일)               |
-| **cpp_module**       | C++ 언어 문법 및 객체지향 프로그래밍 학습용 모듈 프로젝트               |
-| **ft_irc(3인과제)**           | RFC 문서를 기반으로 한 IRC 서버 구현 (네트워크 소켓 프로그래밍)         |
-| **inception**        | Docker를 활용한 웹 서비스 구성 (NGINX, WordPress, MariaDB 등)          |
-| **ft_transcendence(5인과제)** | NodeJS + TypeScript 기반 풀스택 웹 애플리케이션 제작 (2FA, 실시간 게임 포함)   |
+### [minishell](./minishell)
 
----
+2인 팀으로 Bash의 핵심 동작을 C와 POSIX 시스템 호출로 구현했습니다.
 
-## ✅ 사용 기술 요약
+- **개인 담당**: 쿼트 상태 기반 파싱, 환경 변수·종료 상태 확장, 파이프·리디렉션·히어독 분석, 구문 오류 처리
+- **팀 구현 범위**: 명령 실행, 빌트인, 파이프라인, 리디렉션, 환경 변수, 시그널
+- **핵심 기술**: C, `fork`, `execve`, `pipe`, `dup2`, GNU Readline
 
-- **언어**: C, C++, JavaScript, TypeScript
-- **툴/환경**: Linux, Docker, Git, Makefile, NGINX, MariaDB, Vue, NestJS
-- **라이브러리**: MiniLibX, pthread, socket API 등
-- **역량**: 시스템 프로그래밍, 알고리즘, 게임 개발, 네트워크, 웹 개발, DevOps, 보안 설정
+### [ft_irc](./ft_irc)
+
+3인 팀으로 RFC 1459의 기본 흐름을 참고한 IRC 서버를 C++98로 구현했습니다.
+
+- **개인 담당**: `PASS`, `NICK`, `USER`, `JOIN`, `QUIT`
+- **팀 구현 범위**: 사용자 등록, 채널 관리, 메시지 전송, numeric reply, BOT
+- **핵심 기술**: C++98, TCP/IP, non-blocking socket, `kqueue`/`kevent`
+
+## Project Map
+
+| 분야 | 프로젝트 | 학습 내용 |
+|---|---|---|
+| C 기초 | [libft](./libft), [get_next_line](./get_next_line), [ft_printf](./ft_printf) | 표준 함수 재구현, 메모리·파일 디스크립터·가변 인자 |
+| 알고리즘·그래픽 | [push_swap](./push_swap), [so_long](./so_long), [cub3D](./cub3D) | 스택 정렬, MiniLibX, raycasting |
+| 시스템 프로그래밍 | [pipex](./pipex), [philo](./philo), [minishell](./minishell) | 프로세스·파이프·시그널, pthread, 동기화 |
+| C++·네트워크 | [cpp_module](./cpp_module), [ft_irc](./ft_irc) | 객체지향, TCP socket, 이벤트 기반 서버 |
+| 인프라·웹 | [inception](./inception), [ft_transcendence](./ft_transcendence) | Docker, NGINX, MariaDB, TypeScript 기반 웹 서비스 |
+
+## Technical Focus
+
+- C/C++ 기반 메모리·프로세스·파일 디스크립터 관리
+- POSIX 시스템 호출을 이용한 명령 실행과 IPC
+- pthread 동기화와 race condition 방지
+- TCP socket과 이벤트 기반 다중 클라이언트 처리
+- Makefile, Git, Docker를 이용한 빌드·개발 환경 구성
+
+각 프로젝트의 세부 구현 범위와 한계는 해당 디렉터리의 README에 정리했습니다.
